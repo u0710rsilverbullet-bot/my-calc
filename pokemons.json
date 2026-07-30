@@ -1,0 +1,6201 @@
+[
+  {
+    "name": "フシギバナ",
+    "types": [
+      "くさ",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 82,
+      "def": 83,
+      "spAtk": 100,
+      "spDef": 100,
+      "spd": 80
+    },
+    "abilities": [
+      "しんりょく",
+      "ようりょくそ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガフシギバナ",
+    "types": [
+      "くさ",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 100,
+      "def": 123,
+      "spAtk": 122,
+      "spDef": 120,
+      "spd": 80
+    },
+    "abilities": [
+      "あついしぼう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "リザードン",
+    "types": [
+      "ほのお",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 84,
+      "def": 78,
+      "spAtk": 109,
+      "spDef": 85,
+      "spd": 100
+    },
+    "abilities": [
+      "もうか",
+      "サンパワー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガリザードンX",
+    "types": [
+      "ほのお",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 130,
+      "def": 111,
+      "spAtk": 130,
+      "spDef": 85,
+      "spd": 100
+    },
+    "abilities": [
+      "かたいツメ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガリザードンY",
+    "types": [
+      "ほのお",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 104,
+      "def": 78,
+      "spAtk": 159,
+      "spDef": 115,
+      "spd": 100
+    },
+    "abilities": [
+      "ひでり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "カメックス",
+    "types": [
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 79,
+      "atk": 83,
+      "def": 100,
+      "spAtk": 85,
+      "spDef": 105,
+      "spd": 78
+    },
+    "abilities": [
+      "げきりゅう",
+      "あめうけざら"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガカメックス",
+    "types": [
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 79,
+      "atk": 103,
+      "def": 120,
+      "spAtk": 135,
+      "spDef": 115,
+      "spd": 78
+    },
+    "abilities": [
+      "メガランチャー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "スピアー",
+    "types": [
+      "むし",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 40,
+      "spAtk": 45,
+      "spDef": 80,
+      "spd": 75
+    },
+    "abilities": [
+      "むしのしらせ",
+      "スナイパー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガスピアー",
+    "types": [
+      "むし",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 150,
+      "def": 40,
+      "spAtk": 15,
+      "spDef": 80,
+      "spd": 145
+    },
+    "abilities": [
+      "てきおうりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ピジョット",
+    "types": [
+      "ノーマル",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 83,
+      "atk": 80,
+      "def": 75,
+      "spAtk": 70,
+      "spDef": 70,
+      "spd": 101
+    },
+    "abilities": [
+      "するどいめ",
+      "ちどりあし",
+      "はとむね"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガピジョット",
+    "types": [
+      "ノーマル",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 83,
+      "atk": 80,
+      "def": 80,
+      "spAtk": 135,
+      "spDef": 80,
+      "spd": 121
+    },
+    "abilities": [
+      "ノーガード"
+    ],
+    "moves": []
+  },
+  {
+    "name": "アーボック",
+    "types": [
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 95,
+      "def": 69,
+      "spAtk": 65,
+      "spDef": 79,
+      "spd": 80
+    },
+    "abilities": [
+      "いかく",
+      "だっぴ",
+      "きんちょうかん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ピカチュウ",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 35,
+      "atk": 55,
+      "def": 40,
+      "spAtk": 50,
+      "spDef": 50,
+      "spd": 90
+    },
+    "abilities": [
+      "せいでんき",
+      "ひらいしん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ライチュウ",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 90,
+      "def": 55,
+      "spAtk": 90,
+      "spDef": 80,
+      "spd": 110
+    },
+    "abilities": [
+      "せいでんき",
+      "ひらいしん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ライチュウ(アローラ)",
+    "types": [
+      "でんき",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 85,
+      "def": 50,
+      "spAtk": 95,
+      "spDef": 85,
+      "spd": 110
+    },
+    "abilities": [
+      "サーフテール"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガライチュウX",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 135,
+      "def": 95,
+      "spAtk": 90,
+      "spDef": 95,
+      "spd": 110
+    },
+    "abilities": [
+      "エレキメイカー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガライチュウY",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 100,
+      "def": 55,
+      "spAtk": 160,
+      "spDef": 80,
+      "spd": 130
+    },
+    "abilities": [
+      "ノーガード"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ピクシー",
+    "types": [
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 70,
+      "def": 73,
+      "spAtk": 95,
+      "spDef": 90,
+      "spd": 60
+    },
+    "abilities": [
+      "メロメロボディ",
+      "マジックガード",
+      "てんねん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガピクシー",
+    "types": [
+      "フェアリー",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 80,
+      "def": 93,
+      "spAtk": 135,
+      "spDef": 110,
+      "spd": 70
+    },
+    "abilities": [
+      "マジックミラー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "キュウコン",
+    "types": [
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 73,
+      "atk": 76,
+      "def": 75,
+      "spAtk": 81,
+      "spDef": 100,
+      "spd": 100
+    },
+    "abilities": [
+      "もらいび",
+      "ひでり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "キュウコン(アローラ)",
+    "types": [
+      "こおり",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 73,
+      "atk": 67,
+      "def": 75,
+      "spAtk": 81,
+      "spDef": 100,
+      "spd": 109
+    },
+    "abilities": [
+      "ゆきがくれ",
+      "ゆきふらし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ラフレシア",
+    "types": [
+      "くさ",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 80,
+      "def": 85,
+      "spAtk": 110,
+      "spDef": 90,
+      "spd": 50
+    },
+    "abilities": [
+      "ようりょくそ",
+      "ほうし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ウインディ",
+    "types": [
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 110,
+      "def": 80,
+      "spAtk": 100,
+      "spDef": 80,
+      "spd": 95
+    },
+    "abilities": [
+      "いかく",
+      "もらいび",
+      "せいぎのこころ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ウインディ(ヒスイ)",
+    "types": [
+      "ほのお",
+      "いわ"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 115,
+      "def": 80,
+      "spAtk": 95,
+      "spDef": 80,
+      "spd": 90
+    },
+    "abilities": [
+      "いかく",
+      "もらいび",
+      "いしあたま"
+    ],
+    "moves": []
+  },
+  {
+    "name": "フーディン",
+    "types": [
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 50,
+      "def": 45,
+      "spAtk": 135,
+      "spDef": 95,
+      "spd": 120
+    },
+    "abilities": [
+      "シンクロ",
+      "せいしんりょく",
+      "マジックガード"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガフーディン",
+    "types": [
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 50,
+      "def": 65,
+      "spAtk": 175,
+      "spDef": 105,
+      "spd": 150
+    },
+    "abilities": [
+      "トレース"
+    ],
+    "moves": []
+  },
+  {
+    "name": "カイリキー",
+    "types": [
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 130,
+      "def": 80,
+      "spAtk": 65,
+      "spDef": 85,
+      "spd": 55
+    },
+    "abilities": [
+      "こんじょう",
+      "ノーガード",
+      "ふくつのこころ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ウツボット",
+    "types": [
+      "くさ",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 105,
+      "def": 65,
+      "spAtk": 100,
+      "spDef": 70,
+      "spd": 70
+    },
+    "abilities": [
+      "ようりょくそ",
+      "くいしんぼう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガウツボット",
+    "types": [
+      "くさ",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 125,
+      "def": 85,
+      "spAtk": 135,
+      "spDef": 95,
+      "spd": 70
+    },
+    "abilities": [
+      "とびだすなかみ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヤドラン",
+    "types": [
+      "みず",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 75,
+      "def": 110,
+      "spAtk": 100,
+      "spDef": 80,
+      "spd": 30
+    },
+    "abilities": [
+      "どんかん",
+      "マイペース",
+      "さいせいりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガヤドラン",
+    "types": [
+      "みず",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 75,
+      "def": 180,
+      "spAtk": 130,
+      "spDef": 80,
+      "spd": 30
+    },
+    "abilities": [
+      "シェルアーマー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヤドラン(ガラル)",
+    "types": [
+      "どく",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 100,
+      "def": 95,
+      "spAtk": 100,
+      "spDef": 70,
+      "spd": 30
+    },
+    "abilities": [
+      "クイックドロウ",
+      "マイペース",
+      "さいせいりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ゲンガー",
+    "types": [
+      "ゴースト",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 65,
+      "def": 60,
+      "spAtk": 130,
+      "spDef": 75,
+      "spd": 110
+    },
+    "abilities": [
+      "のろわれボディ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガゲンガー",
+    "types": [
+      "ゴースト",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 65,
+      "def": 80,
+      "spAtk": 170,
+      "spDef": 95,
+      "spd": 130
+    },
+    "abilities": [
+      "かげふみ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ガルーラ",
+    "types": [
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 105,
+      "atk": 95,
+      "def": 80,
+      "spAtk": 40,
+      "spDef": 80,
+      "spd": 90
+    },
+    "abilities": [
+      "はやおき",
+      "きもったま",
+      "せいしんりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガガルーラ",
+    "types": [
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 105,
+      "atk": 125,
+      "def": 100,
+      "spAtk": 60,
+      "spDef": 100,
+      "spd": 100
+    },
+    "abilities": [
+      "おやこあい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "スターミー",
+    "types": [
+      "みず",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 75,
+      "def": 85,
+      "spAtk": 100,
+      "spDef": 85,
+      "spd": 115
+    },
+    "abilities": [
+      "はっこう",
+      "しぜんかいふく",
+      "アナライズ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガスターミー",
+    "types": [
+      "みず",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 100,
+      "def": 105,
+      "spAtk": 130,
+      "spDef": 105,
+      "spd": 120
+    },
+    "abilities": [
+      "ちからもち"
+    ],
+    "moves": []
+  },
+  {
+    "name": "カイロス",
+    "types": [
+      "むし"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 125,
+      "def": 100,
+      "spAtk": 55,
+      "spDef": 70,
+      "spd": 85
+    },
+    "abilities": [
+      "かいりきバサミ",
+      "かたやぶり",
+      "じしんかじょう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガカイロス",
+    "types": [
+      "むし",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 155,
+      "def": 120,
+      "spAtk": 65,
+      "spDef": 90,
+      "spd": 105
+    },
+    "abilities": [
+      "スカイスキン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ケンタロス",
+    "types": [
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 100,
+      "def": 95,
+      "spAtk": 40,
+      "spDef": 70,
+      "spd": 110
+    },
+    "abilities": [
+      "いかく",
+      "いかりのつぼ",
+      "ちからずく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ケンタロス(パルデア単)",
+    "types": [
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 110,
+      "def": 105,
+      "spAtk": 30,
+      "spDef": 70,
+      "spd": 100
+    },
+    "abilities": [
+      "いかく",
+      "いかりのつぼ",
+      "はんすう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ケンタロス(パルデア炎)",
+    "types": [
+      "かくとう",
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 110,
+      "def": 105,
+      "spAtk": 30,
+      "spDef": 70,
+      "spd": 100
+    },
+    "abilities": [
+      "いかく",
+      "いかりのつぼ",
+      "はんすう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ケンタロス(パルデア水)",
+    "types": [
+      "かくとう",
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 110,
+      "def": 105,
+      "spAtk": 30,
+      "spDef": 70,
+      "spd": 100
+    },
+    "abilities": [
+      "いかく",
+      "いかりのつぼ",
+      "はんすう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ギャラドス",
+    "types": [
+      "みず",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 125,
+      "def": 79,
+      "spAtk": 60,
+      "spDef": 100,
+      "spd": 81
+    },
+    "abilities": [
+      "いかく",
+      "じしんかじょう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガギャラドス",
+    "types": [
+      "みず",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 155,
+      "def": 109,
+      "spAtk": 70,
+      "spDef": 130,
+      "spd": 81
+    },
+    "abilities": [
+      "かたやぶり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メタモン",
+    "types": [
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 48,
+      "atk": 48,
+      "def": 48,
+      "spAtk": 48,
+      "spDef": 48,
+      "spd": 48
+    },
+    "abilities": [
+      "じゅうなん",
+      "かわりもの"
+    ],
+    "moves": []
+  },
+  {
+    "name": "シャワーズ",
+    "types": [
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 130,
+      "atk": 65,
+      "def": 60,
+      "spAtk": 110,
+      "spDef": 95,
+      "spd": 65
+    },
+    "abilities": [
+      "ちょすい",
+      "うるおいボディ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "サンダース",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 65,
+      "def": 60,
+      "spAtk": 110,
+      "spDef": 95,
+      "spd": 130
+    },
+    "abilities": [
+      "ちくでん",
+      "はやあし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ブースター",
+    "types": [
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 130,
+      "def": 60,
+      "spAtk": 95,
+      "spDef": 110,
+      "spd": 65
+    },
+    "abilities": [
+      "もらいび",
+      "こんじょう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "プテラ",
+    "types": [
+      "いわ",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 105,
+      "def": 65,
+      "spAtk": 60,
+      "spDef": 75,
+      "spd": 130
+    },
+    "abilities": [
+      "いしあたま",
+      "プレッシャー",
+      "きんちょうかん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガプテラ",
+    "types": [
+      "いわ",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 135,
+      "def": 85,
+      "spAtk": 70,
+      "spDef": 95,
+      "spd": 150
+    },
+    "abilities": [
+      "かたいツメ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "カビゴン",
+    "types": [
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 160,
+      "atk": 110,
+      "def": 65,
+      "spAtk": 65,
+      "spDef": 110,
+      "spd": 30
+    },
+    "abilities": [
+      "めんえき",
+      "あついしぼう",
+      "くいしんぼう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "カイリュー",
+    "types": [
+      "ドラゴン",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 91,
+      "atk": 134,
+      "def": 95,
+      "spAtk": 100,
+      "spDef": 100,
+      "spd": 80
+    },
+    "abilities": [
+      "せいしんりょく",
+      "マルチスケイル"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガカイリュー",
+    "types": [
+      "ドラゴン",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 91,
+      "atk": 124,
+      "def": 115,
+      "spAtk": 145,
+      "spDef": 125,
+      "spd": 100
+    },
+    "abilities": [
+      "マルチスケイル"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガニウム",
+    "types": [
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 82,
+      "def": 100,
+      "spAtk": 83,
+      "spDef": 100,
+      "spd": 80
+    },
+    "abilities": [
+      "しんりょく",
+      "リーフガード"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガメガニウム",
+    "types": [
+      "くさ",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 92,
+      "def": 115,
+      "spAtk": 143,
+      "spDef": 115,
+      "spd": 80
+    },
+    "abilities": [
+      "メガソーラー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "バクフーン",
+    "types": [
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 84,
+      "def": 78,
+      "spAtk": 109,
+      "spDef": 85,
+      "spd": 100
+    },
+    "abilities": [
+      "もうか",
+      "もらいび"
+    ],
+    "moves": []
+  },
+  {
+    "name": "バクフーン(ヒスイ)",
+    "types": [
+      "ほのお",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 73,
+      "atk": 84,
+      "def": 78,
+      "spAtk": 119,
+      "spDef": 85,
+      "spd": 95
+    },
+    "abilities": [
+      "もうか",
+      "おみとおし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "オーダイル",
+    "types": [
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 105,
+      "def": 100,
+      "spAtk": 79,
+      "spDef": 83,
+      "spd": 78
+    },
+    "abilities": [
+      "げきりゅう",
+      "ちからずく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガオーダイル",
+    "types": [
+      "みず",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 160,
+      "def": 125,
+      "spAtk": 89,
+      "spDef": 93,
+      "spd": 78
+    },
+    "abilities": [
+      "ドラゴンスキン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "アリアドス",
+    "types": [
+      "むし",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 90,
+      "def": 70,
+      "spAtk": 60,
+      "spDef": 70,
+      "spd": 40
+    },
+    "abilities": [
+      "むしのしらせ",
+      "ふみん",
+      "スナイパー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "デンリュウ",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 75,
+      "def": 85,
+      "spAtk": 115,
+      "spDef": 90,
+      "spd": 55
+    },
+    "abilities": [
+      "せいでんき",
+      "プラス"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガデンリュウ",
+    "types": [
+      "でんき",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 95,
+      "def": 105,
+      "spAtk": 165,
+      "spDef": 110,
+      "spd": 45
+    },
+    "abilities": [
+      "かたやぶり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "マリルリ",
+    "types": [
+      "みず",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 50,
+      "def": 80,
+      "spAtk": 60,
+      "spDef": 80,
+      "spd": 50
+    },
+    "abilities": [
+      "あついしぼう",
+      "ちからもち",
+      "そうしょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ニョロトノ",
+    "types": [
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 75,
+      "def": 75,
+      "spAtk": 90,
+      "spDef": 100,
+      "spd": 70
+    },
+    "abilities": [
+      "ちょすい",
+      "しめりけ",
+      "あめふらし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "エーフィ",
+    "types": [
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 65,
+      "def": 60,
+      "spAtk": 130,
+      "spDef": 95,
+      "spd": 110
+    },
+    "abilities": [
+      "シンクロ",
+      "マジックミラー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ブラッキー",
+    "types": [
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 65,
+      "def": 110,
+      "spAtk": 60,
+      "spDef": 130,
+      "spd": 65
+    },
+    "abilities": [
+      "シンクロ",
+      "せいしんりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヤドキング",
+    "types": [
+      "みず",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 75,
+      "def": 80,
+      "spAtk": 100,
+      "spDef": 110,
+      "spd": 30
+    },
+    "abilities": [
+      "どんかん",
+      "マイペース",
+      "さいせいりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヤドキング(ガラル)",
+    "types": [
+      "どく",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 65,
+      "def": 80,
+      "spAtk": 110,
+      "spDef": 110,
+      "spd": 30
+    },
+    "abilities": [
+      "きみょうなくすり",
+      "マイペース",
+      "さいせいりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "フォレトス",
+    "types": [
+      "むし",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 90,
+      "def": 140,
+      "spAtk": 60,
+      "spDef": 60,
+      "spd": 40
+    },
+    "abilities": [
+      "がんじょう",
+      "ぼうじん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ハガネール",
+    "types": [
+      "はがね",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 85,
+      "def": 200,
+      "spAtk": 55,
+      "spDef": 65,
+      "spd": 30
+    },
+    "abilities": [
+      "いしあたま",
+      "がんじょう",
+      "ちからずく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガハガネール",
+    "types": [
+      "はがね",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 125,
+      "def": 230,
+      "spAtk": 55,
+      "spDef": 95,
+      "spd": 30
+    },
+    "abilities": [
+      "すなのちから"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ハリーセン",
+    "types": [
+      "みず",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 95,
+      "def": 85,
+      "spAtk": 55,
+      "spDef": 55,
+      "spd": 85
+    },
+    "abilities": [
+      "どくのトゲ",
+      "すいすい",
+      "いかく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ハッサム",
+    "types": [
+      "むし",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 130,
+      "def": 100,
+      "spAtk": 55,
+      "spDef": 80,
+      "spd": 65
+    },
+    "abilities": [
+      "むしのしらせ",
+      "テクニシャン",
+      "ライトメタル"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガハッサム",
+    "types": [
+      "むし",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 150,
+      "def": 140,
+      "spAtk": 65,
+      "spDef": 100,
+      "spd": 75
+    },
+    "abilities": [
+      "テクニシャン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヘラクロス",
+    "types": [
+      "むし",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 125,
+      "def": 75,
+      "spAtk": 40,
+      "spDef": 95,
+      "spd": 85
+    },
+    "abilities": [
+      "むしのしらせ",
+      "こんじょう",
+      "じしんかじょう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガヘラクロス",
+    "types": [
+      "むし",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 185,
+      "def": 115,
+      "spAtk": 40,
+      "spDef": 105,
+      "spd": 75
+    },
+    "abilities": [
+      "スキルリンク"
+    ],
+    "moves": []
+  },
+  {
+    "name": "エアームド",
+    "types": [
+      "はがね",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 80,
+      "def": 140,
+      "spAtk": 40,
+      "spDef": 70,
+      "spd": 70
+    },
+    "abilities": [
+      "するどいめ",
+      "がんじょう",
+      "くだけるよろい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガエアームド",
+    "types": [
+      "はがね",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 140,
+      "def": 110,
+      "spAtk": 40,
+      "spDef": 100,
+      "spd": 110
+    },
+    "abilities": [
+      "すじがねいり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヘルガー",
+    "types": [
+      "あく",
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 90,
+      "def": 50,
+      "spAtk": 110,
+      "spDef": 80,
+      "spd": 95
+    },
+    "abilities": [
+      "はやおき",
+      "もらいび",
+      "きんちょうかん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガヘルガー",
+    "types": [
+      "あく",
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 90,
+      "def": 90,
+      "spAtk": 140,
+      "spDef": 90,
+      "spd": 115
+    },
+    "abilities": [
+      "サンパワー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "バンギラス",
+    "types": [
+      "いわ",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 134,
+      "def": 110,
+      "spAtk": 95,
+      "spDef": 100,
+      "spd": 61
+    },
+    "abilities": [
+      "すなおこし",
+      "きんちょうかん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガバンギラス",
+    "types": [
+      "いわ",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 164,
+      "def": 150,
+      "spAtk": 95,
+      "spDef": 120,
+      "spd": 71
+    },
+    "abilities": [
+      "すなおこし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ジュカイン",
+    "types": [
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 85,
+      "def": 65,
+      "spAtk": 105,
+      "spDef": 85,
+      "spd": 120
+    },
+    "abilities": [
+      "しんりょく",
+      "かるわざ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガジュカイン",
+    "types": [
+      "くさ",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 110,
+      "def": 75,
+      "spAtk": 145,
+      "spDef": 85,
+      "spd": 120
+    },
+    "abilities": [
+      "ひらいしん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "バシャーモ",
+    "types": [
+      "ほのお",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 120,
+      "def": 70,
+      "spAtk": 110,
+      "spDef": 70,
+      "spd": 80
+    },
+    "abilities": [
+      "もうか",
+      "かそく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガバシャーモ",
+    "types": [
+      "ほのお",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 160,
+      "def": 80,
+      "spAtk": 130,
+      "spDef": 80,
+      "spd": 100
+    },
+    "abilities": [
+      "かそく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ラグラージ",
+    "types": [
+      "みず",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 110,
+      "def": 90,
+      "spAtk": 85,
+      "spDef": 90,
+      "spd": 60
+    },
+    "abilities": [
+      "げきりゅう",
+      "しめりけ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガラグラージ",
+    "types": [
+      "みず",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 15,
+      "def": 110,
+      "spAtk": 95,
+      "spDef": 110,
+      "spd": 70
+    },
+    "abilities": [
+      "すいすい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ペリッパー",
+    "types": [
+      "みず",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 50,
+      "def": 100,
+      "spAtk": 95,
+      "spDef": 70,
+      "spd": 65
+    },
+    "abilities": [
+      "するどいめ",
+      "あめふらし",
+      "あめうけざら"
+    ],
+    "moves": []
+  },
+  {
+    "name": "サーナイト",
+    "types": [
+      "エスパー",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 65,
+      "def": 65,
+      "spAtk": 125,
+      "spDef": 115,
+      "spd": 80
+    },
+    "abilities": [
+      "シンクロ",
+      "トレース",
+      "テレパシー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガサーナイト",
+    "types": [
+      "エスパー",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 85,
+      "def": 65,
+      "spAtk": 165,
+      "spDef": 135,
+      "spd": 100
+    },
+    "abilities": [
+      "フェアリースキン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヤミラミ",
+    "types": [
+      "あく",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 75,
+      "def": 75,
+      "spAtk": 65,
+      "spDef": 65,
+      "spd": 50
+    },
+    "abilities": [
+      "するどいめ",
+      "あとだし",
+      "いたずらごころ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガヤミラミ",
+    "types": [
+      "あく",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 85,
+      "def": 125,
+      "spAtk": 85,
+      "spDef": 115,
+      "spd": 20
+    },
+    "abilities": [
+      "マジックミラー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "クチート",
+    "types": [
+      "はがね",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 85,
+      "def": 85,
+      "spAtk": 55,
+      "spDef": 55,
+      "spd": 50
+    },
+    "abilities": [
+      "かいりきバサミ",
+      "いかく",
+      "ちからずく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガクチート",
+    "types": [
+      "はがね",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 105,
+      "def": 125,
+      "spAtk": 55,
+      "spDef": 95,
+      "spd": 50
+    },
+    "abilities": [
+      "ちからもち"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ボスゴドラ",
+    "types": [
+      "はがね",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 110,
+      "def": 180,
+      "spAtk": 60,
+      "spDef": 60,
+      "spd": 50
+    },
+    "abilities": [
+      "がんじょう",
+      "いしあたま"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガボスゴドラ",
+    "types": [
+      "はがね",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 140,
+      "def": 230,
+      "spAtk": 60,
+      "spDef": 80,
+      "spd": 50
+    },
+    "abilities": [
+      "フィルター"
+    ],
+    "moves": []
+  },
+  {
+    "name": "チャーレム",
+    "types": [
+      "かくとう",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 60,
+      "def": 75,
+      "spAtk": 60,
+      "spDef": 75,
+      "spd": 80
+    },
+    "abilities": [
+      "ヨガパワー",
+      "テレパシー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガチャーレム",
+    "types": [
+      "かくとう",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 100,
+      "def": 85,
+      "spAtk": 80,
+      "spDef": 85,
+      "spd": 100
+    },
+    "abilities": [
+      "ヨガパワー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ライボルト",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 75,
+      "def": 60,
+      "spAtk": 105,
+      "spDef": 60,
+      "spd": 105
+    },
+    "abilities": [
+      "せいでんき",
+      "ひらいしん",
+      "マイナス"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガライボルト",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 75,
+      "def": 80,
+      "spAtk": 135,
+      "spDef": 80,
+      "spd": 135
+    },
+    "abilities": [
+      "いかく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "サメハダー",
+    "types": [
+      "みず",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 120,
+      "def": 40,
+      "spAtk": 95,
+      "spDef": 40,
+      "spd": 95
+    },
+    "abilities": [
+      "さめはだ",
+      "かそく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガサメハダー",
+    "types": [
+      "みず",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 140,
+      "def": 70,
+      "spAtk": 110,
+      "spDef": 65,
+      "spd": 105
+    },
+    "abilities": [
+      "がんじょうあご"
+    ],
+    "moves": []
+  },
+  {
+    "name": "バクーダ",
+    "types": [
+      "ほのお",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 100,
+      "def": 70,
+      "spAtk": 105,
+      "spDef": 75,
+      "spd": 40
+    },
+    "abilities": [
+      "マグマのよろい",
+      "ハードロック",
+      "いかりのつぼ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガバクーダ",
+    "types": [
+      "ほのお",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 120,
+      "def": 100,
+      "spAtk": 145,
+      "spDef": 105,
+      "spd": 20
+    },
+    "abilities": [
+      "ちからずく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "コータス",
+    "types": [
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 85,
+      "def": 140,
+      "spAtk": 85,
+      "spDef": 70,
+      "spd": 20
+    },
+    "abilities": [
+      "しろいけむり",
+      "ひでり",
+      "シェルアーマー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "チルタリス",
+    "types": [
+      "ドラゴン",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 70,
+      "def": 90,
+      "spAtk": 70,
+      "spDef": 105,
+      "spd": 80
+    },
+    "abilities": [
+      "しぜんかいふく",
+      "ノーてんき"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガチルタリス",
+    "types": [
+      "ドラゴン",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 110,
+      "def": 110,
+      "spAtk": 110,
+      "spDef": 105,
+      "spd": 80
+    },
+    "abilities": [
+      "フェアリースキン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ミロカロス",
+    "types": [
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 60,
+      "def": 79,
+      "spAtk": 100,
+      "spDef": 125,
+      "spd": 81
+    },
+    "abilities": [
+      "ふしぎなうろこ",
+      "かちき",
+      "メロメロボディ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ポワルン",
+    "types": [
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 70,
+      "def": 70,
+      "spAtk": 70,
+      "spDef": 70,
+      "spd": 70
+    },
+    "abilities": [
+      "てんきや"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ジュペッタ",
+    "types": [
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 64,
+      "atk": 115,
+      "def": 65,
+      "spAtk": 83,
+      "spDef": 63,
+      "spd": 65
+    },
+    "abilities": [
+      "ふみん",
+      "おみとおし",
+      "のろわれボディ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガジュペッタ",
+    "types": [
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 64,
+      "atk": 165,
+      "def": 75,
+      "spAtk": 93,
+      "spDef": 83,
+      "spd": 75
+    },
+    "abilities": [
+      "いたずらごころ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "チリーン",
+    "types": [
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 50,
+      "def": 80,
+      "spAtk": 95,
+      "spDef": 90,
+      "spd": 65
+    },
+    "abilities": [
+      "ふゆう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガチリーン",
+    "types": [
+      "エスパー",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 50,
+      "def": 110,
+      "spAtk": 135,
+      "spDef": 120,
+      "spd": 65
+    },
+    "abilities": [
+      "ふゆう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "アブソル",
+    "types": [
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 130,
+      "def": 60,
+      "spAtk": 75,
+      "spDef": 60,
+      "spd": 75
+    },
+    "abilities": [
+      "プレッシャー",
+      "きょううん",
+      "せいぎのこころ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガアブソル",
+    "types": [
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 150,
+      "def": 60,
+      "spAtk": 115,
+      "spDef": 60,
+      "spd": 115
+    },
+    "abilities": [
+      "マジックミラー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "オニゴーリ",
+    "types": [
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 80,
+      "def": 80,
+      "spAtk": 80,
+      "spDef": 80,
+      "spd": 80
+    },
+    "abilities": [
+      "せいしんりょく",
+      "アイスボディ",
+      "ムラっけ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガオニゴーリ",
+    "types": [
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 120,
+      "def": 80,
+      "spAtk": 120,
+      "spDef": 80,
+      "spd": 100
+    },
+    "abilities": [
+      "フリーズスキン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メタグロス",
+    "types": [
+      "はがね",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 135,
+      "def": 130,
+      "spAtk": 95,
+      "spDef": 90,
+      "spd": 70
+    },
+    "abilities": [
+      "クリアボディ",
+      "ライトメタル"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガメタグロス",
+    "types": [
+      "はがね",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 145,
+      "def": 150,
+      "spAtk": 105,
+      "spDef": 110,
+      "spd": 110
+    },
+    "abilities": [
+      "かたいツメ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ドダイトス",
+    "types": [
+      "くさ",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 109,
+      "def": 105,
+      "spAtk": 75,
+      "spDef": 85,
+      "spd": 56
+    },
+    "abilities": [
+      "しんりょく",
+      "シェルアーマー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ゴウカザル",
+    "types": [
+      "ほのお",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 76,
+      "atk": 104,
+      "def": 71,
+      "spAtk": 104,
+      "spDef": 71,
+      "spd": 108
+    },
+    "abilities": [
+      "もうか",
+      "てつのこぶし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "エンペルト",
+    "types": [
+      "みず",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 84,
+      "atk": 86,
+      "def": 88,
+      "spAtk": 111,
+      "spDef": 101,
+      "spd": 60
+    },
+    "abilities": [
+      "げきりゅう",
+      "かちき"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ムクホーク",
+    "types": [
+      "ノーマル",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 120,
+      "def": 70,
+      "spAtk": 50,
+      "spDef": 60,
+      "spd": 100
+    },
+    "abilities": [
+      "いかく",
+      "すてみ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガムクホーク",
+    "types": [
+      "かくとう",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 140,
+      "def": 100,
+      "spAtk": 60,
+      "spDef": 90,
+      "spd": 110
+    },
+    "abilities": [
+      "あまのじゃく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "レントラー",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 120,
+      "def": 79,
+      "spAtk": 95,
+      "spDef": 79,
+      "spd": 70
+    },
+    "abilities": [
+      "とうそうしん",
+      "いかく",
+      "こんじょう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ロズレイド",
+    "types": [
+      "くさ",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 70,
+      "def": 65,
+      "spAtk": 125,
+      "spDef": 105,
+      "spd": 90
+    },
+    "abilities": [
+      "しぜんかいふく",
+      "どくのトゲ",
+      "テクニシャン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ラムパルド",
+    "types": [
+      "いわ"
+    ],
+    "baseStats": {
+      "hp": 97,
+      "atk": 165,
+      "def": 60,
+      "spAtk": 65,
+      "spDef": 50,
+      "spd": 58
+    },
+    "abilities": [
+      "かたやぶり",
+      "ちからずく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "トリデプス",
+    "types": [
+      "いわ",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 52,
+      "def": 168,
+      "spAtk": 47,
+      "spDef": 138,
+      "spd": 30
+    },
+    "abilities": [
+      "がんじょう",
+      "ぼうおん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ミミロップ",
+    "types": [
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 76,
+      "def": 84,
+      "spAtk": 54,
+      "spDef": 96,
+      "spd": 105
+    },
+    "abilities": [
+      "メロメロボディ",
+      "ぶきよう",
+      "じゅうなん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガミミロップ",
+    "types": [
+      "ノーマル",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 136,
+      "def": 94,
+      "spAtk": 54,
+      "spDef": 96,
+      "spd": 135
+    },
+    "abilities": [
+      "きもったま"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ミカルゲ",
+    "types": [
+      "ゴースト",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 92,
+      "def": 108,
+      "spAtk": 92,
+      "spDef": 108,
+      "spd": 35
+    },
+    "abilities": [
+      "プレッシャー",
+      "すりぬけ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ガブリアス",
+    "types": [
+      "ドラゴン",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 108,
+      "atk": 130,
+      "def": 95,
+      "spAtk": 80,
+      "spDef": 85,
+      "spd": 102
+    },
+    "abilities": [
+      "すながくれ",
+      "さめはだ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガガブリアス",
+    "types": [
+      "ドラゴン",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 108,
+      "atk": 170,
+      "def": 115,
+      "spAtk": 120,
+      "spDef": 95,
+      "spd": 92
+    },
+    "abilities": [
+      "すなのちから"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ルカリオ",
+    "types": [
+      "かくとう",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 110,
+      "def": 70,
+      "spAtk": 115,
+      "spDef": 70,
+      "spd": 90
+    },
+    "abilities": [
+      "ふくつのこころ",
+      "せいしんりょく",
+      "せいぎのこころ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガルカリオ",
+    "types": [
+      "かくとう",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 145,
+      "def": 88,
+      "spAtk": 140,
+      "spDef": 70,
+      "spd": 112
+    },
+    "abilities": [
+      "てきおうりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "カバルドン",
+    "types": [
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 108,
+      "atk": 112,
+      "def": 118,
+      "spAtk": 68,
+      "spDef": 72,
+      "spd": 47
+    },
+    "abilities": [
+      "すなおこし",
+      "すなのちから"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ドクロッグ",
+    "types": [
+      "どく",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 83,
+      "atk": 106,
+      "def": 65,
+      "spAtk": 86,
+      "spDef": 65,
+      "spd": 85
+    },
+    "abilities": [
+      "きけんよち",
+      "かんそうはだ",
+      "どくしゅ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ユキノオー",
+    "types": [
+      "くさ",
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 92,
+      "def": 75,
+      "spAtk": 92,
+      "spDef": 85,
+      "spd": 60
+    },
+    "abilities": [
+      "ゆきふらし",
+      "ぼうおん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガユキノオー",
+    "types": [
+      "くさ",
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 132,
+      "def": 105,
+      "spAtk": 132,
+      "spDef": 105,
+      "spd": 30
+    },
+    "abilities": [
+      "ゆきふらし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "マニューラ",
+    "types": [
+      "あく",
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 120,
+      "def": 65,
+      "spAtk": 45,
+      "spDef": 85,
+      "spd": 125
+    },
+    "abilities": [
+      "プレッシャー",
+      "わるいてぐせ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ドサイドン",
+    "types": [
+      "じめん",
+      "いわ"
+    ],
+    "baseStats": {
+      "hp": 115,
+      "atk": 140,
+      "def": 130,
+      "spAtk": 55,
+      "spDef": 55,
+      "spd": 40
+    },
+    "abilities": [
+      "ひらいしん",
+      "ハードロック",
+      "すてみ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "リーフィア",
+    "types": [
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 110,
+      "def": 130,
+      "spAtk": 60,
+      "spDef": 65,
+      "spd": 95
+    },
+    "abilities": [
+      "リーフガード",
+      "ようりょくそ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "グレイシア",
+    "types": [
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 60,
+      "def": 110,
+      "spAtk": 130,
+      "spDef": 95,
+      "spd": 65
+    },
+    "abilities": [
+      "ゆきがくれ",
+      "アイスボディ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "グライオン",
+    "types": [
+      "じめん",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 95,
+      "def": 125,
+      "spAtk": 45,
+      "spDef": 75,
+      "spd": 95
+    },
+    "abilities": [
+      "かいりきバサミ",
+      "すながくれ",
+      "ポイズンヒール"
+    ],
+    "moves": []
+  },
+  {
+    "name": "マンムー",
+    "types": [
+      "こおり",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 130,
+      "def": 80,
+      "spAtk": 70,
+      "spDef": 60,
+      "spd": 80
+    },
+    "abilities": [
+      "どんかん",
+      "ゆきがくれ",
+      "あついしぼう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "エルレイド",
+    "types": [
+      "エスパー",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 125,
+      "def": 65,
+      "spAtk": 65,
+      "spDef": 115,
+      "spd": 80
+    },
+    "abilities": [
+      "ふくつのこころ",
+      "きれあじ",
+      "せいぎのこころ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガエルレイド",
+    "types": [
+      "エスパー",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 165,
+      "def": 95,
+      "spAtk": 65,
+      "spDef": 115,
+      "spd": 110
+    },
+    "abilities": [
+      "せいしんりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ユキメノコ",
+    "types": [
+      "こおり",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 80,
+      "def": 70,
+      "spAtk": 80,
+      "spDef": 70,
+      "spd": 110
+    },
+    "abilities": [
+      "ゆきがくれ",
+      "のろわれボディ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガユキメノコ",
+    "types": [
+      "こおり",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 80,
+      "def": 70,
+      "spAtk": 140,
+      "spDef": 100,
+      "spd": 120
+    },
+    "abilities": [
+      "ゆきふらし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ロトム",
+    "types": [
+      "でんき",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 50,
+      "def": 77,
+      "spAtk": 95,
+      "spDef": 77,
+      "spd": 91
+    },
+    "abilities": [
+      "ふゆう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヒートロトム",
+    "types": [
+      "でんき",
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 65,
+      "def": 107,
+      "spAtk": 105,
+      "spDef": 105,
+      "spd": 86
+    },
+    "abilities": [
+      "ふゆう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ウォッシュロトム",
+    "types": [
+      "でんき",
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 65,
+      "def": 107,
+      "spAtk": 105,
+      "spDef": 105,
+      "spd": 86
+    },
+    "abilities": [
+      "ふゆう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "フロストロトム",
+    "types": [
+      "でんき",
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 65,
+      "def": 107,
+      "spAtk": 105,
+      "spDef": 105,
+      "spd": 86
+    },
+    "abilities": [
+      "ふゆう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "スピンロトム",
+    "types": [
+      "でんき",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 65,
+      "def": 107,
+      "spAtk": 105,
+      "spDef": 105,
+      "spd": 86
+    },
+    "abilities": [
+      "ふゆう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "カットロトム",
+    "types": [
+      "でんき",
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 65,
+      "def": 107,
+      "spAtk": 105,
+      "spDef": 105,
+      "spd": 86
+    },
+    "abilities": [
+      "ふゆう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ジャローダ",
+    "types": [
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 75,
+      "def": 95,
+      "spAtk": 75,
+      "spDef": 95,
+      "spd": 113
+    },
+    "abilities": [
+      "しんりょく",
+      "あまのじゃく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "エンブオー",
+    "types": [
+      "ほのお",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 123,
+      "def": 65,
+      "spAtk": 100,
+      "spDef": 65,
+      "spd": 65
+    },
+    "abilities": [
+      "もうか",
+      "すてみ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガエンブオー",
+    "types": [
+      "ほのお",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 148,
+      "def": 75,
+      "spAtk": 110,
+      "spDef": 110,
+      "spd": 75
+    },
+    "abilities": [
+      "かたやぶり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ダイケンキ",
+    "types": [
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 100,
+      "def": 85,
+      "spAtk": 108,
+      "spDef": 70,
+      "spd": 70
+    },
+    "abilities": [
+      "げきりゅう",
+      "シェルアーマー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ダイケンキ(ヒスイ)",
+    "types": [
+      "みず",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 108,
+      "def": 80,
+      "spAtk": 100,
+      "spDef": 65,
+      "spd": 85
+    },
+    "abilities": [
+      "げきりゅう",
+      "きれあじ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ミルホッグ",
+    "types": [
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 85,
+      "def": 69,
+      "spAtk": 60,
+      "spDef": 69,
+      "spd": 77
+    },
+    "abilities": [
+      "はっこう",
+      "するどいめ",
+      "アナライズ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "レパルダス",
+    "types": [
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 64,
+      "atk": 88,
+      "def": 50,
+      "spAtk": 88,
+      "spDef": 50,
+      "spd": 106
+    },
+    "abilities": [
+      "じゅうなん",
+      "かるわざ",
+      "いたずらごころ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヤナッキー",
+    "types": [
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 98,
+      "def": 63,
+      "spAtk": 98,
+      "spDef": 63,
+      "spd": 101
+    },
+    "abilities": [
+      "くいしんぼう",
+      "しんりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "バオッキー",
+    "types": [
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 98,
+      "def": 63,
+      "spAtk": 98,
+      "spDef": 63,
+      "spd": 101
+    },
+    "abilities": [
+      "くいしんぼう",
+      "もうか"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヒヤッキー",
+    "types": [
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 98,
+      "def": 63,
+      "spAtk": 98,
+      "spDef": 63,
+      "spd": 101
+    },
+    "abilities": [
+      "くいしんぼう",
+      "げきりゅう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ムシャーナ",
+    "types": [
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 116,
+      "atk": 55,
+      "def": 85,
+      "spAtk": 107,
+      "spDef": 95,
+      "spd": 29
+    },
+    "abilities": [
+      "よちむ",
+      "シンクロ",
+      "テレパシー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ドリュウズ",
+    "types": [
+      "じめん",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 135,
+      "def": 60,
+      "spAtk": 50,
+      "spDef": 65,
+      "spd": 88
+    },
+    "abilities": [
+      "すなかき",
+      "すなのちから",
+      "かたやぶり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガドリュウズ",
+    "types": [
+      "じめん",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 165,
+      "def": 100,
+      "spAtk": 65,
+      "spDef": 65,
+      "spd": 103
+    },
+    "abilities": [
+      "かんつうドリル"
+    ],
+    "moves": []
+  },
+  {
+    "name": "タブンネ",
+    "types": [
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 103,
+      "atk": 60,
+      "def": 86,
+      "spAtk": 60,
+      "spDef": 86,
+      "spd": 50
+    },
+    "abilities": [
+      "いやしのこころ",
+      "さいせいりょく",
+      "ぶきよう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガタブンネ",
+    "types": [
+      "ノーマル",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 103,
+      "atk": 60,
+      "def": 126,
+      "spAtk": 80,
+      "spDef": 126,
+      "spd": 50
+    },
+    "abilities": [
+      "いやしのこころ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ローブシン",
+    "types": [
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 105,
+      "atk": 140,
+      "def": 95,
+      "spAtk": 55,
+      "spDef": 65,
+      "spd": 45
+    },
+    "abilities": [
+      "こんじょう",
+      "ちからずく",
+      "てつのこぶし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ペンドラー",
+    "types": [
+      "むし",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 100,
+      "def": 89,
+      "spAtk": 55,
+      "spDef": 69,
+      "spd": 112
+    },
+    "abilities": [
+      "どくのトゲ",
+      "むしのしらせ",
+      "かそく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガペンドラー",
+    "types": [
+      "むし",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 600,
+      "atk": 140,
+      "def": 149,
+      "spAtk": 75,
+      "spDef": 99,
+      "spd": 62
+    },
+    "abilities": [
+      "シェルアーマー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "エルフーン",
+    "types": [
+      "くさ",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 67,
+      "def": 85,
+      "spAtk": 77,
+      "spDef": 75,
+      "spd": 116
+    },
+    "abilities": [
+      "いたずらごころ",
+      "すりぬけ",
+      "ようりょくそ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ワルビアル",
+    "types": [
+      "じめん",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 117,
+      "def": 80,
+      "spAtk": 65,
+      "spDef": 70,
+      "spd": 92
+    },
+    "abilities": [
+      "いかく",
+      "じしんかじょう",
+      "いかりのつぼ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ズルズキン",
+    "types": [
+      "あく",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 115,
+      "spAtk": 45,
+      "spDef": 115,
+      "spd": 58
+    },
+    "abilities": [
+      "だっぴ",
+      "じしんかじょう",
+      "いかく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガズルズキン",
+    "types": [
+      "あく",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 130,
+      "def": 135,
+      "spAtk": 55,
+      "spDef": 135,
+      "spd": 68
+    },
+    "abilities": [
+      "いかく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "デスカーン",
+    "types": [
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 58,
+      "atk": 50,
+      "def": 145,
+      "spAtk": 95,
+      "spDef": 105,
+      "spd": 30
+    },
+    "abilities": [
+      "ミイラ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ダストダス",
+    "types": [
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 95,
+      "def": 82,
+      "spAtk": 60,
+      "spDef": 82,
+      "spd": 75
+    },
+    "abilities": [
+      "あくしゅう",
+      "くだけるよろい",
+      "ゆうばく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ゾロアーク",
+    "types": [
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 105,
+      "def": 60,
+      "spAtk": 120,
+      "spDef": 60,
+      "spd": 105
+    },
+    "abilities": [
+      "イリュージョン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ゾロアーク(ヒスイ)",
+    "types": [
+      "ノーマル",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 100,
+      "def": 60,
+      "spAtk": 125,
+      "spDef": 60,
+      "spd": 110
+    },
+    "abilities": [
+      "イリュージョン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ランクルス",
+    "types": [
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 65,
+      "def": 75,
+      "spAtk": 125,
+      "spDef": 85,
+      "spd": 30
+    },
+    "abilities": [
+      "ぼうじん",
+      "マジックガード",
+      "さいせいりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "バイバニラ",
+    "types": [
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 71,
+      "atk": 95,
+      "def": 85,
+      "spAtk": 110,
+      "spDef": 95,
+      "spd": 79
+    },
+    "abilities": [
+      "アイスボディ",
+      "ゆきふらし",
+      "くだけるよろい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "エモンガ",
+    "types": [
+      "でんき",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 75,
+      "def": 60,
+      "spAtk": 75,
+      "spDef": 60,
+      "spd": 103
+    },
+    "abilities": [
+      "せいでんき",
+      "でんきエンジン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "シビルドン",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 115,
+      "def": 80,
+      "spAtk": 105,
+      "spDef": 80,
+      "spd": 50
+    },
+    "abilities": [
+      "ふゆう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガシビルドン",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 145,
+      "def": 80,
+      "spAtk": 135,
+      "spDef": 90,
+      "spd": 80
+    },
+    "abilities": [
+      "うなぎのぼり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "シャンデラ",
+    "types": [
+      "ゴースト",
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 55,
+      "def": 90,
+      "spAtk": 145,
+      "spDef": 90,
+      "spd": 80
+    },
+    "abilities": [
+      "もらいび",
+      "ほのおのからだ",
+      "すりぬけ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガシャンデラ",
+    "types": [
+      "ゴースト",
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 75,
+      "def": 110,
+      "spAtk": 175,
+      "spDef": 110,
+      "spd": 90
+    },
+    "abilities": [
+      "すりぬけ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ツンベアー",
+    "types": [
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 130,
+      "def": 80,
+      "spAtk": 70,
+      "spDef": 80,
+      "spd": 50
+    },
+    "abilities": [
+      "ゆきがくれ",
+      "ゆきかき",
+      "すいすい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "マッギョ",
+    "types": [
+      "じめん",
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 109,
+      "atk": 66,
+      "def": 84,
+      "spAtk": 81,
+      "spDef": 99,
+      "spd": 32
+    },
+    "abilities": [
+      "せいでんき",
+      "じゅうなん",
+      "すながくれ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "マッギョ(ガラル)",
+    "types": [
+      "じめん",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 109,
+      "atk": 81,
+      "def": 99,
+      "spAtk": 66,
+      "spDef": 84,
+      "spd": 32
+    },
+    "abilities": [
+      "ぎたい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ゴルーグ",
+    "types": [
+      "じめん",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 89,
+      "atk": 124,
+      "def": 80,
+      "spAtk": 55,
+      "spDef": 80,
+      "spd": 55
+    },
+    "abilities": [
+      "てつのこぶし",
+      "ぶきよう",
+      "ノーガード"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガゴルーグ",
+    "types": [
+      "じめん",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 89,
+      "atk": 159,
+      "def": 105,
+      "spAtk": 70,
+      "spDef": 105,
+      "spd": 55
+    },
+    "abilities": [
+      "ふかしのこぶし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "サザンドラ",
+    "types": [
+      "あく",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 92,
+      "atk": 105,
+      "def": 90,
+      "spAtk": 125,
+      "spDef": 90,
+      "spd": 98
+    },
+    "abilities": [
+      "ふゆう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ウルガモス",
+    "types": [
+      "むし",
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 60,
+      "def": 65,
+      "spAtk": 135,
+      "spDef": 105,
+      "spd": 100
+    },
+    "abilities": [
+      "ほのおのからだ",
+      "むしのしらせ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ブリガロン",
+    "types": [
+      "くさ",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 88,
+      "atk": 107,
+      "def": 122,
+      "spAtk": 74,
+      "spDef": 75,
+      "spd": 64
+    },
+    "abilities": [
+      "しんりょく",
+      "ぼうだん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガブリガロン",
+    "types": [
+      "くさ",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 88,
+      "atk": 137,
+      "def": 172,
+      "spAtk": 74,
+      "spDef": 115,
+      "spd": 44
+    },
+    "abilities": [
+      "ぼうだん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "マフォクシー",
+    "types": [
+      "ほのお",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 69,
+      "def": 72,
+      "spAtk": 114,
+      "spDef": 100,
+      "spd": 104
+    },
+    "abilities": [
+      "もうか",
+      "マジシャン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガマフォクシー",
+    "types": [
+      "ほのお",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 69,
+      "def": 72,
+      "spAtk": 159,
+      "spDef": 125,
+      "spd": 134
+    },
+    "abilities": [
+      "ふゆう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ゲッコウガ",
+    "types": [
+      "みず",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 72,
+      "atk": 95,
+      "def": 67,
+      "spAtk": 103,
+      "spDef": 71,
+      "spd": 122
+    },
+    "abilities": [
+      "げきりゅう",
+      "へんげんじざい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガゲッコウガ",
+    "types": [
+      "みず",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 72,
+      "atk": 125,
+      "def": 77,
+      "spAtk": 133,
+      "spDef": 81,
+      "spd": 142
+    },
+    "abilities": [
+      "へんげんじざい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ホルード",
+    "types": [
+      "ノーマル",
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 56,
+      "def": 77,
+      "spAtk": 50,
+      "spDef": 77,
+      "spd": 78
+    },
+    "abilities": [
+      "ものひろい",
+      "ほおぶくろ",
+      "ちからもち"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ファイアロー",
+    "types": [
+      "ほのお",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 81,
+      "def": 71,
+      "spAtk": 74,
+      "spDef": 69,
+      "spd": 126
+    },
+    "abilities": [
+      "ほのおのからだ",
+      "はやてのつばさ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ビビヨン",
+    "types": [
+      "むし",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 52,
+      "def": 50,
+      "spAtk": 90,
+      "spDef": 50,
+      "spd": 89
+    },
+    "abilities": [
+      "りんぷん",
+      "ふくがん",
+      "フレンドガード"
+    ],
+    "moves": []
+  },
+  {
+    "name": "カエンジシ",
+    "types": [
+      "ほのお",
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 86,
+      "atk": 68,
+      "def": 72,
+      "spAtk": 109,
+      "spDef": 66,
+      "spd": 106
+    },
+    "abilities": [
+      "とうそうしん",
+      "きんちょうかん",
+      "じしんかじょう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガカエンジシ",
+    "types": [
+      "ほのお",
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 86,
+      "atk": 88,
+      "def": 92,
+      "spAtk": 129,
+      "spDef": 86,
+      "spd": 126
+    },
+    "abilities": [
+      "ほのおのたてがみ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "フラエッテ(永遠)",
+    "types": [
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 74,
+      "atk": 65,
+      "def": 67,
+      "spAtk": 125,
+      "spDef": 128,
+      "spd": 92
+    },
+    "abilities": [
+      "フラワーベール",
+      "きょうせい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガフラエッテ",
+    "types": [
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 74,
+      "atk": 85,
+      "def": 87,
+      "spAtk": 155,
+      "spDef": 148,
+      "spd": 102
+    },
+    "abilities": [
+      "フェアリーオーラ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "フラージェス",
+    "types": [
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 65,
+      "def": 68,
+      "spAtk": 112,
+      "spDef": 154,
+      "spd": 75
+    },
+    "abilities": [
+      "フラワーベール",
+      "きょうせい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ゴロンダ",
+    "types": [
+      "かくとう",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 124,
+      "def": 78,
+      "spAtk": 69,
+      "spDef": 71,
+      "spd": 58
+    },
+    "abilities": [
+      "てつのこぶし",
+      "かたやぶり",
+      "きもったま"
+    ],
+    "moves": []
+  },
+  {
+    "name": "トリミアン",
+    "types": [
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 80,
+      "def": 60,
+      "spAtk": 65,
+      "spDef": 90,
+      "spd": 102
+    },
+    "abilities": [
+      "ファーコート"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ニャオニクス♂",
+    "types": [
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 74,
+      "atk": 48,
+      "def": 76,
+      "spAtk": 83,
+      "spDef": 81,
+      "spd": 104
+    },
+    "abilities": [
+      "するどいめ",
+      "すりぬけ",
+      "いたずらごころ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ニャオニクス♀",
+    "types": [
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 74,
+      "atk": 48,
+      "def": 76,
+      "spAtk": 83,
+      "spDef": 81,
+      "spd": 104
+    },
+    "abilities": [
+      "するどいめ",
+      "すりぬけ",
+      "かちき"
+    ],
+    "moves": []
+  },
+   {
+    "name": "メガニャオニクス♂",
+    "types": [
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 74,
+      "atk": 48,
+      "def": 76,
+      "spAtk": 143,
+      "spDef": 101,
+      "spd": 124
+    },
+    "abilities": [
+      "トレース"
+    ],
+    "moves": []
+  },
+   {
+    "name": "メガニャオニクス♀",
+    "types": [
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 74,
+      "atk": 48,
+      "def": 76,
+      "spAtk": 143,
+      "spDef": 101,
+      "spd": 124
+    },
+    "abilities": [
+      "トレース"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ギルガルド(シールド)",
+    "types": [
+      "はがね",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 50,
+      "def": 140,
+      "spAtk": 50,
+      "spDef": 140,
+      "spd": 60
+    },
+    "abilities": [
+      "バトルスイッチ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ギルガルド(ブレード)",
+    "types": [
+      "はがね",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 140,
+      "def": 50,
+      "spAtk": 140,
+      "spDef": 50,
+      "spd": 60
+    },
+    "abilities": [
+      "バトルスイッチ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "フレフワン",
+    "types": [
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 101,
+      "atk": 72,
+      "def": 72,
+      "spAtk": 99,
+      "spDef": 89,
+      "spd": 29
+    },
+    "abilities": [
+      "いやしのこころ",
+      "アロマベール"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ペロリーム",
+    "types": [
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 82,
+      "atk": 80,
+      "def": 86,
+      "spAtk": 85,
+      "spDef": 75,
+      "spd": 72
+    },
+    "abilities": [
+      "スイートベール",
+      "かるわざ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "カラマネロ",
+    "types": [
+      "あく",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 86,
+      "atk": 92,
+      "def": 88,
+      "spAtk": 68,
+      "spDef": 75,
+      "spd": 73
+    },
+    "abilities": [
+      "あまのじゃく",
+      "きゅうばん",
+      "すりぬけ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガカラマネロ",
+    "types": [
+      "あく",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 86,
+      "atk": 102,
+      "def": 88,
+      "spAtk": 98,
+      "spDef": 120,
+      "spd": 88
+    },
+    "abilities": [
+      "あまのじゃく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ガメノデス",
+    "types": [
+      "いわ",
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 72,
+      "atk": 105,
+      "def": 115,
+      "spAtk": 54,
+      "spDef": 86,
+      "spd": 68
+    },
+    "abilities": [
+      "かたいツメ",
+      "スナイパー",
+      "わるいてぐせ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガガメノデス",
+    "types": [
+      "いわ",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 72,
+      "atk": 140,
+      "def": 130,
+      "spAtk": 64,
+      "spDef": 106,
+      "spd": 88
+    },
+    "abilities": [
+      "かたいツメ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ドラミドロ",
+    "types": [
+      "どく",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 75,
+      "def": 90,
+      "spAtk": 97,
+      "spDef": 123,
+      "spd": 44
+    },
+    "abilities": [
+      "どくのトゲ",
+      "どくしゅ",
+      "てきおうりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガドラミドロ",
+    "types": [
+      "どく",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 85,
+      "def": 105,
+      "spAtk": 132,
+      "spDef": 163,
+      "spd": 44
+    },
+    "abilities": [
+      "さいせいりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ブロスター",
+    "types": [
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 71,
+      "atk": 73,
+      "def": 88,
+      "spAtk": 120,
+      "spDef": 89,
+      "spd": 59
+    },
+    "abilities": [
+      "メガランチャー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "エレザード",
+    "types": [
+      "でんき",
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 62,
+      "atk": 55,
+      "def": 52,
+      "spAtk": 109,
+      "spDef": 94,
+      "spd": 109
+    },
+    "abilities": [
+      "かんそうはだ",
+      "すながくれ",
+      "サンパワー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ガチゴラス",
+    "types": [
+      "いわ",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 82,
+      "atk": 121,
+      "def": 119,
+      "spAtk": 69,
+      "spDef": 59,
+      "spd": 71
+    },
+    "abilities": [
+      "がんじょうあご",
+      "いしあたま"
+    ],
+    "moves": []
+  },
+  {
+    "name": "アマルルガ",
+    "types": [
+      "いわ",
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 123,
+      "atk": 77,
+      "def": 72,
+      "spAtk": 99,
+      "spDef": 92,
+      "spd": 58
+    },
+    "abilities": [
+      "フリーズスキン",
+      "ゆきふらし"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ニンフィア",
+    "types": [
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 65,
+      "def": 65,
+      "spAtk": 110,
+      "spDef": 130,
+      "spd": 60
+    },
+    "abilities": [
+      "メロメロボディ",
+      "フェアリースキン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ルチャブル",
+    "types": [
+      "かくとう",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 92,
+      "def": 75,
+      "spAtk": 74,
+      "spDef": 63,
+      "spd": 118
+    },
+    "abilities": [
+      "じゅうなん",
+      "かるわざ",
+      "かたやぶり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガルチャブル",
+    "types": [
+      "かくとう",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 137,
+      "def": 100,
+      "spAtk": 74,
+      "spDef": 93,
+      "spd": 118
+    },
+    "abilities": [
+      "ノーガード"
+    ],
+    "moves": []
+  },
+  {
+    "name": "デデンネ",
+    "types": [
+      "でんき",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 67,
+      "atk": 58,
+      "def": 57,
+      "spAtk": 81,
+      "spDef": 67,
+      "spd": 101
+    },
+    "abilities": [
+      "ほおぶくろ",
+      "ものひろい",
+      "プラス"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヌメルゴン",
+    "types": [
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 100,
+      "def": 70,
+      "spAtk": 110,
+      "spDef": 150,
+      "spd": 80
+    },
+    "abilities": [
+      "そうしょく",
+      "うるおいボディ",
+      "ぬめぬめ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヌメルゴン(ヒスイ)",
+    "types": [
+      "ドラゴン",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 100,
+      "def": 100,
+      "spAtk": 110,
+      "spDef": 150,
+      "spd": 60
+    },
+    "abilities": [
+      "そうしょく",
+      "シェルアーマー",
+      "ぬめぬめ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "クレッフィ",
+    "types": [
+      "はがね",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 57,
+      "atk": 80,
+      "def": 91,
+      "spAtk": 80,
+      "spDef": 87,
+      "spd": 75
+    },
+    "abilities": [
+      "いたずらごころ",
+      "マジシャン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "オーロット",
+    "types": [
+      "ゴースト",
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 110,
+      "def": 76,
+      "spAtk": 65,
+      "spDef": 82,
+      "spd": 56
+    },
+    "abilities": [
+      "しぜんかいふく",
+      "おみとおし",
+      "しゅうかく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "パンプジン(中)",
+    "types": [
+      "ゴースト",
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 122,
+      "spAtk": 58,
+      "spDef": 75,
+      "spd": 84
+    },
+    "abilities": [
+      "ものひろい",
+      "おみとおし",
+      "ふみん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "パンプジン(大)",
+    "types": [
+      "ゴースト",
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 95,
+      "def": 122,
+      "spAtk": 58,
+      "spDef": 75,
+      "spd": 69
+    },
+    "abilities": [
+      "ものひろい",
+      "おみとおし",
+      "ふみん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "パンプジン(特大)",
+    "types": [
+      "ゴースト",
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 100,
+      "def": 122,
+      "spAtk": 58,
+      "spDef": 75,
+      "spd": 54
+    },
+    "abilities": [
+      "ものひろい",
+      "おみとおし",
+      "ふみん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "パンプジン(小)",
+    "types": [
+      "ゴースト",
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 85,
+      "def": 122,
+      "spAtk": 58,
+      "spDef": 75,
+      "spd": 99
+    },
+    "abilities": [
+      "ものひろい",
+      "おみとおし",
+      "ふみん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "クレベース",
+    "types": [
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 117,
+      "def": 184,
+      "spAtk": 44,
+      "spDef": 46,
+      "spd": 28
+    },
+    "abilities": [
+      "マイペース",
+      "アイスボディ",
+      "がんじょう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "クレベース(ヒスイ)",
+    "types": [
+      "こおり",
+      "いわ"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 127,
+      "def": 184,
+      "spAtk": 34,
+      "spDef": 36,
+      "spd": 38
+    },
+    "abilities": [
+      "がんじょうあご",
+      "アイスボディ",
+      "がんじょう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "オンバーン",
+    "types": [
+      "ひこう",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 70,
+      "def": 80,
+      "spAtk": 97,
+      "spDef": 80,
+      "spd": 123
+    },
+    "abilities": [
+      "おみとおし",
+      "すりぬけ",
+      "テレパシー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ジュナイパー",
+    "types": [
+      "くさ",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 107,
+      "def": 75,
+      "spAtk": 100,
+      "spDef": 100,
+      "spd": 70
+    },
+    "abilities": [
+      "しんりょく",
+      "えんかく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ジュナイパー(ヒスイ)",
+    "types": [
+      "くさ",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 88,
+      "atk": 112,
+      "def": 80,
+      "spAtk": 95,
+      "spDef": 95,
+      "spd": 60
+    },
+    "abilities": [
+      "しんりょく",
+      "きもったま"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ガオガエン",
+    "types": [
+      "ほのお",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 115,
+      "def": 90,
+      "spAtk": 80,
+      "spDef": 90,
+      "spd": 60
+    },
+    "abilities": [
+      "もうか",
+      "いかく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "アシレーヌ",
+    "types": [
+      "みず",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 74,
+      "def": 74,
+      "spAtk": 126,
+      "spDef": 116,
+      "spd": 60
+    },
+    "abilities": [
+      "げきりゅう",
+      "うるおいボイス"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ドデカバシ",
+    "types": [
+      "ノーマル",
+      "ひこう"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 120,
+      "def": 75,
+      "spAtk": 75,
+      "spDef": 75,
+      "spd": 60
+    },
+    "abilities": [
+      "するどいめ",
+      "スキルリンク",
+      "ちからずく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ケケンカニ",
+    "types": [
+      "かくとう",
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 97,
+      "atk": 132,
+      "def": 77,
+      "spAtk": 62,
+      "spDef": 67,
+      "spd": 43
+    },
+    "abilities": [
+      "かいりきバサミ",
+      "てつのこぶし",
+      "いかりのつぼ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガケケンカニ",
+    "types": [
+      "かくとう",
+      "こおり"
+    ],
+    "baseStats": {
+      "hp": 97,
+      "atk": 157,
+      "def": 122,
+      "spAtk": 62,
+      "spDef": 107,
+      "spd": 33
+    },
+    "abilities": [
+      "未登場"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ルガルガン(昼)",
+    "types": [
+      "いわ"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 115,
+      "def": 65,
+      "spAtk": 55,
+      "spDef": 65,
+      "spd": 112
+    },
+    "abilities": [
+      "するどいめ",
+      "すなかき",
+      "ふくつのこころ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ルガルガン(夜)",
+    "types": [
+      "いわ"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 115,
+      "def": 75,
+      "spAtk": 55,
+      "spDef": 75,
+      "spd": 82
+    },
+    "abilities": [
+      "するどいめ",
+      "やるき",
+      "ノーガード"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ルガルガン(黄昏)",
+    "types": [
+      "いわ"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 117,
+      "def": 65,
+      "spAtk": 55,
+      "spDef": 65,
+      "spd": 110
+    },
+    "abilities": [
+      "かたいツメ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ドヒドイデ",
+    "types": [
+      "どく",
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 63,
+      "def": 152,
+      "spAtk": 53,
+      "spDef": 142,
+      "spd": 35
+    },
+    "abilities": [
+      "ひとでなし",
+      "じゅうなん",
+      "さいせいりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "バンバドロ",
+    "types": [
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 125,
+      "def": 100,
+      "spAtk": 55,
+      "spDef": 85,
+      "spd": 35
+    },
+    "abilities": [
+      "マイペース",
+      "じきゅうりょく",
+      "せいしんりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "オニシズクモ",
+    "types": [
+      "みず",
+      "むし"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 70,
+      "def": 92,
+      "spAtk": 50,
+      "spDef": 132,
+      "spd": 42
+    },
+    "abilities": [
+      "すいほう",
+      "ちょすい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "エンニュート",
+    "types": [
+      "どく",
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 64,
+      "def": 60,
+      "spAtk": 111,
+      "spDef": 60,
+      "spd": 117
+    },
+    "abilities": [
+      "ふしょく",
+      "どんかん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "アマージョ",
+    "types": [
+      "くさ"
+    ],
+    "baseStats": {
+      "hp": 72,
+      "atk": 120,
+      "def": 98,
+      "spAtk": 50,
+      "spDef": 98,
+      "spd": 72
+    },
+    "abilities": [
+      "リーフガード",
+      "じょおうのいげん",
+      "スイートベール"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヤレユータン",
+    "types": [
+      "ノーマル",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 60,
+      "def": 80,
+      "spAtk": 90,
+      "spDef": 110,
+      "spd": 60
+    },
+    "abilities": [
+      "せいしんりょく",
+      "テレパシー",
+      "きょうせい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ナゲツケサル",
+    "types": [
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 120,
+      "def": 90,
+      "spAtk": 40,
+      "spDef": 60,
+      "spd": 80
+    },
+    "abilities": [
+      "レシーバー",
+      "まけんき"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ミミッキュ",
+    "types": [
+      "ゴースト",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 90,
+      "def": 80,
+      "spAtk": 50,
+      "spDef": 105,
+      "spd": 96
+    },
+    "abilities": [
+      "ばけのかわ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ジジーロン",
+    "types": [
+      "ノーマル",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 60,
+      "def": 85,
+      "spAtk": 135,
+      "spDef": 91,
+      "spd": 36
+    },
+    "abilities": [
+      "ぎゃくじょう",
+      "そうしょく",
+      "ノーてんき"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガジジーロン",
+    "types": [
+      "ノーマル",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 85,
+      "def": 110,
+      "spAtk": 160,
+      "spDef": 116,
+      "spd": 36
+    },
+    "abilities": [
+      "ぎゃくじょう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ジャラランガ",
+    "types": [
+      "ドラゴン",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 110,
+      "def": 125,
+      "spAtk": 100,
+      "spDef": 105,
+      "spd": 85
+    },
+    "abilities": [
+      "ぼうだん",
+      "ぼうおん",
+      "ぼうじん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "アーマーガア",
+    "types": [
+      "ひこう",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 98,
+      "atk": 87,
+      "def": 105,
+      "spAtk": 53,
+      "spDef": 85,
+      "spd": 67
+    },
+    "abilities": [
+      "プレッシャー",
+      "きんちょうかん",
+      "ミラーアーマー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "アップリュー",
+    "types": [
+      "くさ",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 110,
+      "def": 80,
+      "spAtk": 95,
+      "spDef": 60,
+      "spd": 70
+    },
+    "abilities": [
+      "じゅくせい",
+      "くいしんぼう",
+      "はりきり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "タルップル",
+    "types": [
+      "くさ",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 85,
+      "def": 80,
+      "spAtk": 100,
+      "spDef": 80,
+      "spd": 30
+    },
+    "abilities": [
+      "じゅくせい",
+      "くいしんぼう",
+      "あついしぼう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "サダイジャ",
+    "types": [
+      "じめん"
+    ],
+    "baseStats": {
+      "hp": 72,
+      "atk": 107,
+      "def": 125,
+      "spAtk": 65,
+      "spDef": 70,
+      "spd": 71
+    },
+    "abilities": [
+      "すなはき",
+      "だっぴ",
+      "すながくれ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ポットデス",
+    "types": [
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 65,
+      "def": 65,
+      "spAtk": 134,
+      "spDef": 114,
+      "spd": 70
+    },
+    "abilities": [
+      "くだけるよろい",
+      "のろわれボディ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ブリムオン",
+    "types": [
+      "エスパー",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 57,
+      "atk": 90,
+      "def": 95,
+      "spAtk": 136,
+      "spDef": 103,
+      "spd": 29
+    },
+    "abilities": [
+      "いやしのこころ",
+      "きけんよち",
+      "マジックミラー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "オーロンゲ",
+    "types": [
+      "あく",
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 120,
+      "def": 65,
+      "spAtk": 95,
+      "spDef": 75,
+      "spd": 60
+    },
+    "abilities": [
+      "いたずらごころ",
+      "おみとおし",
+      "わるいてぐせ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "バリコオル",
+    "types": [
+      "こおり",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 85,
+      "def": 75,
+      "spAtk": 110,
+      "spDef": 100,
+      "spd": 70
+    },
+    "abilities": [
+      "ちどりあし",
+      "バリアフリー",
+      "アイスボディ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "デスバーン",
+    "types": [
+      "じめん",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 58,
+      "atk": 95,
+      "def": 145,
+      "spAtk": 50,
+      "spDef": 105,
+      "spd": 30
+    },
+    "abilities": [
+      "さまようたましい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "マホイップ",
+    "types": [
+      "フェアリー"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 60,
+      "def": 75,
+      "spAtk": 110,
+      "spDef": 121,
+      "spd": 64
+    },
+    "abilities": [
+      "スイートベール",
+      "アロマベール"
+    ],
+    "moves": []
+  },
+  {
+    "name": "タイレーツ",
+    "types": [
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 100,
+      "def": 100,
+      "spAtk": 70,
+      "spDef": 60,
+      "spd": 75
+    },
+    "abilities": [
+      "カブトアーマー",
+      "まけんき"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガタイレーツ",
+    "types": [
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 135,
+      "def": 135,
+      "spAtk": 70,
+      "spDef": 65,
+      "spd": 100
+    },
+    "abilities": [
+      "まけんき"
+    ],
+    "moves": []
+  },
+  {
+    "name": "モルペコ(まんぷく)",
+    "types": [
+      "でんき",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 58,
+      "atk": 95,
+      "def": 58,
+      "spAtk": 70,
+      "spDef": 58,
+      "spd": 97
+    },
+    "abilities": [
+      "はらぺこスイッチ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "モルペコ(はらぺこ)",
+    "types": [
+      "でんき",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 58,
+      "atk": 95,
+      "def": 58,
+      "spAtk": 70,
+      "spDef": 58,
+      "spd": 97
+    },
+    "abilities": [
+      "はらぺこスイッチ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ドラパルト",
+    "types": [
+      "ドラゴン",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 88,
+      "atk": 120,
+      "def": 75,
+      "spAtk": 100,
+      "spDef": 75,
+      "spd": 142
+    },
+    "abilities": [
+      "クリアボディ",
+      "すりぬけ",
+      "のろわれボディ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "アヤシシ",
+    "types": [
+      "ノーマル",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 103,
+      "atk": 105,
+      "def": 72,
+      "spAtk": 105,
+      "spDef": 75,
+      "spd": 65
+    },
+    "abilities": [
+      "いかく",
+      "おみとおし",
+      "そうしょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "バサギリ",
+    "types": [
+      "むし",
+      "いわ"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 135,
+      "def": 95,
+      "spAtk": 45,
+      "spDef": 70,
+      "spd": 85
+    },
+    "abilities": [
+      "むしのしらせ",
+      "ちからずく",
+      "きれあじ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "イダイトウ♂",
+    "types": [
+      "みず",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 120,
+      "atk": 112,
+      "def": 65,
+      "spAtk": 80,
+      "spDef": 75,
+      "spd": 78
+    },
+    "abilities": [
+      "すいすい",
+      "てきおうりょく",
+      "かたやぶり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "イダイトウ♀",
+    "types": [
+      "みず",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 120,
+      "atk": 92,
+      "def": 65,
+      "spAtk": 100,
+      "spDef": 75,
+      "spd": 78
+    },
+    "abilities": [
+      "すいすい",
+      "てきおうりょく",
+      "かたやぶり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "オオニューラ",
+    "types": [
+      "かくとう",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 130,
+      "def": 60,
+      "spAtk": 40,
+      "spDef": 80,
+      "spd": 120
+    },
+    "abilities": [
+      "プレッシャー",
+      "かるわざ",
+      "どくしゅ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ハリーマン",
+    "types": [
+      "あく",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 115,
+      "def": 95,
+      "spAtk": 65,
+      "spDef": 65,
+      "spd": 85
+    },
+    "abilities": [
+      "どくのトゲ",
+      "すいすい",
+      "いかく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "マスカーニャ",
+    "types": [
+      "くさ",
+      "あく"
+    ],
+    "baseStats": {
+      "hp": 76,
+      "atk": 110,
+      "def": 70,
+      "spAtk": 81,
+      "spDef": 70,
+      "spd": 123
+    },
+    "abilities": [
+      "しんりょく",
+      "へんげんじざい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ラウドボーン",
+    "types": [
+      "ほのお",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 104,
+      "atk": 75,
+      "def": 100,
+      "spAtk": 110,
+      "spDef": 75,
+      "spd": 66
+    },
+    "abilities": [
+      "もうか",
+      "てんねん"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ウェーニバル",
+    "types": [
+      "みず",
+      "かくとう"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 120,
+      "def": 80,
+      "spAtk": 85,
+      "spDef": 75,
+      "spd": 85
+    },
+    "abilities": [
+      "げきりゅう",
+      "じしんかじょう"
+    ],
+    "moves": []
+  },
+  {
+    "name": "イッカネズミ",
+    "types": [
+      "ノーマル"
+    ],
+    "baseStats": {
+      "hp": 74,
+      "atk": 75,
+      "def": 70,
+      "spAtk": 65,
+      "spDef": 75,
+      "spd": 111
+    },
+    "abilities": [
+      "フレンドガード",
+      "ほおぶくろ",
+      "テクニシャン"
+    ],
+    "moves": []
+  },
+  {
+    "name": "キョジオーン",
+    "types": [
+      "いわ"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 100,
+      "def": 130,
+      "spAtk": 45,
+      "spDef": 90,
+      "spd": 35
+    },
+    "abilities": [
+      "きよめのしお",
+      "がんじょう",
+      "クリアボディ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "グレンアルマ",
+    "types": [
+      "ほのお",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 60,
+      "def": 100,
+      "spAtk": 125,
+      "spDef": 80,
+      "spd": 75
+    },
+    "abilities": [
+      "もらいび",
+      "くだけるよろい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ソウブレイズ",
+    "types": [
+      "ほのお",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 125,
+      "def": 80,
+      "spAtk": 60,
+      "spDef": 100,
+      "spd": 85
+    },
+    "abilities": [
+      "もらいび",
+      "くだけるよろい"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ハラバリー",
+    "types": [
+      "でんき"
+    ],
+    "baseStats": {
+      "hp": 109,
+      "atk": 64,
+      "def": 91,
+      "spAtk": 103,
+      "spDef": 83,
+      "spd": 45
+    },
+    "abilities": [
+      "でんきにかえる",
+      "せいでんき",
+      "しめりけ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "スコヴィラン",
+    "types": [
+      "くさ",
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 108,
+      "def": 65,
+      "spAtk": 108,
+      "spDef": 65,
+      "spd": 75
+    },
+    "abilities": [
+      "ようりょくそ",
+      "ふみん",
+      "ムラっけ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガスコヴィラン",
+    "types": [
+      "くさ",
+      "ほのお"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 138,
+      "def": 85,
+      "spAtk": 138,
+      "spDef": 85,
+      "spd": 75
+    },
+    "abilities": [
+      "とびだすハバネロ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "クエスパトラ",
+    "types": [
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 60,
+      "def": 60,
+      "spAtk": 101,
+      "spDef": 60,
+      "spd": 105
+    },
+    "abilities": [
+      "びんじょう",
+      "おみとおし",
+      "かそく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "デカヌチャン",
+    "types": [
+      "フェアリー",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 75,
+      "def": 77,
+      "spAtk": 70,
+      "spDef": 105,
+      "spd": 94
+    },
+    "abilities": [
+      "かたやぶり",
+      "マイペース",
+      "わるいてぐせ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "イルカマン(ナイーブ)",
+    "types": [
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 70,
+      "def": 72,
+      "spAtk": 53,
+      "spDef": 62,
+      "spd": 100
+    },
+    "abilities": [
+      "マイティチェンジ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "イルカマン(マイティ)",
+    "types": [
+      "みず"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 160,
+      "def": 97,
+      "spAtk": 106,
+      "spDef": 87,
+      "spd": 100
+    },
+    "abilities": [
+      "マイティチェンジ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ミミズズ",
+    "types": [
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 85,
+      "def": 145,
+      "spAtk": 60,
+      "spDef": 55,
+      "spd": 65
+    },
+    "abilities": [
+      "どしょく",
+      "すながくれ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "キラフロル",
+    "types": [
+      "いわ",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 83,
+      "atk": 55,
+      "def": 90,
+      "spAtk": 130,
+      "spDef": 81,
+      "spd": 86
+    },
+    "abilities": [
+      "どくげしょう",
+      "ふしょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "メガキラフロル",
+    "types": [
+      "いわ",
+      "どく"
+    ],
+    "baseStats": {
+      "hp": 83,
+      "atk": 90,
+      "def": 105,
+      "spAtk": 150,
+      "spDef": 96,
+      "spd": 101
+    },
+    "abilities": [
+      "てきおうりょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ハカドッグ",
+    "types": [
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 72,
+      "atk": 101,
+      "def": 100,
+      "spAtk": 50,
+      "spDef": 97,
+      "spd": 68
+    },
+    "abilities": [
+      "すなかき",
+      "もふもふ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "コノヨザル",
+    "types": [
+      "かくとう",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 115,
+      "def": 80,
+      "spAtk": 50,
+      "spDef": 90,
+      "spd": 90
+    },
+    "abilities": [
+      "やるき",
+      "せいしんりょく",
+      "まけんき"
+    ],
+    "moves": []
+  },
+  {
+    "name": "リキキリン",
+    "types": [
+      "ノーマル",
+      "エスパー"
+    ],
+    "baseStats": {
+      "hp": 120,
+      "atk": 90,
+      "def": 70,
+      "spAtk": 110,
+      "spDef": 70,
+      "spd": 60
+    },
+    "abilities": [
+      "はんすう",
+      "テイルアーマー",
+      "そうしょく"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ドドゲザン",
+    "types": [
+      "あく",
+      "はがね"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 135,
+      "def": 120,
+      "spAtk": 60,
+      "spDef": 85,
+      "spd": 50
+    },
+    "abilities": [
+      "まけんき",
+      "そうだいしょう",
+      "プレッシャー"
+    ],
+    "moves": []
+  },
+  {
+    "name": "サーフゴー",
+    "types": [
+      "はがね",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 87,
+      "atk": 60,
+      "def": 95,
+      "spAtk": 133,
+      "spDef": 91,
+      "spd": 84
+    },
+    "abilities": [
+      "おうごんのからだ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ヤバソチャ",
+    "types": [
+      "くさ",
+      "ゴースト"
+    ],
+    "baseStats": {
+      "hp": 71,
+      "atk": 60,
+      "def": 106,
+      "spAtk": 121,
+      "spDef": 80,
+      "spd": 70
+    },
+    "abilities": [
+      "おもてなし",
+      "たいねつ"
+    ],
+    "moves": []
+  },
+  {
+    "name": "ブリジュラス",
+    "types": [
+      "はがね",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 105,
+      "def": 130,
+      "spAtk": 125,
+      "spDef": 65,
+      "spd": 85
+    },
+    "abilities": [
+      "じきゅうりょく",
+      "がんじょう",
+      "すじがねいり"
+    ],
+    "moves": []
+  },
+  {
+    "name": "カミツオロチ",
+    "types": [
+      "くさ",
+      "ドラゴン"
+    ],
+    "baseStats": {
+      "hp": 106,
+      "atk": 80,
+      "def": 110,
+      "spAtk": 120,
+      "spDef": 80,
+      "spd": 44
+    },
+    "abilities": [
+      "かんろなミツ",
+      "さいせいりょく",
+      "ねんちゃく"
+    ],
+    "moves": []
+  }
+]

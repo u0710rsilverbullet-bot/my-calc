@@ -1,0 +1,354 @@
+/* ==========================================================================
+   Pokemon Damage Calculator - Final Layout & Theme Adjustment
+   ========================================================================== */
+
+/* --- Base & Reset --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #121316;
+  color: #e0e0e0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.2;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* --- Main Layout Container --- */
+.pokemon-calc-app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 12px 120px 12px;
+}
+
+/* --- Header --- */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  background-color: #1e1e1e;
+  border-radius: 4px;
+  border: 1px solid #333333;
+}
+
+.header-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.header-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.header-btn {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 0.75rem;
+  border: 1px solid #444444;
+  border-radius: 4px;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.header-btn:hover {
+  background-color: #383838;
+}
+
+/* --- Main Grid System --- */
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+/* --- Cards (攻撃：赤系 / 防御：青系) --- */
+.calc-card {
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+/* 攻撃カード (左) */
+.calc-card:nth-child(1),
+.attacker-card {
+  background-color: #231617;
+  border: 1px solid #3d2123;
+}
+
+/* 防御カード (右) */
+.calc-card:nth-child(2),
+.defender-card {
+  background-color: #121c2b;
+  border: 1px solid #1c2e47;
+}
+
+.card-header {
+  padding: 6px 10px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.attacker-card .card-header {
+  background-color: #e53e3e;
+}
+
+.defender-card .card-header {
+  background-color: #3182ce;
+}
+
+.card-body {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* --- Form Groups & Alignments --- */
+.form-group, .form-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.form-label {
+  font-size: 0.75rem;
+  color: #b0b0b0;
+  min-width: 40px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   高さの一括統一 & 技タイプ非表示設定
+   ========================================================================== */
+
+.card-body select,
+.card-body input,
+.card-body button,
+.card-body div,
+.card-body span {
+  box-sizing: border-box !important;
+}
+
+/* 特性・道具・威力・状態ボタンなどの標準高さを 30px に統一 */
+.form-select, 
+.form-input, 
+input[type="text"], 
+input[type="number"], 
+select,
+button,
+.status-btn,
+.toggle-btn,
+.power-input {
+  height: 30px !important;
+  min-height: 30px !important;
+  max-height: 30px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  font-size: 0.8rem !important;
+  line-height: 30px !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #444444 !important;
+  border-radius: 4px;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 技のタイプ欄を消去（非表示化） */
+.type-badge,
+.type-label,
+.type-box {
+  display: none !important;
+}
+
+/* 威力入力欄の横幅を広げる（他フォームと同様に幅100%拡張） */
+.power-input,
+input[name="power"],
+input[type="number"].power-input {
+  width: 60px !important;
+  max-width: 100% !important;
+  flex: 1 !important; /* ← この1行を追加 */
+}
+
+/* 技名入力欄（38px高） */
+.move-select,
+.move-input,
+input[name="move"],
+.move-field {
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  line-height: 38px !important;
+  font-size: 0.9rem !important;
+  font-weight: bold !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #555555 !important;
+  border-radius: 4px;
+}
+
+/* ボタン群・状態トグル */
+.status-btn, .toggle-btn, .quick-btn, .rank-btn, .segmented-btn, button {
+  background-color: #2a2a2a !important;
+  color: #d1d5db !important;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.quick-btn:hover, .rank-btn:hover, .toggle-btn:hover, .segmented-btn:hover, .status-btn:hover, button:hover {
+  background-color: #383838 !important;
+}
+
+.segmented-btn.active, .toggle-btn.active, .status-btn.active {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+/* --- Stat Box --- */
+.stat-box {
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid #333333;
+  border-radius: 4px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ev-num-input {
+  width: 48px !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  line-height: 24px !important;
+  text-align: center;
+  font-size: 0.75rem !important;
+}
+
+/* --- Power Info Box --- */
+.power-info-box {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #333333;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- Field / Environment Section (その他) --- */
+.field-section {
+  background-color: #1e3a29;
+  border-radius: 6px;
+  border: 1px solid #2d5a3f;
+  padding: 8px 12px;
+  margin-top: 10px;
+}
+
+.field-section .card-header {
+  background-color: #2f855a;
+}
+
+/* --- Sticky Bottom Bar --- */
+.sticky-damage-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #121316;
+  border-top: 1px solid #333333;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.8);
+  padding: 8px 16px;
+  z-index: 1000;
+}
+
+.damage-bar-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.damage-bar-title {
+  font-size: 0.85rem;
+  color: #aaaaaa;
+}
+
+.damage-bar-result {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ef4444;
+}
+/* 特性入力セレクトボックス（黒背景） */
+.ability-select {
+  flex: 1;
+  height: 34px !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #333333 !important;
+  border-radius: 6px !important;
+  padding: 0 10px !important;
+  font-size: 0.85rem !important;
+}
+
+/* 有効・無効 トグルボタンコンテナ */
+.ability-toggle-group {
+  display: flex;
+  background-color: #000000;
+  border-radius: 18px;
+  padding: 2px;
+  gap: 2px;
+}
+
+/* トグルボタン（非選択時） */
+.ability-toggle-btn {
+  height: 28px !important;
+  padding: 0 12px !important;
+  border-radius: 14px !important;
+  border: none !important;
+  background-color: transparent !important;
+  color: #71717a !important; /* グレーテキスト */
+  font-size: 0.75rem !important;
+  font-weight: bold !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* 非活性化時のスタイル */
+.ability-toggle-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* トグルボタン（選択時：明るいグレー背景に白文字） */
+.ability-toggle-btn.active {
+  background-color: #52525b !important;
+  color: #ffffff !important;
+}
