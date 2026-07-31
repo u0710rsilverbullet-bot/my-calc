@@ -230,12 +230,14 @@ html, body {
 }
 
 .ev-num-input {
-  width: 48px !important;
+  width: 38px !important;      /* 矢印が消えるため幅をコンパクトに最適化 */
   height: 28px !important;
   min-height: 28px !important;
   line-height: 28px !important;
   text-align: center;
-  font-size: 0.8rem !important;
+  font-size: 0.85rem !important;
+  font-weight: bold;
+  padding: 0 !important;       /* 余計な余白をカットして数字を中心配置 */
   box-sizing: border-box !important;
 }
 
@@ -353,4 +355,18 @@ html, body {
   margin-top: 2px !important;
   line-height: 1.2 !important;
   display: block !important;
+}
+
+/* 〜〜 ここまでに既存のCSSコード 〜〜 */
+
+/* ナンバー入力欄の上下矢印（スピンボタン）を完全に非表示 */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield; /* 標準仕様 */
+  -moz-appearance: textfield; /* Firefox用 */
 }
