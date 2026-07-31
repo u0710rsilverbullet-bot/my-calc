@@ -686,112 +686,328 @@ export default function App() {
     baseDamage = floor(baseDamage * 0.5);
   }
 
-  // 7. 乱数・最終ダメージ計算
-  const rolls = [];
-  for (let i = 85; i <= 100; i++) {
-    let currentDmg = baseDamage;
+  // 単一の攻撃側のダメージ（16段階配列）を計算する関数
+  const calculateAttackerRolls = (atkObj) => {
+    const atkPkm = atkObj.pokemon;
+    const atkTypes = atkObj.types;
+    const atkAbility = atkObj.ability;
+    const atkMove = atkObj.move;
+    const atkItem = atkObj.item;
+    const aEv = atkObj.atkEv;
+    const aNat = atkObj.atkNature;
+    const aRank = atkObj.atkRank;
+    const aHit = atkObj.hitCount;
+    const aProteanActive = atkObj.isAttackerProteanActive;
+    const mCondActive = atkObj.moveConditionActive;
+    const aHpPct = atkObj.attackerHpPercent;
 
-    if (isCritical) {
-      const critMult = (atkAbilityData?.name === 'スナイパー') ? 2.25 : 1.5;
-      currentDmg = roundHalfDown((currentDmg * (critMult * 4096)) / 4096);
+    const aAbilityData = abilitiesData.find(a => a.name === atkAbility);
+    const mEffect = MOVE_EFFECTS[atkMove.name];
+    const aProtean = ['へんげんじざい', '変幻自在', 'リベロ'].includes(atkAbility);
+
+    let moveType = atkMove.type;
+    if (mEffect) {
+      if (mEffect.type === 'weather_ball') {
+        if (weather === 'はれ') moveType = 'ほのお';
+        if (weather === 'あめ') moveType = 'みず';
+        if (weather === 'ゆき') moveType = 'こおり';
+        if (weather === 'すな') moveType = 'いわ';
+      }
+      if (mEffect.type === 'nature_power' && field !== 'なし') {
+        if (field === 'エレキ') moveType = 'でんき';
+        if (field === 'グラス') moveType = 'くさ';
+        if (field === 'サイコ') moveType = 'エスパー';
+        if (field === 'ミスト') moveType = 'フェアリー';
+      }
+    }
+    if (aAbilityData?.conditions?.changeNormalTypeTo && atkMove.type === 'ノーマル') {
+      moveType = aAbilityData.conditions.changeNormalTypeTo;
     }
 
-    currentDmg = floor((currentDmg * i) / 100);
+    const isPhys = atkMove.category === '物理' || PHYSICAL_DEFENSE_SPECIAL_MOVES.includes(atkMove.name);
 
-    const effectiveAttackerTypes = isSoak ? ['みず'] : (attackerTypes || []);
-
-    let isSameType = false;
-    if (isAttackerProtean) {
-      isSameType = isAttackerProteanActive;
-    } else {
-      isSameType = effectiveAttackerTypes.includes(currentMoveType);
-    }
-
-    if (isSameType) {
-      const stabMult = (atkAbilityData?.phase === 'stab') ? atkAbilityData.multiplier : 1.5;
-      currentDmg = roundHalfDown((currentDmg * (stabMult * 4096)) / 4096);
-    }
-
-    currentDmg = floor(currentDmg * typeEffectiveness);
-
-    if (defAbilityData?.conditions?.defMoveTypeMultiplier?.[currentMoveType]) {
-      const mult = defAbilityData.conditions.defMoveTypeMultiplier[currentMoveType];
-      currentDmg = roundHalfDown((currentDmg * (mult * 4096)) / 4096);
-    }
-
-    if (defAbilityData?.phase === 'final_damage') {
+    let typeEff = 1.0;
+    if (defAbilityData?.phase === 'immune') {
       const cond = defAbilityData.conditions;
-      let applies = true;
+      if (cond.immuneType === moveType) return Array(16).fill(0);
+      if (cond.immuneType === 'sound' && atkMove.flags?.includes('sound')) return Array(16).fill(0);
+      if (cond.immuneType === 'bullet' && atkMove.flags?.includes('bullet')) return Array(16).fill(0);
+    }
 
-      if (cond.moveTypes && !cond.moveTypes.includes(currentMoveType)) applies = false;
-      if (cond.category && cond.category !== selectedMove.category) applies = false;
-      if (cond.superEffectiveOnly && typeEffectiveness <= 1.0) applies = false;
+    effectiveDefenderTypes.forEach(defType => {
+      typeEff *= (TYPE_CHART[moveType]?.[defType] ?? 1.0);
+    });
+
+    if (aAbilityData?.conditions?.ignoreGhostImmunity && typeEff === 0 && (moveType === 'ノーマル' || moveType === 'かくとう')) {
+      typeEff = 1.0;
+    }
+    if (selectedDefenderItem === 'くろいてっきゅう' && moveType === 'じめ人' && typeEff === 0) {
+      typeEff = 1.0;
+    }
+
+    let bAtkStat = 100;
+    if (atkMove.name === 'イカサマ') {
+      bAtkStat = defender?.baseStats?.atk ?? 100;
+    } else if (atkMove.name === 'ボディプレス') {
+      bAtkStat = atkPkm?.baseStats?.def ?? 100;
+    } else if (atkMove.category === '物理') {
+      bAtkStat = atkPkm?.baseStats?.atk ?? 100;
+    } else {
+      bAtkStat = atkPkm?.baseStats?.spAtk ?? 100;
+    }
+
+    let calculatedAtk = floor((bAtkStat + 20 + aEv) * aNat);
+
+    if (aAbilityData?.phase === 'stat_atk') {
+      const cond = aAbilityData.conditions;
+      let applies = true;
+      if (cond.category && cond.category !== atkMove.category) applies = false;
+      if (cond.moveTypes && !cond.moveTypes.includes(moveType)) applies = false;
+      if (cond.weather && cond.weather !== weather) applies = false;
       if (cond.requiresToggle && !abilityToggles[cond.toggleKey]) applies = false;
 
       if (applies) {
-        currentDmg = roundHalfDown((currentDmg * (defAbilityData.multiplier * 4096)) / 4096);
+        const mult = cond.requiresOption 
+          ? (abilityOptions[cond.optionKey] ?? aAbilityData.multiplier)
+          : aAbilityData.multiplier;
+        if (mult === 1.5) {
+          calculatedAtk = roundHalfDown((calculatedAtk * 6144) / 4096);
+        } else {
+          calculatedAtk = floor(calculatedAtk * mult);
+        }
+      }
+    }
+
+    let effectiveAtkRank = (isCritical && aRank < 0) ? 0 : aRank;
+    if (defAbilityData?.conditions?.ignoreStatRanks) effectiveAtkRank = 0;
+
+    let effectiveDefRank = (isCritical && defRank > 0) ? 0 : defRank;
+    if (aAbilityData?.conditions?.ignoreStatRanks) effectiveDefRank = 0;
+
+    const fAtk = Math.max(1, floor(calculatedAtk * getRankMultiplier(effectiveAtkRank)));
+    const fDef = Math.max(1, floor(defStat * getRankMultiplier(effectiveDefRank)));
+
+    const maxH = MULTI_HIT_MOVES[atkMove.name] || atkMove.maxHits || 1;
+    const isSkillL = aAbilityData?.conditions?.alwaysMaxHits;
+    const aHits = isSkillL ? maxH : Math.min(aHit, maxH);
+
+    const rSinglePower = Math.max(1, atkMove.power || 0);
+    let bPower = getMoveBasePower(atkMove.name, rSinglePower, aHits);
+
+    if (atkMove.name === 'はたきおとす' && selectedDefenderItem !== 'なし') {
+      bPower = roundHalfDown((bPower * 6144) / 4096);
+    }
+
+    if (mEffect) {
+      if (mEffect.type === 'toggle' && mCondActive) {
+        bPower = floor(bPower * mEffect.multiplier);
+      }
+      if (mEffect.type === 'weather_ball' && weather !== 'なし') bPower *= 2;
+      if (mEffect.type === 'nature_power' && field !== 'なし') bPower *= 2;
+      if (mEffect.type === 'solar_beam' && ['あめ', 'ゆき', 'すな'].includes(weather)) {
+        bPower = floor(bPower * 0.5);
+      }
+      if (mEffect.type === 'terrain_double' && field === mEffect.terrain) bPower *= 2;
+      if (mEffect.type === 'terrain_boost' && field === mEffect.terrain) bPower = floor(bPower * mEffect.multiplier);
+      if (mEffect.type === 'terrain_half' && field === mEffect.terrain) bPower = floor(bPower * 0.5);
+      if (mEffect.type === 'earthquake' && field === 'グラス') bPower = floor(bPower * 0.5);
+
+      if (mEffect.type === 'water_spout') {
+        bPower = Math.max(1, floor((150 * aHpPct) / 100));
+      }
+      if (mEffect.type === 'crush_grip') {
+        bPower = Math.max(1, floor((100 * defenderHpPercent) / 100));
+      }
+      if (mEffect.type === 'stockpile') {
+        bPower = stockpileCount * 100;
+      }
+      if (mEffect.type === 'fainted_count') {
+        bPower = Math.min(
+          mEffect.basePower + (mEffect.powerPerFainted * faintedCount),
+          mEffect.maxPower
+        );
+      }
+    }
+
+    if (aAbilityData?.phase === 'power') {
+      const cond = aAbilityData.conditions;
+      let applies = true;
+      if (cond.maxBasePower && bPower > cond.maxBasePower) applies = false;
+      if (cond.isContact && !atkMove.flags?.includes('contact')) applies = false;
+      if (cond.moveFlags && !cond.moveFlags.some(flag => atkMove.flags?.includes(flag))) applies = false;
+      if (cond.moveTypes && !cond.moveTypes.includes(moveType)) applies = false;
+      if (cond.weather && cond.weather !== weather) applies = false;
+      if (cond.moveHasSecondaryEffect && !atkMove.hasSecondaryEffect) applies = false;
+      if (cond.requiresToggle && !abilityToggles[cond.toggleKey]) applies = false;
+
+      if (applies) {
+        let mult = aAbilityData.multiplier;
+        if (cond.requiresValue) {
+          const val = abilityValues[cond.valueKey] || 0;
+          mult = Math.min(cond.maxMultiplier, 1.0 + val * cond.perUnitMultiplier);
+        }
+        bPower = roundHalfDown((bPower * (mult * 4096)) / 4096);
+      }
+    }
+
+    if (defAbilityData?.phase === 'power') {
+      const cond = defAbilityData.conditions;
+      let applies = true;
+      if (cond.moveTypes && !cond.moveTypes.includes(moveType)) applies = false;
+
+      if (applies) {
+        bPower = roundHalfDown((bPower * (defAbilityData.multiplier * 4096)) / 4096);
+      }
+    }
+
+    if (aAbilityData?.name === 'フェアリーオーラ' || defAbilityData?.name === 'フェアリーオーラ') {
+      if (moveType === 'フェアリー') {
+        bPower = roundHalfDown((bPower * 5461) / 4096);
+      }
+    }
+
+    if (atkItem === 'ちからのハチマキ' && atkMove.category === '物理') bPower = floor(bPower * 1.1);
+    if (atkItem === 'ものしりメガネ' && atkMove.category === '特殊') bPower = floor(bPower * 1.1);
+    if (atkItem === 'タイプ強化アイテム (1.2倍)') bPower = floor(bPower * 1.2);
+
+    if (isHelpingHand) bPower = floor(bPower * 1.5);
+    if (isCharge && moveType === 'でんき') bPower = floor(bPower * 2);
+
+    if (field === 'グラス' && moveType === 'くさ') bPower = floor(bPower * 1.3);
+    if (field === 'エレキ' && moveType === 'でんき') bPower = floor(bPower * 1.3);
+    if (field === 'サイコ' && moveType === 'エスパー') bPower = floor(bPower * 1.3);
+    if (field === 'ミスト' && moveType === 'ドラゴン') bPower = floor(bPower * 0.5);
+
+    const step1 = floor((50 * 2) / 5) + 2;
+    const step2 = floor((step1 * bPower * fAtk) / fDef);
+    let baseDmg = floor(step2 / 50) + 2;
+
+    const ignoresScreens = aAbilityData?.conditions?.ignoresReflectAndScreens;
+    if (isReflectWall && !isCritical && !ignoresScreens) {
+      baseDmg = floor(baseDmg * 0.5);
+    }
+
+    const isFacade = mEffect?.ignoreBurn;
+    const isGuts = aAbilityData?.name === 'こんじょう';
+    if (isBurned && atkMove.category === '物理' && !isGuts && !isFacade) {
+      baseDmg = floor(baseDmg * 0.5);
+    }
+
+    if ((weather === 'はれ' && moveType === 'ほのお') || (weather === 'あめ' && moveType === 'みず')) {
+      baseDmg = floor(baseDmg * 1.5);
+    } else if ((weather === 'はれ' && moveType === 'みず') || (weather === 'あめ' && moveType === 'ほのお')) {
+      baseDmg = floor(baseDmg * 0.5);
+    }
+
+    const resultRolls = [];
+    for (let i = 85; i <= 100; i++) {
+      let currentDmg = baseDmg;
+
+      if (isCritical) {
+        const critMult = (aAbilityData?.name === 'スナイパー') ? 2.25 : 1.5;
+        currentDmg = roundHalfDown((currentDmg * (critMult * 4096)) / 4096);
       }
 
-      if (cond.contactMultiplier && selectedMove.flags?.includes('contact')) {
-        currentDmg = roundHalfDown((currentDmg * (cond.contactMultiplier * 4096)) / 4096);
+      currentDmg = floor((currentDmg * i) / 100);
+
+      const effAtkTypes = isSoak ? ['みず'] : (atkTypes || []);
+      let isSameType = aProtean ? aProteanActive : effAtkTypes.includes(moveType);
+
+      if (isSameType) {
+        const stabMult = (aAbilityData?.phase === 'stab') ? aAbilityData.multiplier : 1.5;
+        currentDmg = roundHalfDown((currentDmg * (stabMult * 4096)) / 4096);
       }
-      if (cond.moveTypeMultiplier?.[currentMoveType]) {
-        const mult = cond.moveTypeMultiplier[currentMoveType];
+
+      currentDmg = floor(currentDmg * typeEff);
+
+      if (defAbilityData?.conditions?.defMoveTypeMultiplier?.[moveType]) {
+        const mult = defAbilityData.conditions.defMoveTypeMultiplier[moveType];
         currentDmg = roundHalfDown((currentDmg * (mult * 4096)) / 4096);
       }
-    }
 
-    if (selectedItem === 'たつじんのおび' && typeEffectiveness > 1.0) {
-      currentDmg = roundHalfDown((currentDmg * 4915) / 4096);
-    } else if (selectedItem === 'いのちのたま') {
-      currentDmg = roundHalfDown((currentDmg * 5324) / 4096);
-    }
+      if (defAbilityData?.phase === 'final_damage') {
+        const cond = defAbilityData.conditions;
+        let applies = true;
 
-    if (selectedDefenderItem === '半減きのみ') {
-      if (currentMoveType === 'ノーマル' || typeEffectiveness > 1.0) {
-        currentDmg = roundHalfDown((currentDmg * 2048) / 4096);
-      }
-    }
+        if (cond.moveTypes && !cond.moveTypes.includes(moveType)) applies = false;
+        if (cond.category && cond.category !== atkMove.category) applies = false;
+        if (cond.superEffectiveOnly && typeEff <= 1.0) applies = false;
+        if (cond.requiresToggle && !abilityToggles[cond.toggleKey]) applies = false;
 
-    // 連続技・特殊ヒット処理
-    let totalHitDmg = 0;
+        if (applies) {
+          currentDmg = roundHalfDown((currentDmg * (defAbilityData.multiplier * 4096)) / 4096);
+        }
 
-    for (let h = 1; h <= activeHits; h++) {
-      let singleHitDmg = currentDmg;
-
-      if (['トリプルアクセル', 'トリプルキック'].includes(selectedMove.name) && activeHits > 1) {
-        singleHitDmg = floor(singleHitDmg * (h / activeHits));
-      }
-
-      if (isMimikyu && isDisguise) {
-        if (h === 1) {
-          singleHitDmg = floor(singleHitDmg * 0.125);
+        if (cond.contactMultiplier && atkMove.flags?.includes('contact')) {
+          currentDmg = roundHalfDown((currentDmg * (cond.contactMultiplier * 4096)) / 4096);
+        }
+        if (cond.moveTypeMultiplier?.[moveType]) {
+          const mult = cond.moveTypeMultiplier[moveType];
+          currentDmg = roundHalfDown((currentDmg * (mult * 4096)) / 4096);
         }
       }
 
-      if (isProtect) {
-        const isUnseenFist = ['ふかしのこぶし', 'かんつうドリル'].includes(selectedAbility);
-        const isContactMove = selectedMove.flags?.includes('contact');
+      if (atkItem === 'たつじんのおび' && typeEff > 1.0) {
+        currentDmg = roundHalfDown((currentDmg * 4915) / 4096);
+      } else if (atkItem === 'いのちのたま') {
+        currentDmg = roundHalfDown((currentDmg * 5324) / 4096);
+      }
 
-        if (isUnseenFist && isContactMove) {
-          singleHitDmg = roundHalfDown((singleHitDmg * 1024) / 4096);
-        } else {
-          singleHitDmg = 0;
+      if (selectedDefenderItem === '半減きのみ') {
+        if (moveType === 'ノーマル' || typeEff > 1.0) {
+          currentDmg = roundHalfDown((currentDmg * 2048) / 4096);
         }
       }
 
-      if (typeEffectiveness > 0 && singleHitDmg < 1) {
-        singleHitDmg = 1;
+      let totalHitDmg = 0;
+      for (let h = 1; h <= aHits; h++) {
+        let singleHitDmg = currentDmg;
+
+        if (['トリプルアクセル', 'トリプルキック'].includes(atkMove.name) && aHits > 1) {
+          singleHitDmg = floor(singleHitDmg * (h / aHits));
+        }
+
+        if (isMimikyu && isDisguise) {
+          if (h === 1) {
+            singleHitDmg = floor(singleHitDmg * 0.125);
+          }
+        }
+
+        if (isProtect) {
+          const isUnseenFist = ['ふかしのこぶし', 'かんつうドリル'].includes(atkAbility);
+          const isContactMove = atkMove.flags?.includes('contact');
+
+          if (isUnseenFist && isContactMove) {
+            singleHitDmg = roundHalfDown((singleHitDmg * 1024) / 4096);
+          } else {
+            singleHitDmg = 0;
+          }
+        }
+
+        if (typeEff > 0 && singleHitDmg < 1) {
+          singleHitDmg = 1;
+        }
+
+        totalHitDmg += singleHitDmg;
       }
 
-      totalHitDmg += singleHitDmg;
+      resultRolls.push(totalHitDmg);
     }
 
-    rolls.push({ dmg: totalHitDmg });
-  }
+    return resultRolls;
+  };
 
-  const minDamage = rolls[0]?.dmg || 0;
-  const maxDamage = rolls[15]?.dmg || 0;
+  // 全攻撃ポケモンの乱数結果を合計
+  const combinedRolls = useMemo(() => {
+    const total = Array(16).fill(0);
+    attackers.forEach(atk => {
+      const rolls = calculateAttackerRolls(atk);
+      rolls.forEach((val, idx) => {
+        total[idx] += val;
+      });
+    });
+    return total;
+  }, [attackers, defender, defHpEv, defEv, defNature, defRank, selectedDefenderAbility, selectedDefenderItem, isCritical, defenderProteanType, isBurned, isHelpingHand, isCharge, isSoak, isReflectWall, isStealthRock, isSpikes, isLifeOrbRecoil, isDisguise, isProtect, isRoost, weather, field, stockpileCount, faintedCount, defenderHpPercent, abilityToggles, abilityOptions, abilityValues]);
 
   // 8. 設置技・定数ダメージ
   let entryHazardDamage = 0;
@@ -817,6 +1033,9 @@ export default function App() {
       }
     }
   }
+
+  const minDamage = combinedRolls[0] || 0;
+  const maxDamage = combinedRolls[15] || 0;
 
   // 種族値ヘッダー
   const BaseStatsHeader = ({ stats }) => {
@@ -1824,7 +2043,7 @@ export default function App() {
         attacker={{ movePower: basePower, atkStat: atkStat }}
         defender={{ hpStat: defHpStat, defStat: defStat }}
         damageResult={{ 
-          rolls: rolls.map(r => r.dmg),
+          rolls: combinedRolls,
           minDamage: minDamage + entryHazardDamage, 
           maxDamage: maxDamage + entryHazardDamage 
         }}
