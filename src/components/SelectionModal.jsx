@@ -11,15 +11,14 @@ const hiraganaToKatakana = (str) => {
 
 export default function SelectionModal({ isOpen, onClose, type, pokemonName, itemList = [], onSelect }) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [history, setHistory] = useState([]); // 🌟 履歴保持用ステート
+  const [history, setHistory] = useState([]);
   const inputRef = useRef(null);
 
-  // 🌟 モーダルが開くたびに検索文字のリセット・フォーカス・履歴取得を行う
+  // モーダルが開くたびに検索文字のリセット・フォーカス・履歴取得を行う
   useEffect(() => {
     if (isOpen) {
-      setSearchTerm(''); // 検索文字列の初期化
+      setSearchTerm('');
 
-      // 履歴データの取得
       const storageKey = type === 'pokemon' ? 'pokemon_search_history' : 'move_search_history';
       const savedHistory = JSON.parse(localStorage.getItem(storageKey) || '[]');
       setHistory(savedHistory);
@@ -35,12 +34,11 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
     }
   }, [isOpen, type]);
 
-  // 🌟 アイテム（ポケモンまたは技）を選択したときの処理（履歴への追加含む）
+  // アイテム選択時処理
   const handleItemSelect = (item) => {
     const itemName = typeof item === 'string' ? item : item?.name;
     if (!itemName) return;
 
-    // 重複を除外して先頭に追加（最大6件保持）
     const newHistory = [itemName, ...history.filter((h) => h !== itemName)].slice(0, 6);
     setHistory(newHistory);
 
@@ -51,7 +49,7 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
     onClose();
   };
 
-  // 🌟 履歴削除機能
+  // 履歴削除
   const handleClearHistory = (e) => {
     e.stopPropagation();
     const storageKey = type === 'pokemon' ? 'pokemon_search_history' : 'move_search_history';
@@ -59,9 +57,9 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
     setHistory([]);
   };
 
-  // 🌟 履歴の個別削除機能（★追加）
+  // 履歴個別削除
   const handleRemoveHistoryItem = (e, itemToRemove) => {
-    e.stopPropagation(); // 選択処理の発火を防止
+    e.stopPropagation();
     const newHistory = history.filter((h) => h !== itemToRemove);
     setHistory(newHistory);
 
@@ -69,7 +67,7 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
     localStorage.setItem(storageKey, JSON.stringify(newHistory));
   };
 
-  // 1. そのポケモンが覚える技（popular + other）を取得
+  // そのポケモンが覚える技を取得
   const { popularMoves, otherMoves, allLearnableSet } = useMemo(() => {
     if (type !== 'move' || !pokemonName || !moveUsageData) {
       return { popularMoves: [], otherMoves: [], allLearnableSet: new Set() };
@@ -93,12 +91,11 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
     return { popularMoves: popular, otherMoves: other, allLearnableSet: allSet };
   }, [type, pokemonName]);
 
-  // 2. 表示するリストの整理
+  // 表示リストのフィルタリング
   const { popularList, learnableList, nonLearnableList } = useMemo(() => {
     const safeList = Array.isArray(itemList) ? itemList : [];
     const term = searchTerm.trim();
 
-    // 検索バーに入力がある場合は全体からフィルタリング
     if (term) {
       const query = hiraganaToKatakana(term);
 
@@ -111,7 +108,6 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
       return { popularList: [], learnableList: filtered, nonLearnableList: [] };
     }
 
-    // 技の選択時で、ポケモンデータが存在する場合
     if (type === 'move' && allLearnableSet.size > 0) {
       const popSet = new Set(popularMoves);
       const othSet = new Set(otherMoves);
@@ -139,45 +135,90 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
 
   if (!isOpen) return null;
 
-  // ボタン描画用のコンポーネント
-  const renderItemButton = (item, highlightLevel = 'normal') => {
+  // 🌟 リスト形式での1行アイテム描画関数
+  const renderListItem = (item, highlightLevel = 'normal') => {
     const itemName = typeof item === 'string' ? item : item?.name;
     const itemType = item?.type;
+    const icon = item?.icon || item?.iconUrl; // アイコン画像のパス（データ構造に合わせて適宜調整）
+    const stats = item?.stats || item?.baseStats; // 例: { h: 80, a: 74, b: 74, c: 126, d: 116, s: 60 }
 
-    let border = '1px solid #333';
-    let bg = '#252525';
+    let bg = 'transparent';
     let textColor = '#fff';
 
     if (highlightLevel === 'gold') {
-      border = '1px solid #ffd54f';
-      bg = '#2b2613';
+      bg = 'rgba(255, 213, 79, 0.08)';
       textColor = '#ffd54f';
     } else if (highlightLevel === 'silver') {
-      border = '1px solid #4a6fa5';
-      bg = '#1a2332';
+      bg = 'rgba(129, 212, 250, 0.08)';
       textColor = '#81d4fa';
     }
 
     return (
       <button
         key={itemName}
-        onClick={() => handleItemSelect(item)} // 🌟 履歴保存を通る関数に変更
+        onClick={() => handleItemSelect(item)}
         style={{
-          padding: '10px',
-          borderRadius: '6px',
-          border,
+          width: '100%',
+          padding: '10px 12px',
+          border: 'none',
+          borderBottom: '1px solid #2a2a2a',
           backgroundColor: bg,
           color: textColor,
           textAlign: 'left',
           cursor: 'pointer',
           display: 'flex',
-          flexDirection: 'column',
-          gap: '4px'
+          alignItems: 'center',
+          justify: 'space-between',
+          gap: '12px',
+          boxSizing: 'border-box'
         }}
+        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2a2a2a'}
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = bg}
       >
-        <span style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>{itemName}</span>
-        {itemType && (
-          <span style={{ fontSize: '0.75rem', color: '#aaa' }}>{itemType}</span>
+        {/* 左側：アイコン + ポケモン名/技名 */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1, minWidth: 0 }}>
+          {icon && (
+            <img 
+              src={icon} 
+              alt={itemName} 
+              style={{ width: '36px', height: '36px', objectFit: 'contain', flexShrink: 0 }} 
+            />
+          )}
+          <div style={{ minWidth: 0 }}>
+            <div style={{ 
+              fontWeight: 'bold', 
+              fontSize: '1rem', 
+              whiteSpace: 'nowrap', 
+              overflow: 'hidden', 
+              textOverflow: 'ellipsis' 
+            }}>
+              {itemName}
+            </div>
+            {itemType && (
+              <span style={{ fontSize: '0.75rem', color: '#888' }}>{itemType}</span>
+            )}
+          </div>
+        </div>
+
+        {/* 右側：種族値（ポケモンの場合でステータスデータが存在すれば表示） */}
+        {type === 'pokemon' && stats && (
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(3, 1fr)', 
+            gap: '2px 12px', 
+            fontSize: '0.75rem', 
+            color: '#ccc',
+            textAlign: 'right',
+            fontFamily: 'monospace',
+            flexShrink: 0
+          }}>
+            <div>H<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.h ?? stats.hp}</span></div>
+            <div>A<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.a ?? stats.atk}</span></div>
+            <div>B<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.b ?? stats.def}</span></div>
+            <div>C<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.c ?? stats.spa}</span></div>
+            <div>D<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.d ?? stats.spd}</span></div>
+            <div>S<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.s ?? stats.spe}</span></div>
+          </div>
         )}
       </button>
     );
@@ -237,12 +278,12 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
       </div>
 
       {/* リスト表示領域 */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '0 0 16px 0' }}>
 
-        {/* 🌟 履歴表示エリア（検索欄が空で履歴がある場合のみ表示） */}
+        {/* 履歴表示エリア（検索欄が空で履歴がある場合） */}
         {searchTerm === '' && history.length > 0 && (
           <div style={{
-            marginBottom: '20px',
+            margin: '16px',
             padding: '12px',
             backgroundColor: '#222',
             borderRadius: '8px',
@@ -289,7 +330,6 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
                   }}
                 >
                   <span>{itemName}</span>
-                  {/* 個別削除「✕」ボタン */}
                   <span
                     onClick={(e) => handleRemoveHistoryItem(e, itemName)}
                     style={{
@@ -324,38 +364,38 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
         
         {/* ① よく使われる技 (popular) */}
         {popularList.length > 0 && (
-          <div style={{ marginBottom: '20px' }}>
-            <div style={{ fontSize: '0.85rem', color: '#ffd54f', marginBottom: '8px', fontWeight: 'bold' }}>
+          <div>
+            <div style={{ padding: '8px 16px', fontSize: '0.85rem', color: '#ffd54f', fontWeight: 'bold', backgroundColor: '#1a1a1a' }}>
               ★ {pokemonName} のよく使われる技 ({popularList.length})
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '8px' }}>
-              {popularList.map(item => renderItemButton(item, 'gold'))}
+            <div>
+              {popularList.map(item => renderListItem(item, 'gold'))}
             </div>
           </div>
         )}
 
-        {/* ② 覚える技 (other / learnable) */}
+        {/* ② ポケモン一覧 または 覚える技 */}
         {learnableList.length > 0 && (
-          <div style={{ marginBottom: '20px' }}>
-            <div style={{ fontSize: '0.85rem', color: '#81d4fa', marginBottom: '8px', fontWeight: 'bold' }}>
+          <div>
+            <div style={{ padding: '8px 16px', fontSize: '0.85rem', color: '#81d4fa', fontWeight: 'bold', backgroundColor: '#1a1a1a' }}>
               {type === 'pokemon'
                 ? `ポケモン一覧 (${learnableList.length})` 
                 : (popularList.length > 0 ? `覚えるその他の技 (${learnableList.length})` : `${pokemonName} の覚える攻撃技 (${learnableList.length})`)}
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '8px' }}>
-              {learnableList.map(item => renderItemButton(item, popularList.length > 0 ? 'silver' : 'normal'))}
+            <div>
+              {learnableList.map(item => renderListItem(item, popularList.length > 0 ? 'silver' : 'normal'))}
             </div>
           </div>
         )}
 
         {/* ③ それ以外のすべての技（覚えない技） */}
         {nonLearnableList.length > 0 && (
-          <div>
-            <div style={{ fontSize: '0.85rem', color: '#666', marginBottom: '8px', fontWeight: 'bold' }}>
+          <div style={{ opacity: 0.6 }}>
+            <div style={{ padding: '8px 16px', fontSize: '0.85rem', color: '#666', fontWeight: 'bold', backgroundColor: '#1a1a1a' }}>
               すべての技 ({nonLearnableList.length})
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '8px', opacity: 0.6 }}>
-              {nonLearnableList.map(item => renderItemButton(item, 'normal'))}
+            <div>
+              {nonLearnableList.map(item => renderListItem(item, 'normal'))}
             </div>
           </div>
         )}
