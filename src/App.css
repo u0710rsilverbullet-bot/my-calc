@@ -105,11 +105,13 @@ html, body {
   align-items: center;
 }
 
-.attacker-card .card-header {
+.attacker-card .card-header,
+.calc-card.attacker .card-header {
   background-color: #e53e3e;
 }
 
-.defender-card .card-header {
+.defender-card .card-header,
+.calc-card.defender .card-header {
   background-color: #3182ce;
 }
 
@@ -136,71 +138,46 @@ html, body {
 }
 
 /* ==========================================================================
-   高さの一括統一 & 技タイプ非表示設定
+   入力フォーム高さ指定 (モーダル等には影響を与えない範囲に制限)
    ========================================================================== */
 
+.card-body .form-select, 
+.card-body .form-input, 
+.card-body input[type="text"]:not(.modal-search-input), 
+.card-body input[type="number"]:not(.modal-search-input), 
 .card-body select,
-.card-body input,
-.card-body button,
-.card-body div,
-.card-body span {
-  box-sizing: border-box !important;
-}
-
-/* 特性・道具・威力・状態ボタンなどの標準高さを 30px に統一 */
-.form-select, 
-.form-input, 
-input[type="text"], 
-input[type="number"], 
-select,
-button,
-.status-btn,
-.toggle-btn,
-.power-input {
-  height: 30px !important;
-  min-height: 30px !important;
-  max-height: 30px !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  font-size: 0.8rem !important;
-  line-height: 30px !important;
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border: 1px solid #444444 !important;
+.card-body button:not(.ability-toggle-btn),
+.card-body .status-btn,
+.card-body .toggle-btn {
+  height: 30px;
+  min-height: 30px;
+  padding: 0 10px;
+  font-size: 0.8rem;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #444444;
   border-radius: 4px;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
 }
 
-/* 技のタイプ欄を消去（非表示化） */
+/* 技のタイプ欄の非表示指定 */
 .type-badge,
-.type-label,
-.type-box {
+.type-label {
   display: none !important;
 }
 
-/* 威力入力欄の横幅を広げる（他フォームと同様に幅100%拡張） */
-.power-input,
-input[name="power"],
-input[type="number"].power-input {
+/* 威力入力欄 */
+.power-input {
   width: 60px !important;
   max-width: 100% !important;
-  flex: 1 !important; /* ← この1行を追加 */
+  flex: 1 !important;
 }
 
-/* 技名入力欄（38px高） */
+/* 技名入力欄 */
 .move-select,
 .move-input,
-input[name="move"],
 .move-field {
   height: 38px !important;
   min-height: 38px !important;
-  max-height: 38px !important;
   line-height: 38px !important;
   font-size: 0.9rem !important;
   font-weight: bold !important;
@@ -211,15 +188,15 @@ input[name="move"],
 }
 
 /* ボタン群・状態トグル */
-.status-btn, .toggle-btn, .quick-btn, .rank-btn, .segmented-btn, button {
-  background-color: #2a2a2a !important;
-  color: #d1d5db !important;
+.status-btn, .toggle-btn, .quick-btn, .rank-btn, .segmented-btn {
+  background-color: #2a2a2a;
+  color: #d1d5db;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
 }
 
-.quick-btn:hover, .rank-btn:hover, .toggle-btn:hover, .segmented-btn:hover, .status-btn:hover, button:hover {
-  background-color: #383838 !important;
+.quick-btn:hover, .rank-btn:hover, .toggle-btn:hover, .segmented-btn:hover, .status-btn:hover {
+  background-color: #383838;
 }
 
 .segmented-btn.active, .toggle-btn.active, .status-btn.active {
@@ -243,7 +220,6 @@ input[name="move"],
   width: 48px !important;
   height: 24px !important;
   min-height: 24px !important;
-  max-height: 24px !important;
   line-height: 24px !important;
   text-align: center;
   font-size: 0.75rem !important;
@@ -260,19 +236,6 @@ input[name="move"],
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-/* --- Field / Environment Section (その他) --- */
-.field-section {
-  background-color: #1e3a29;
-  border-radius: 6px;
-  border: 1px solid #2d5a3f;
-  padding: 8px 12px;
-  margin-top: 10px;
-}
-
-.field-section .card-header {
-  background-color: #2f855a;
 }
 
 /* --- Sticky Bottom Bar --- */
@@ -296,17 +259,6 @@ input[name="move"],
   justify-content: space-between;
 }
 
-.damage-bar-title {
-  font-size: 0.85rem;
-  color: #aaaaaa;
-}
-
-.damage-bar-result {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #ef4444;
-}
-/* 特性入力セレクトボックス（黒背景） */
 .ability-select {
   flex: 1;
   height: 34px !important;
@@ -318,7 +270,6 @@ input[name="move"],
   font-size: 0.85rem !important;
 }
 
-/* 有効・無効 トグルボタンコンテナ */
 .ability-toggle-group {
   display: flex;
   background-color: #000000;
@@ -327,28 +278,65 @@ input[name="move"],
   gap: 2px;
 }
 
-/* トグルボタン（非選択時） */
 .ability-toggle-btn {
   height: 28px !important;
   padding: 0 12px !important;
   border-radius: 14px !important;
   border: none !important;
   background-color: transparent !important;
-  color: #71717a !important; /* グレーテキスト */
+  color: #71717a !important;
   font-size: 0.75rem !important;
   font-weight: bold !important;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-/* 非活性化時のスタイル */
 .ability-toggle-btn:disabled {
   cursor: not-allowed;
   opacity: 0.4;
 }
 
-/* トグルボタン（選択時：明るいグレー背景に白文字） */
 .ability-toggle-btn.active {
   background-color: #52525b !important;
   color: #ffffff !important;
+}
+
+/* ==========================================================================
+   モーダル専用スタイル（技名・タイプが綺麗に収まる高さと配置）
+   ========================================================================== */
+
+.modal-item-row {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  min-height: 52px !important; /* 技名とタイプがしっかり入る高さ */
+  padding: 8px 12px !important;
+  margin-bottom: 6px !important;
+  background-color: #1e1e24 !important;
+  border: 1px solid #33333c !important;
+  border-radius: 6px !important;
+  cursor: pointer;
+  box-sizing: border-box !important;
+}
+
+.modal-item-row:hover {
+  background-color: #2a2a35 !important;
+  border-color: #4f46e5 !important;
+}
+
+.modal-item-title {
+  font-size: 0.95rem !important;
+  font-weight: bold !important;
+  color: #ffffff !important;
+  line-height: 1.3 !important;
+  display: block !important;
+}
+
+.modal-item-subtitle {
+  font-size: 0.75rem !important;
+  color: #a1a1aa !important;
+  margin-top: 2px !important;
+  line-height: 1.2 !important;
+  display: block !important;
 }
