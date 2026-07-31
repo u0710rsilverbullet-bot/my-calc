@@ -2076,7 +2076,7 @@ export default function App() {
 
             <div className="info-modal-section">
               <h4>アプリ名 / バージョン</h4>
-              <p><b>Champions</b> v1.0.0</p>
+              <p><b>Damage Calculator for Champions</b> v1.0.0</p>
             </div>
 
             <div className="info-modal-section">
