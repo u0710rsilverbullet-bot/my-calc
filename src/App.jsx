@@ -1696,7 +1696,8 @@ export default function App() {
 
       {/* よく使われる技リスト */}
       {(() => {
-        const currentPopularMoves = moveUsage[attacker?.name]?.popular || [];
+        const baseName = getBasePokemonName(attacker?.name);
+        const currentPopularMoves = moveUsage[baseName]?.popular || moveUsage[attacker?.name]?.popular || [];
         if (currentPopularMoves.length === 0) return null;
 
         return (
