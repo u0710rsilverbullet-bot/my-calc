@@ -1462,22 +1462,99 @@ export default function App() {
       </div>
 
       {/* 🟩 その他エリア (天候・フィールド) */}
-      <div style={{ border: '1px solid #2e5a32', borderRadius: '8px', overflow: 'hidden', background: '#172b1a', marginTop: '16px' }}>
-        <div style={{ background: '#388e3c', padding: '8px 12px', fontWeight: 'bold', color: '#fff' }}>その他 (天候・フィールド)</div>
-        <div style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '0.85rem', color: '#a5d6a7' }}>天候:</span>
-            {['なし', 'あめ', 'はれ', 'すな', 'ゆき'].map(w => (
-              <button key={w} onClick={() => setWeather(w)} className={`toggle-btn ${weather === w ? 'active' : ''}`}>{w}</button>
-            ))}
+      {/* 🟩 その他エリア (天候・フィールド) */}
+      <div style={{ 
+        display: 'flex', 
+        backgroundColor: '#1b3227', 
+        borderLeft: '12px solid #55ab26', 
+        borderRadius: '2px', 
+        padding: '16px 20px', 
+        alignItems: 'center', 
+        gap: '24px', 
+        marginTop: '16px',
+        color: '#ffffff'
+      }}>
+        {/* 左端の「状況」縦書きラベル */}
+        <div style={{ 
+          fontSize: '0.9rem', 
+          writingMode: 'vertical-rl', 
+          textOrientation: 'upright', 
+          letterSpacing: '2px', 
+          color: '#ffffff',
+          fontWeight: '500'
+        }}>
+          状況
+        </div>
+
+        {/* 右側（天候・フィールドの行） */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
+          
+          {/* 天候行 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+            <span style={{ fontSize: '1.2rem', minWidth: '90px', letterSpacing: '4px' }}>天候</span>
+            <div style={{ 
+              display: 'flex', 
+              backgroundColor: '#273f34', 
+              borderRadius: '20px', 
+              padding: '3px', 
+              flex: 1 
+            }}>
+              {['なし', 'あめ', 'はれ', 'すな', 'ゆき'].map(w => (
+                <button
+                  key={w}
+                  onClick={() => setWeather(w)}
+                  style={{
+                    flex: 1,
+                    padding: '8px 0',
+                    borderRadius: '17px',
+                    border: 'none',
+                    backgroundColor: weather === w ? '#5e716e' : 'transparent',
+                    color: '#ffffff',
+                    fontSize: '0.95rem',
+                    fontWeight: weather === w ? 'bold' : 'normal',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  {w}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '0.85rem', color: '#a5d6a7' }}>フィールド:</span>
-            {['なし', 'エレキ', 'グラス', 'サイコ', 'ミスト'].map(f => (
-              <button key={f} onClick={() => setField(f)} className={`toggle-btn ${field === f ? 'active' : ''}`}>{f}</button>
-            ))}
+          {/* フィールド行 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+            <span style={{ fontSize: '1.2rem', minWidth: '90px', letterSpacing: '2px' }}>フィールド</span>
+            <div style={{ 
+              display: 'flex', 
+              backgroundColor: '#273f34', 
+              borderRadius: '20px', 
+              padding: '3px', 
+              flex: 1 
+            }}>
+              {['なし', 'エレキ', 'グラス', 'サイコ', 'ミスト'].map(f => (
+                <button
+                  key={f}
+                  onClick={() => setField(f)}
+                  style={{
+                    flex: 1,
+                    padding: '8px 0',
+                    borderRadius: '17px',
+                    border: 'none',
+                    backgroundColor: field === f ? '#5e716e' : 'transparent',
+                    color: '#ffffff',
+                    fontSize: '0.95rem',
+                    fontWeight: field === f ? 'bold' : 'normal',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
           </div>
+
         </div>
       </div>
 
