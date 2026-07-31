@@ -997,22 +997,6 @@ export default function App() {
     return resultRolls;
   };
 
-  // 各攻撃ターンの乱数配列（16段階）を保持
-  const allAttackerRolls = useMemo(() => {
-    return attackers.map(atk => calculateAttackerRolls(atk));
-  }, [attackers, defender, defHpEv, defEv, defNature, defRank, selectedDefenderAbility, selectedDefenderItem, isCritical, defenderProteanType, isBurned, isHelpingHand, isCharge, isSoak, isReflectWall, isStealthRock, isSpikes, isLifeOrbRecoil, isDisguise, isProtect, isRoost, weather, field, stockpileCount, faintedCount, defenderHpPercent, abilityToggles, abilityOptions, abilityValues]);
-
-  // 全攻撃ポケモンの乱数結果を合計
-  const combinedRolls = useMemo(() => {
-    const total = Array(16).fill(0);
-    allAttackerRolls.forEach(rolls => {
-      rolls.forEach((val, idx) => {
-        total[idx] += val;
-      });
-    });
-    return total;
-  }, [allAttackerRolls]);
-
   // 8. 設置技・定数ダメージ
   let entryHazardDamage = 0;
   const isMagicGuard = defAbilityData?.conditions?.ignoreIndirectDamage;
@@ -1037,6 +1021,18 @@ export default function App() {
       }
     }
   }
+
+  // 全攻撃ポケモンの乱数結果を合計（定数ダメージを加算）
+  const combinedRolls = useMemo(() => {
+    const total = Array(16).fill(0);
+    attackers.forEach(atk => {
+      const rolls = calculateAttackerRolls(atk);
+      rolls.forEach((val, idx) => {
+        total[idx] += val;
+      });
+    });
+    return total.map(dmg => dmg + entryHazardDamage);
+  }, [attackers, defender, defHpEv, defEv, defNature, defRank, selectedDefenderAbility, selectedDefenderItem, isCritical, defenderProteanType, isBurned, isHelpingHand, isCharge, isSoak, isReflectWall, isStealthRock, isSpikes, isLifeOrbRecoil, isDisguise, isProtect, isRoost, weather, field, stockpileCount, faintedCount, defenderHpPercent, abilityToggles, abilityOptions, abilityValues, entryHazardDamage]);
 
   const minDamage = combinedRolls[0] || 0;
   const maxDamage = combinedRolls[15] || 0;
@@ -2048,10 +2044,8 @@ export default function App() {
         defender={{ hpStat: defHpStat, defStat: defStat }}
         damageResult={{ 
           rolls: combinedRolls,
-          allRolls: allAttackerRolls,
-          hazardDamage: entryHazardDamage,
-          minDamage: minDamage + entryHazardDamage, 
-          maxDamage: maxDamage + entryHazardDamage 
+          minDamage: minDamage, 
+          maxDamage: maxDamage 
         }}
       />
 
