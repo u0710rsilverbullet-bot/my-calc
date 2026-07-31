@@ -2098,9 +2098,9 @@ export default function App() {
 {/* 📄 フッター（アプリ情報・権利表記・作成者情報） */}
       <footer className="app-footer">
         <div className="footer-info">
-          <span className="app-title-ver">Champions v1.0.0</span>
+          <span className="app-title-ver">Damage Calculator for Champions v1.0.0</span>
           <span className="author-info">
-            Created by <a href="https://twitter.com/your_twitter_id" target="_blank" rel="noopener noreferrer">@作成者アカウント</a>
+            Created by <a href="https://x.com/el_pkmn" target="_blank" rel="noopener noreferrer">える</a>
           </span>
         </div>
         <div className="footer-disclaimer">
