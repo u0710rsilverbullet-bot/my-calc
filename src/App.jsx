@@ -113,74 +113,23 @@ export default function App() {
   const defaultDefenderPkm = pokemons[1] || { name: 'ガブリアス', types: ['ドラゴン', 'じめん'], baseStats: { hp: 108, atk: 130, def: 95, spAtk: 80, spDef: 85, spd: 102 }, abilities: ['さめはだ'] };
   const defaultMove = moves.find(m => m.name === 'トリプルアクセル') || moves[0] || { name: 'トリプルアクセル', type: 'こおり', category: '物理', power: 20, flags: [] };
 
-  // 攻撃ポケモンのリスト管理（複数ターン対応）
-  const [attackers, setAttackers] = useState([
-    {
-      id: Date.now(),
-      pokemon: defaultPkm,
-      types: defaultPkm.types || ['くさ', 'あく'],
-      move: defaultMove,
-      ability: defaultPkm.abilities?.[0] || '',
-      item: 'なし',
-      atkEv: 32,
-      atkNature: 1.0,
-      atkRank: 0,
-      hitCount: 3,
-      isAttackerProteanActive: true,
-      moveConditionActive: false,
-      attackerHpPercent: 100
-    }
-  ]);
-  const [activeAttackerIndex, setActiveAttackerIndex] = useState(0);
-
-  // 現在選択中の攻撃側データのショートカット
-  const currentAttacker = attackers[activeAttackerIndex] || attackers[0];
+  const [attacker, setAttacker] = useState(defaultPkm);
+  const [attackerTypes, setAttackerTypes] = useState(defaultPkm.types || ['くさ', 'あく']);
 
   const [defender, setDefender] = useState(defaultDefenderPkm);
+  const [selectedMove, setSelectedMove] = useState(defaultMove);
+  const [selectedAbility, setSelectedAbility] = useState(defaultPkm.abilities?.[0] || '');
   const [selectedDefenderAbility, setSelectedDefenderAbility] = useState(defaultDefenderPkm.abilities?.[0] || '');
+  const [selectedItem, setSelectedItem] = useState('なし');
 
   const [modalConfig, setModalConfig] = useState({
     isOpen: false,
     type: 'move',
-    target: 'attacker',
-    index: 0
+    target: 'attacker'
   });
 
-  const openModal = (type, target, index = activeAttackerIndex) => {
-    setModalConfig({ isOpen: true, type, target, index });
-  };
-
-  // 攻撃ポケモンの追加・削除関数
-  const addAttacker = () => {
-    const newAttacker = {
-      id: Date.now(),
-      pokemon: defaultPkm,
-      types: defaultPkm.types || ['くさ', 'あく'],
-      move: defaultMove,
-      ability: defaultPkm.abilities?.[0] || '',
-      item: 'なし',
-      atkEv: 32,
-      atkNature: 1.0,
-      atkRank: 0,
-      hitCount: 3,
-      isAttackerProteanActive: true,
-      moveConditionActive: false,
-      attackerHpPercent: 100
-    };
-    setAttackers(prev => [...prev, newAttacker]);
-    setActiveAttackerIndex(attackers.length);
-  };
-
-  const removeAttacker = (indexToRemove) => {
-    if (attackers.length <= 1) return; // 最低1匹は維持
-    setAttackers(prev => prev.filter((_, idx) => idx !== indexToRemove));
-    setActiveAttackerIndex(prev => Math.max(0, prev >= indexToRemove ? prev - 1 : prev));
-  };
-
-  const updateCurrentAttacker = (fields) => {
-    setAttackers(prev => prev.map((item, idx) => 
-      idx === activeAttackerIndex ? { ...item, ...fields } : item
-    ));
+  const openModal = (type, target) => {
+    setModalConfig({ isOpen: true, type, target });
   };
 
   const closeModal = () => {
@@ -190,35 +139,30 @@ export default function App() {
   const handleModalSelect = (selectedName) => {
     if (modalConfig.type === 'pokemon') {
       if (modalConfig.target === 'attacker') {
-        const pkm = pokemons.find(p => p.name === selectedName) || { name: selectedName };
-        updateCurrentAttacker({
-          pokemon: pkm,
-          types: pkm.types || [],
-          ability: pkm.abilities?.[0] || ''
-        });
+        handleAttackerChange(selectedName);
       } else {
         handleDefenderChange(selectedName);
       }
     } else if (modalConfig.type === 'move') {
-      const move = moves.find(m => m.name === selectedName) || { name: selectedName, type: 'ノーマル', category: '物理', power: 50 };
-      const maxHits = MULTI_HIT_MOVES[move.name] || move.maxHits || 1;
-      updateCurrentAttacker({
-        move,
-        hitCount: maxHits,
-        moveConditionActive: false
-      });
+      handleMoveChange(selectedName);
     }
   };
 
-  // 防御側ステータス
+  // ステータス・計算用ステート
+  const [atkEv, setAtkEv] = useState(32);
+  const [atkNature, setAtkNature] = useState(1.0);
+  const [atkRank, setAtkRank] = useState(0);
+
   const [defHpEv, setDefHpEv] = useState(32);
   const [defEv, setDefEv] = useState(0);
   const [defNature, setDefNature] = useState(1.0);
   const [defRank, setDefRank] = useState(0);
 
+  const [hitCount, setHitCount] = useState(3);
   const [isCritical, setIsCritical] = useState(false);
 
   // へんげんじざい用の状態
+  const [isAttackerProteanActive, setIsAttackerProteanActive] = useState(true);
   const [defenderProteanType, setDefenderProteanType] = useState('元タイプ');
 
   // 持ち物ステート（防御側）
@@ -238,6 +182,7 @@ export default function App() {
   // 防御側の追加状態
   const [isProtect, setIsProtect] = useState(false);
   const [isRoost, setIsRoost] = useState(false);
+  const [isDefenderLifeOrb, setIsDefenderLifeOrb] = useState(false);
   const [customFixedFraction, setCustomFixedFraction] = useState(null);
 
   // 天候・フィールド
@@ -245,8 +190,10 @@ export default function App() {
   const [field, setField] = useState('なし');
 
   // 技固有の条件ステート
+  const [moveConditionActive, setMoveConditionActive] = useState(false);
   const [stockpileCount, setStockpileCount] = useState(1);
   const [faintedCount, setFaintedCount] = useState(0);
+  const [attackerHpPercent, setAttackerHpPercent] = useState(100);
   const [defenderHpPercent, setDefenderHpPercent] = useState(100);
 
   // 特性由来の動的トグル状態
@@ -254,19 +201,9 @@ export default function App() {
   const [abilityOptions, setAbilityOptions] = useState({});
   const [abilityValues, setAbilityValues] = useState({});
 
-  // ショートカット変数
-  const attacker = currentAttacker.pokemon;
-  const attackerTypes = currentAttacker.types;
-  const selectedAbility = currentAttacker.ability;
-  const selectedMove = currentAttacker.move;
-  const selectedItem = currentAttacker.item;
-  const atkEv = currentAttacker.atkEv;
-  const atkNature = currentAttacker.atkNature;
-  const atkRank = currentAttacker.atkRank;
-  const hitCount = currentAttacker.hitCount;
-  const isAttackerProteanActive = currentAttacker.isAttackerProteanActive;
-  const moveConditionActive = currentAttacker.moveConditionActive;
-  const attackerHpPercent = currentAttacker.attackerHpPercent;
+  const toggleAbilityState = (key) => {
+    setAbilityToggles(prev => ({ ...prev, [key]: !prev[key] }));
+  };
 
   // --- 特性オブジェクト & 技固有エフェクト取得 ---
   const atkAbilityData = useMemo(() => abilitiesData.find(a => a.name === selectedAbility), [selectedAbility]);
@@ -308,15 +245,11 @@ export default function App() {
   const handleAttackerChange = (name) => {
     const pkm = pokemons.find(p => p.name === name);
     if (pkm) {
-      updateCurrentAttacker({
-        pokemon: pkm,
-        types: pkm.types || [],
-        ability: pkm.abilities?.[0] || ''
-      });
+      setAttacker(pkm);
+      setAttackerTypes(pkm.types || []);
+      if (pkm.abilities?.length > 0) setSelectedAbility(pkm.abilities[0]);
     } else {
-      updateCurrentAttacker({
-        pokemon: { ...attacker, name }
-      });
+      setAttacker(prev => ({ ...prev, name }));
     }
   };
 
@@ -337,12 +270,11 @@ export default function App() {
   const handleMoveChange = (name) => {
     const move = moves.find(m => m.name === name);
     const targetMove = move || { name, type: 'ノーマル', category: '物理', power: 50 };
+    setSelectedMove(targetMove);
+
     const maxHits = MULTI_HIT_MOVES[targetMove.name] || targetMove.maxHits || 1;
-    updateCurrentAttacker({
-      move: targetMove,
-      hitCount: maxHits,
-      moveConditionActive: false
-    });
+    setHitCount(maxHits);
+    setMoveConditionActive(false);
   };
 
   const handleToggleAttackerMega = (targetMegaName) => {
@@ -359,36 +291,37 @@ export default function App() {
 
   const handleSwap = () => {
     const tempAttacker = attacker;
-    const tempDefender = defender;
-
+    setAttacker(defender);
+    setAttackerTypes(effectiveDefenderTypes);
     setDefender(tempAttacker);
-    setSelectedDefenderAbility(selectedAbility);
+    setDefenderProteanType('元タイプ');
 
     const tempAtkEv = atkEv;
     const tempAtkNature = atkNature;
     const tempAtkRank = atkRank;
 
-    updateCurrentAttacker({
-      pokemon: tempDefender,
-      types: effectiveDefenderTypes,
-      ability: selectedDefenderAbility,
-      item: ITEM_OPTIONS.includes(selectedDefenderItem) ? selectedDefenderItem : 'なし',
-      atkEv: defEv,
-      atkNature: defNature,
-      atkRank: defRank,
-      isAttackerProteanActive: true
-    });
+    setAtkEv(defEv);
+    setAtkNature(defNature);
+    setAtkRank(defRank);
 
     setDefEv(tempAtkEv);
     setDefNature(tempAtkNature);
     setDefRank(tempAtkRank);
 
-    setSelectedDefenderItem(ITEM_OPTIONS.includes(selectedItem) ? selectedItem : 'なし');
-    setDefenderProteanType('元タイプ');
+    const tempSelectedAbility = selectedAbility;
+    setSelectedAbility(selectedDefenderAbility);
+    setSelectedDefenderAbility(tempSelectedAbility);
+
+    const tempSelectedItem = selectedItem;
+    const nextAttackerItem = ITEM_OPTIONS.includes(selectedDefenderItem) ? selectedDefenderItem : 'なし';
+    setSelectedItem(nextAttackerItem);
+    setSelectedDefenderItem(ITEM_OPTIONS.includes(tempSelectedItem) ? tempSelectedItem : 'なし');
+
+    setIsAttackerProteanActive(true);
     setIsDisguise(tempAttacker.name === 'ミミッキュ' || selectedAbility === 'ばけのかわ');
   };
 
-  // よく使われる技（Popular Moves）用の計算ヘルパー関数
+  // 1体目のポケモン（ステータス・入力内容）をもとに「よく使われる技」の計算を行う関数
   const calculatePopularMoveDamage = (moveData) => {
     if (!moveData || !attacker || !defender) return null;
 
@@ -402,29 +335,33 @@ export default function App() {
     const moveType = fullMove.type || 'ノーマル';
     const movePower = fullMove.power || 0;
 
-    // タイプ相性計算
+    // タイプ相性計算（1体目の防御側タイプを参照）
     let typeEff = 1.0;
     (effectiveDefenderTypes || []).forEach(defType => {
       typeEff *= (TYPE_CHART[moveType]?.[defType] ?? 1.0);
     });
 
-    // 攻撃・防御ステータス取得
+    // 1体目の攻撃ステータス計算（1体目の努力値・性格を反映）
     const isSpecial = fullMove.category === '特殊';
     const baseAtk = isSpecial ? (attacker?.baseStats?.spAtk ?? 100) : (attacker?.baseStats?.atk ?? 100);
     const calculatedAtk = floor((baseAtk + 20 + atkEv) * atkNature);
 
+    // 1体目の防御ステータス計算（1体目の努力値・性格を反映）
     const isTargetPhys = fullMove.category === '物理' || PHYSICAL_DEFENSE_SPECIAL_MOVES.includes(fullMove.name);
     const baseDef = isTargetPhys ? (defender?.baseStats?.def ?? 100) : (defender?.baseStats?.spDef ?? 100);
     const calculatedDef = floor((baseDef + 20 + defEv) * defNature);
 
     if (movePower === 0) return { minDmg: 0, maxDmg: 0, minPct: '0.0', maxPct: '0.0', fullMove };
 
+    // 1体目の攻撃側の現在タイプとの一致判定
+    const currentAttackerTypes = attackerTypes || [];
+
     // 簡易ダメージ計算 (レベル50)
     const step1 = floor((50 * 2) / 5) + 2;
     const step2 = floor((step1 * movePower * calculatedAtk) / calculatedDef);
     let baseDmg = floor(step2 / 50) + 2;
 
-    if ((attackerTypes || []).includes(moveType)) {
+    if (currentAttackerTypes.includes(moveType)) {
       baseDmg = floor(baseDmg * 1.5);
     }
     baseDmg = floor(baseDmg * typeEff);
@@ -432,8 +369,9 @@ export default function App() {
     const minDmg = floor(baseDmg * 0.85);
     const maxDmg = baseDmg;
 
-    const minPct = ((minDmg / defHpStat) * 100).toFixed(1);
-    const maxPct = ((maxDmg / defHpStat) * 100).toFixed(1);
+    const targetDefHp = (defender?.baseStats?.hp ?? 100) + 75 + defHpEv;
+    const minPct = ((minDmg / targetDefHp) * 100).toFixed(1);
+    const maxPct = ((maxDmg / targetDefHp) * 100).toFixed(1);
 
     return { minDmg, maxDmg, minPct, maxPct, fullMove };
   };
@@ -753,41 +691,24 @@ export default function App() {
       }
     }
 
-    // 連続技・特殊ヒット処理
-    let totalHitDmg = 0;
-
-    for (let h = 1; h <= activeHits; h++) {
-      let singleHitDmg = currentDmg;
-
-      if (['トリプルアクセル', 'トリプルキック'].includes(selectedMove.name) && activeHits > 1) {
-        singleHitDmg = floor(singleHitDmg * (h / activeHits));
-      }
-
-      if (isMimikyu && isDisguise) {
-        if (h === 1) {
-          singleHitDmg = floor(singleHitDmg * 0.125);
-        }
-      }
-
-      if (isProtect) {
-        const isUnseenFist = ['ふかしのこぶし', 'かんつうドリル'].includes(selectedAbility);
-        const isContactMove = selectedMove.flags?.includes('contact');
-
-        if (isUnseenFist && isContactMove) {
-          singleHitDmg = roundHalfDown((singleHitDmg * 1024) / 4096);
-        } else {
-          singleHitDmg = 0;
-        }
-      }
-
-      if (typeEffectiveness > 0 && singleHitDmg < 1) {
-        singleHitDmg = 1;
-      }
-
-      totalHitDmg += singleHitDmg;
+    if (isMimikyu && isDisguise) {
+      currentDmg = floor(currentDmg * 0.125);
     }
 
-    rolls.push({ dmg: totalHitDmg });
+    if (isProtect) {
+      const isUnseenFist = ['ふかしのこぶし', 'かんつうドリル'].includes(selectedAbility);
+      const isContactMove = selectedMove.flags?.includes('contact');
+
+      if (isUnseenFist && isContactMove) {
+        currentDmg = roundHalfDown((currentDmg * 1024) / 4096);
+      } else {
+        currentDmg = 0;
+      }
+    }
+
+    if (typeEffectiveness > 0 && currentDmg < 1) currentDmg = 1;
+
+    rolls.push({ dmg: currentDmg });
   }
 
   const minDamage = rolls[0]?.dmg || 0;
@@ -838,7 +759,7 @@ export default function App() {
       <div className="app-header">
         <button className="header-btn" onClick={handleSwap}>攻防交代</button>
         <h2 className="header-title">Champions</h2>
-        <button className="header-btn" onClick={() => window.location.reload()}>リセット</button>
+        <button className="header-btn">リセット</button>
       </div>
 
       {/* 🖥 攻撃・防御 2列グリッド */}
@@ -847,49 +768,8 @@ export default function App() {
         {/* 🔴 攻撃エリア */}
         <div className="calc-card attacker">
           <div className="card-header attacker">
-            <span>攻撃 (ターン数: {attackers.length})</span>
-            <button 
-              type="button" 
-              onClick={addAttacker}
-              style={{ backgroundColor: '#ffffff', color: '#e53e3e', border: 'none', borderRadius: '4px', padding: '2px 8px', fontWeight: 'bold', fontSize: '0.75rem', cursor: 'pointer' }}
-            >
-              ＋ ターン追加
-            </button>
+            <span>攻撃</span>
           </div>
-
-          {/* 複数ターン切り替えタブ */}
-          {attackers.length > 1 && (
-            <div style={{ display: 'flex', gap: '4px', padding: '6px 10px', backgroundColor: '#1a0e0f', overflowX: 'auto' }}>
-              {attackers.map((atk, idx) => (
-                <div 
-                  key={atk.id} 
-                  onClick={() => setActiveAttackerIndex(idx)}
-                  style={{
-                    padding: '4px 8px',
-                    borderRadius: '4px',
-                    fontSize: '0.75rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    backgroundColor: activeAttackerIndex === idx ? '#e53e3e' : '#2d1a1c',
-                    color: '#ffffff',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px'
-                  }}
-                >
-                  <span>T{idx + 1}: {atk.pokemon.name}</span>
-                  {attackers.length > 1 && (
-                    <span 
-                      onClick={(e) => { e.stopPropagation(); removeAttacker(idx); }}
-                      style={{ color: '#ff8a8a', marginLeft: '4px', cursor: 'pointer' }}
-                    >
-                      ×
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
           
           <div className="card-body">
             
@@ -909,7 +789,7 @@ export default function App() {
                 <button 
                   onClick={() => {
                     const nextType = prompt('変更後のタイプを入力してください（例: ほのお）', attackerTypes?.[0] || 'ノーマル');
-                    if (nextType) updateCurrentAttacker({ types: [nextType] });
+                    if (nextType) setAttackerTypes([nextType]);
                   }}
                   style={{ backgroundColor: '#374151', color: '#f3f4f6', border: '1px solid #4b5563', fontSize: '0.75rem', padding: '3px 8px', borderRadius: '4px', cursor: 'pointer' }}
                 >
@@ -969,12 +849,12 @@ export default function App() {
                     min="0"
                     max="32"
                     value={atkEv}
-                    onChange={(e) => updateCurrentAttacker({ atkEv: Math.min(32, Math.max(0, Number(e.target.value))) })}
+                    onChange={(e) => setAtkEv(Math.min(32, Math.max(0, Number(e.target.value))))}
                     className="ev-num-input"
                   />
-                  <button type="button" onClick={() => updateCurrentAttacker({ atkEv: 0 })} className="quick-btn">0</button>
-                  <button type="button" onClick={() => updateCurrentAttacker({ atkEv: 12 })} className="quick-btn">12</button>
-                  <button type="button" onClick={() => updateCurrentAttacker({ atkEv: 32 })} className="quick-btn">32</button>
+                  <button type="button" onClick={() => setAtkEv(0)} className="quick-btn">0</button>
+                  <button type="button" onClick={() => setAtkEv(12)} className="quick-btn">12</button>
+                  <button type="button" onClick={() => setAtkEv(32)} className="quick-btn">32</button>
                 </div>
               </div>
 
@@ -984,7 +864,7 @@ export default function App() {
                   min="0"
                   max="32"
                   value={atkEv}
-                  onChange={(e) => updateCurrentAttacker({ atkEv: Number(e.target.value) })}
+                  onChange={(e) => setAtkEv(Number(e.target.value))}
                   className="ev-range-slider"
                   style={{ width: '100%' }}
                 />
@@ -998,7 +878,7 @@ export default function App() {
                       <button
                         key={val}
                         type="button"
-                        onClick={() => updateCurrentAttacker({ atkNature: val })}
+                        onClick={() => setAtkNature(val)}
                         className={`segmented-btn ${atkNature === val ? 'active' : ''}`}
                       >
                         {val}
@@ -1009,21 +889,21 @@ export default function App() {
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <span style={{ fontSize: '0.8rem', color: '#aaa' }}>ランク</span>
-                  <button type="button" onClick={() => updateCurrentAttacker({ atkRank: 0 })} className="rank-btn" style={{ minWidth: '40px', textAlign: 'center' }}>
+                  <button type="button" onClick={() => setAtkRank(0)} className="rank-btn" style={{ minWidth: '40px', textAlign: 'center' }}>
                     {atkRank > 0 ? `+${atkRank}` : atkRank === 0 ? '±0' : atkRank}
                   </button>
-                  <button type="button" onClick={() => updateCurrentAttacker({ atkRank: Math.min(6, atkRank + 1) })} className="rank-btn">＋</button>
-                  <button type="button" onClick={() => updateCurrentAttacker({ atkRank: Math.max(-6, atkRank - 1) })} className="rank-btn">－</button>
+                  <button type="button" onClick={() => setAtkRank(r => Math.min(6, r + 1))} className="rank-btn">＋</button>
+                  <button type="button" onClick={() => setAtkRank(r => Math.max(-6, r - 1))} className="rank-btn">－</button>
                 </div>
               </div>
             </div>
 
-            {/* 特性 */}
+            {/* 特性（画像スタイル準拠の有効・無効切り替え） */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
               <span style={{ minWidth: '32px', fontSize: '0.85rem', color: '#fff' }}>特性</span>
               <select 
                 value={selectedAbility} 
-                onChange={(e) => updateCurrentAttacker({ ability: e.target.value })} 
+                onChange={(e) => setSelectedAbility(e.target.value)} 
                 className="ability-select"
               >
                 {attacker.abilities?.map(a => <option key={a} value={a}>{a}</option>)}
@@ -1038,7 +918,7 @@ export default function App() {
 
                 const handleToggle = (activeState) => {
                   if (isAttackerProtean) {
-                    updateCurrentAttacker({ isAttackerProteanActive: activeState });
+                    setIsAttackerProteanActive(activeState);
                   } else if (atkAbilityData?.conditions?.toggleKey) {
                     setAbilityToggles(prev => ({
                       ...prev,
@@ -1075,7 +955,7 @@ export default function App() {
               <span style={{ minWidth: '40px', fontSize: '0.9rem', color: '#fff' }}>道具</span>
               <select 
                 value={selectedItem} 
-                onChange={(e) => updateCurrentAttacker({ item: e.target.value })} 
+                onChange={(e) => setSelectedItem(e.target.value)} 
                 className="form-select" 
                 style={{ flex: 1, margin: 0, backgroundColor: '#000', color: '#fff', border: 'none', borderRadius: '8px', padding: '10px 14px' }}
               >
@@ -1102,7 +982,7 @@ export default function App() {
                 <input
                   type="number"
                   value={basePower}
-                  onChange={(e) => updateCurrentAttacker({ move: { ...selectedMove, power: Number(e.target.value) } })}
+                  onChange={(e) => setSelectedMove({...selectedMove, power: Number(e.target.value)})}
                   className="ev-num-input power-input"
                   style={{ 
                     flex: 1,                 
@@ -1133,7 +1013,7 @@ export default function App() {
                 </div>
 
                 {currentEffect.type === 'toggle' && (
-                  <button onClick={() => updateCurrentAttacker({ moveConditionActive: !moveConditionActive })} className={`toggle-btn ${moveConditionActive ? 'active' : ''}`}>
+                  <button onClick={() => setMoveConditionActive(!moveConditionActive)} className={`toggle-btn ${moveConditionActive ? 'active' : ''}`}>
                     {moveConditionActive ? '✨ ' : '⚪ '}{currentEffect.label} ({moveConditionActive ? '適用中' : '未適用'})
                   </button>
                 )}
@@ -1141,7 +1021,7 @@ export default function App() {
                 {currentEffect.type === 'water_spout' && (
                   <div>
                     <label style={{ fontSize: '0.8rem', color: '#ffca28' }}>自分のHP割合: <b>{attackerHpPercent}%</b></label>
-                    <input type="range" min="1" max="100" value={attackerHpPercent} onChange={(e) => updateCurrentAttacker({ attackerHpPercent: Number(e.target.value) })} style={{ width: '100%', accentColor: '#ffca28' }} />
+                    <input type="range" min="1" max="100" value={attackerHpPercent} onChange={(e) => setAttackerHpPercent(Number(e.target.value))} style={{ width: '100%', accentColor: '#ffca28' }} />
                   </div>
                 )}
               </div>
@@ -1160,7 +1040,7 @@ export default function App() {
                     <button
                       key={num}
                       disabled={isSkillLink}
-                      onClick={() => updateCurrentAttacker({ hitCount: num })}
+                      onClick={() => setHitCount(num)}
                       className={`toggle-btn ${activeHits === num ? 'active' : ''}`}
                     >
                       {num}回
@@ -1387,7 +1267,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* 特性 */}
+            {/* 💡 特性（防御側トグル改良版） */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '12px', marginBottom: '12px' }}>
               <span style={{ minWidth: '40px', fontSize: '0.9rem', color: '#fff' }}>特性</span>
               <select 
@@ -1612,6 +1492,7 @@ export default function App() {
         marginTop: '16px',
         color: '#ffffff'
       }}>
+        {/* 左端の「状況」縦書きラベル */}
         <div style={{ 
           fontSize: '0.9rem', 
           writingMode: 'vertical-rl', 
@@ -1623,6 +1504,7 @@ export default function App() {
           状況
         </div>
 
+        {/* 右側（天候・フィールドの行） */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
           
           {/* 天候行 */}
@@ -1694,7 +1576,7 @@ export default function App() {
         </div>
       </div>
 
-      {/* よく使われる技リスト */}
+      {/* よく使われる技リスト（天候・フィールドの下に配置） */}
       {(() => {
         const currentPopularMoves = moveUsage[attacker?.name]?.popular || [];
         if (currentPopularMoves.length === 0) return null;
@@ -1714,23 +1596,28 @@ export default function App() {
                 const maxDmg = calc.maxDmg;
                 const maxHp = defHpStat;
 
+                // 残りHP計算 (StickyDamageBarと同様)
                 const minRemHp = Math.max(0, maxHp - maxDmg);
                 const maxRemHp = Math.max(0, maxHp - minDmg);
 
+                // 残りHPバー描画用の幅 (%)
                 const minRemPct = Math.max(0, (minRemHp / maxHp) * 100);
                 const maxRemPct = Math.max(0, (maxRemHp / maxHp) * 100);
 
+                // 残りHP割合に応じたバーカラー（緑 > 黄 > 赤）
                 const getBarColor = (pct) => {
-                  if (pct > 50) return '#4caf50';
-                  if (pct > 20) return '#ffeb3b';
-                  return '#f44336';
+                  if (pct > 50) return '#4caf50'; // 緑
+                  if (pct > 20) return '#ffeb3b'; // 黄
+                  return '#f44336';             // 赤
                 };
 
                 const barColor = getBarColor((maxRemHp / maxHp) * 100);
 
                 return (
                   <div key={idx} style={{ padding: '8px', borderBottom: '1px solid #27272a', backgroundColor: '#121215', borderRadius: '6px' }}>
+                    {/* 上段：技情報 ＆ ダメージ数値・割合 */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                      {/* 技名タグ */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <div style={{ 
                           backgroundColor: TYPE_COLORS[calc.fullMove.type] || '#2563eb', 
@@ -1748,20 +1635,23 @@ export default function App() {
                         </span>
                       </div>
 
+                      {/* ダメージ値 ＆ 割合 */}
                       <div style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>
                         <span style={{ color: '#ff6b6b', marginRight: '6px' }}>{minDmg} ～ {maxDmg}</span>
                         <span style={{ color: '#ffd54f' }}>({calc.minPct}% ～ {calc.maxPct}%)</span>
                       </div>
                     </div>
 
+                    {/* 中段：画面下部と同仕様のHPゲージ（残りHP表現） */}
                     <div style={{
                       position: 'relative',
                       height: '10px',
-                      backgroundColor: '#333',
+                      backgroundColor: '#333', // 削れたHP部分（灰）
                       borderRadius: '5px',
                       overflow: 'hidden',
                       margin: '4px 0'
                     }}>
+                      {/* 乱数域 (半透明) */}
                       <div style={{
                         position: 'absolute',
                         left: 0,
@@ -1773,6 +1663,7 @@ export default function App() {
                         transition: 'width 0.2s ease'
                       }} />
 
+                      {/* 確定残りHP (濃色) */}
                       <div style={{
                         position: 'absolute',
                         left: 0,
@@ -1784,6 +1675,7 @@ export default function App() {
                       }} />
                     </div>
 
+                    {/* 下段：残りHP数値 ＆ 選択ボタン */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
                       <div style={{ fontSize: '0.75rem' }}>
                         <span style={{ color: '#aaa', marginRight: '4px' }}>残りHP:</span>
