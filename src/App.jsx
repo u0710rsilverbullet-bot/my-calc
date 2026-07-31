@@ -799,7 +799,32 @@ export default function App() {
 
               {/* ポケモン選択 & メガシンカ */}
               <div className="form-field-row" style={{ marginBottom: '4px' }}>
-                <span className="form-label">名前</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span className="form-label">名前</span>
+                  <button
+                    type="button"
+                    onClick={() => openModal('pokemon', 'attacker')}
+                    style={{
+                      width: '22px',
+                      height: '22px',
+                      borderRadius: '50%',
+                      border: '1px solid #4b5563',
+                      backgroundColor: '#374151',
+                      color: '#fff',
+                      fontSize: '0.85rem',
+                      fontWeight: 'bold',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      padding: 0,
+                      lineHeight: 1
+                    }}
+                    title="ポケモンを追加"
+                  >
+                    ＋
+                  </button>
+                </div>
                 {getMegaForms(attacker.name).length > 0 && (
                   <div style={{ display: 'flex', gap: '4px' }}>
                     {getMegaForms(attacker.name).map((megaName) => {
