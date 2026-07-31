@@ -146,6 +146,8 @@ export default function App() {
     index: 0
   });
 
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
+
   const openModal = (type, target, index = activeAttackerIndex) => {
     setModalConfig({ isOpen: true, type, target, index });
   };
@@ -1057,7 +1059,10 @@ export default function App() {
       <div className="app-header">
         <button className="header-btn" onClick={handleSwap}>攻防交代</button>
         <h2 className="header-title">Champions</h2>
-        <button className="header-btn" onClick={() => window.location.reload()}>リセット</button>
+        <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+          <button className="header-btn" onClick={() => window.location.reload()}>リセット</button>
+          <button className="info-btn" onClick={() => setIsInfoOpen(true)} title="アプリ情報">i</button>
+        </div>
       </div>
 
       {/* 🖥 攻撃・防御 2列グリッド */}
@@ -2059,6 +2064,36 @@ export default function App() {
         itemList={modalConfig.type === 'move' ? moves : pokemons}
         onSelect={handleModalSelect}
       />
+
+      {/* ℹ️ アプリ情報モーダル */}
+      {isInfoOpen && (
+        <div className="info-modal-overlay" onClick={() => setIsInfoOpen(false)}>
+          <div className="info-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="info-modal-header">
+              <span className="info-modal-title">アプリ情報</span>
+              <button className="info-modal-close" onClick={() => setIsInfoOpen(false)}>✕</button>
+            </div>
+
+            <div className="info-modal-section">
+              <h4>アプリ名 / バージョン</h4>
+              <p><b>Champions</b> v1.0.0</p>
+            </div>
+
+            <div className="info-modal-section">
+              <h4>作成者 / SNS</h4>
+              <p>
+                Created by <a href="https://twitter.com/your_twitter_id" target="_blank" rel="noopener noreferrer">@作成者アカウント</a>
+              </p>
+            </div>
+
+            <div className="info-modal-section">
+              <h4>権利表記・免責事項</h4>
+              <p>※当アプリは個人によって制作された非公式のファンコンテンツです。任天堂・クリーチャーズ・ゲームフリーク等とは一切関係ありません。</p>
+              <p style={{ marginTop: '4px' }}>※ポケモンの名称・データ等の著作権および商標権は、それぞれの権利者に帰属します。</p>
+            </div>
+          </div>
+        </div>
+      )}
 
 {/* 📄 フッター（アプリ情報・権利表記・作成者情報） */}
       <footer className="app-footer">

@@ -370,3 +370,103 @@ input[type="number"] {
   appearance: textfield; /* 標準仕様 */
   -moz-appearance: textfield; /* Firefox用 */
 }
+
+/* --- Info Button & Info Modal --- */
+.info-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #444444;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  font-size: 0.85rem;
+  font-weight: bold;
+  font-family: serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.info-btn:hover {
+  background-color: #383838;
+  color: #ffffff;
+}
+
+.info-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 16px;
+}
+
+.info-modal-content {
+  background-color: #1e1e24;
+  border: 1px solid #33333c;
+  border-radius: 8px;
+  max-width: 480px;
+  width: 100%;
+  padding: 20px;
+  color: #e0e0e0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.info-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #33333c;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.info-modal-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.info-modal-close {
+  background: none;
+  border: none;
+  color: #a1a1aa;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.info-modal-close:hover {
+  color: #ffffff;
+}
+
+.info-modal-section {
+  margin-bottom: 16px;
+}
+
+.info-modal-section h4 {
+  font-size: 0.85rem;
+  color: #a1a1aa;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-modal-section p, .info-modal-section div {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #d1d5db;
+}
+
+.info-modal-section a {
+  color: #60a5fa;
+  text-decoration: underline;
+}
