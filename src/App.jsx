@@ -2094,20 +2094,6 @@ export default function App() {
           </div>
         </div>
       )}
-
-{/* 📄 フッター（アプリ情報・権利表記・作成者情報） */}
-      <footer className="app-footer">
-        <div className="footer-info">
-          <span className="app-title-ver">Damage Calculator for Champions v1.0.0</span>
-          <span className="author-info">
-            Created by <a href="https://x.com/el_pkmn" target="_blank" rel="noopener noreferrer">える</a>
-          </span>
-        </div>
-        <div className="footer-disclaimer">
-          <p>※当アプリは個人によって制作された非公式のファンコンテンツです。任天堂・クリーチャーズ・ゲームフリーク等とは一切関係ありません。</p>
-          <p>※ポケモンの名称・データ等の著作権および商標権は、それぞれの権利者に帰属します。</p>
-        </div>
-      </footer>
     </div>
   );
 }
