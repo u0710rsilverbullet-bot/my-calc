@@ -765,7 +765,6 @@ export default function App() {
         <div className="calc-card attacker">
           <div className="card-header attacker">
             <span>攻撃</span>
-            <span style={{ fontSize: '0.8rem', background: '#9a0007', padding: '2px 8px', borderRadius: '4px' }}>ポケ管理から呼ぶ</span>
           </div>
           
           <div className="card-body">
@@ -1146,7 +1145,6 @@ export default function App() {
         <div className="calc-card defender">
           <div className="card-header defender">
             <span>防御</span>
-            <span style={{ fontSize: '0.8rem', background: '#004ba0', padding: '2px 8px', borderRadius: '4px' }}>ポケ管理から呼ぶ</span>
           </div>
 
           <div className="card-body">
