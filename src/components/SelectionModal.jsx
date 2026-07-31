@@ -135,7 +135,7 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
 
   if (!isOpen) return null;
 
-  // 🌟 1行アイテム描画関数（高さを最適化）
+  // 🌟 1行アイテム描画関数（高さを確実に固定・拡大）
   const renderListItem = (item, highlightLevel = 'normal') => {
     const itemName = typeof item === 'string' ? item : item?.name;
     const itemType = item?.type;
@@ -159,8 +159,9 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
         onClick={() => handleItemSelect(item)}
         style={{
           width: '100%',
-          padding: '12px 16px', // 上下にしっかりゆとりを持たせる
-          minHeight: '56px', // 2行構成（名前＋タイプ）が綺麗に収まる最小高さを確保
+          height: 'auto',              // 高さを可変に
+          minHeight: '64px',           // 確実に2行分入る十分な最小高さを確保
+          padding: '12px 16px',        // 上下の余白をしっかり取る
           border: 'none',
           borderBottom: '1px solid #2a2a2a',
           backgroundColor: bg,
@@ -169,9 +170,10 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
-          justify: 'space-between',
+          justifyContent: 'space-between',
           gap: '12px',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
+          overflow: 'visible'
         }}
         onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2a2a2a'}
         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = bg}
@@ -190,12 +192,13 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
             flexDirection: 'column', 
             justify: 'center', 
             gap: '4px',
-            minWidth: 0 
+            minWidth: 0,
+            overflow: 'visible'
           }}>
             <div style={{ 
               fontWeight: 'bold', 
               fontSize: '1rem', 
-              lineHeight: '1.2',
+              lineHeight: '1.3',
               whiteSpace: 'nowrap', 
               overflow: 'hidden', 
               textOverflow: 'ellipsis' 
@@ -203,7 +206,12 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
               {itemName}
             </div>
             {itemType && (
-              <div style={{ fontSize: '0.8rem', color: '#aaa', lineHeight: '1' }}>
+              <div style={{ 
+                fontSize: '0.8rem', 
+                color: '#aaa', 
+                lineHeight: '1.2',
+                display: 'block'
+              }}>
                 {itemType}
               </div>
             )}
