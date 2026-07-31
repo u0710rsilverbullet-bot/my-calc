@@ -230,12 +230,12 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
     fontFamily: 'monospace',
     flexShrink: 0
   }}>
-    <div>H<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.h ?? stats.hp ?? stats.H}</span></div>
-    <div>A<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.a ?? stats.atk ?? stats.A}</span></div>
-    <div>B<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.b ?? stats.def ?? stats.B}</span></div>
-    <div>C<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.c ?? stats.spa ?? stats.SpA ?? stats.C}</span></div>
-    <div>D<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.d ?? stats.spd ?? stats.SpD ?? stats.D}</span></div>
-    <div>S<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.s ?? stats.spe ?? stats.Spe ?? stats.S}</span></div>
+    <div>H<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.hp ?? stats.h}</span></div>
+    <div>A<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.atk ?? stats.a}</span></div>
+    <div>B<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.def ?? stats.b}</span></div>
+    <div>C<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.spAtk ?? stats.c ?? stats.spa}</span></div>
+    <div>D<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.spDef ?? stats.d}</span></div>
+    <div>S<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.spd ?? stats.s ?? stats.spe}</span></div>
   </div>
 )}
       </button>
