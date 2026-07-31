@@ -220,24 +220,24 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
 
         {/* 右側：種族値（ポケモンの場合） */}
         {type === 'pokemon' && stats && (
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(3, 1fr)', 
-            gap: '2px 12px', 
-            fontSize: '0.75rem', 
-            color: '#ccc',
-            textAlign: 'right',
-            fontFamily: 'monospace',
-            flexShrink: 0
-          }}>
-            <div>H<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.h ?? stats.hp}</span></div>
-            <div>A<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.a ?? stats.atk}</span></div>
-            <div>B<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.b ?? stats.def}</span></div>
-            <div>C<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.c ?? stats.spa}</span></div>
-            <div>D<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.d ?? stats.spd}</span></div>
-            <div>S<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.s ?? stats.spe}</span></div>
-          </div>
-        )}
+  <div style={{ 
+    display: 'grid', 
+    gridTemplateColumns: 'repeat(3, 1fr)', 
+    gap: '2px 12px', 
+    fontSize: '0.75rem', 
+    color: '#ccc',
+    textAlign: 'right',
+    fontFamily: 'monospace',
+    flexShrink: 0
+  }}>
+    <div>H<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.h ?? stats.hp ?? stats.H}</span></div>
+    <div>A<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.a ?? stats.atk ?? stats.A}</span></div>
+    <div>B<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.b ?? stats.def ?? stats.B}</span></div>
+    <div>C<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.c ?? stats.spa ?? stats.SpA ?? stats.C}</span></div>
+    <div>D<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.d ?? stats.spd ?? stats.SpD ?? stats.D}</span></div>
+    <div>S<span style={{ color: '#fff', marginLeft: '4px' }}>{stats.s ?? stats.spe ?? stats.Spe ?? stats.S}</span></div>
+  </div>
+)}
       </button>
     );
   };
