@@ -133,7 +133,7 @@ export default function App() {
   ]);
   const [activeAttackerIndex, setActiveAttackerIndex] = useState(0);
 
-  // 現在選択中の攻撃側データのショートカット（従来ロジックとの互換性維持）
+  // 現在選択中の攻撃側データのショートカット
   const currentAttacker = attackers[activeAttackerIndex] || attackers[0];
 
   const [defender, setDefender] = useState(defaultDefenderPkm);
@@ -210,21 +210,15 @@ export default function App() {
     }
   };
 
-  // ステータス・計算用ステート
-  const [atkEv, setAtkEv] = useState(32);
-  const [atkNature, setAtkNature] = useState(1.0);
-  const [atkRank, setAtkRank] = useState(0);
-
+  // 防御側ステータス
   const [defHpEv, setDefHpEv] = useState(32);
   const [defEv, setDefEv] = useState(0);
   const [defNature, setDefNature] = useState(1.0);
   const [defRank, setDefRank] = useState(0);
 
-  const [hitCount, setHitCount] = useState(3);
   const [isCritical, setIsCritical] = useState(false);
 
   // へんげんじざい用の状態
-  const [isAttackerProteanActive, setIsAttackerProteanActive] = useState(true);
   const [defenderProteanType, setDefenderProteanType] = useState('元タイプ');
 
   // 持ち物ステート（防御側）
@@ -244,7 +238,6 @@ export default function App() {
   // 防御側の追加状態
   const [isProtect, setIsProtect] = useState(false);
   const [isRoost, setIsRoost] = useState(false);
-  const [isDefenderLifeOrb, setIsDefenderLifeOrb] = useState(false);
   const [customFixedFraction, setCustomFixedFraction] = useState(null);
 
   // 天候・フィールド
@@ -252,10 +245,8 @@ export default function App() {
   const [field, setField] = useState('なし');
 
   // 技固有の条件ステート
-  const [moveConditionActive, setMoveConditionActive] = useState(false);
   const [stockpileCount, setStockpileCount] = useState(1);
   const [faintedCount, setFaintedCount] = useState(0);
-  const [attackerHpPercent, setAttackerHpPercent] = useState(100);
   const [defenderHpPercent, setDefenderHpPercent] = useState(100);
 
   // 特性由来の動的トグル状態
@@ -263,9 +254,19 @@ export default function App() {
   const [abilityOptions, setAbilityOptions] = useState({});
   const [abilityValues, setAbilityValues] = useState({});
 
-  const toggleAbilityState = (key) => {
-    setAbilityToggles(prev => ({ ...prev, [key]: !prev[key] }));
-  };
+  // ショートカット変数
+  const attacker = currentAttacker.pokemon;
+  const attackerTypes = currentAttacker.types;
+  const selectedAbility = currentAttacker.ability;
+  const selectedMove = currentAttacker.move;
+  const selectedItem = currentAttacker.item;
+  const atkEv = currentAttacker.atkEv;
+  const atkNature = currentAttacker.atkNature;
+  const atkRank = currentAttacker.atkRank;
+  const hitCount = currentAttacker.hitCount;
+  const isAttackerProteanActive = currentAttacker.isAttackerProteanActive;
+  const moveConditionActive = currentAttacker.moveConditionActive;
+  const attackerHpPercent = currentAttacker.attackerHpPercent;
 
   // --- 特性オブジェクト & 技固有エフェクト取得 ---
   const atkAbilityData = useMemo(() => abilitiesData.find(a => a.name === selectedAbility), [selectedAbility]);
@@ -307,11 +308,15 @@ export default function App() {
   const handleAttackerChange = (name) => {
     const pkm = pokemons.find(p => p.name === name);
     if (pkm) {
-      setAttacker(pkm);
-      setAttackerTypes(pkm.types || []);
-      if (pkm.abilities?.length > 0) setSelectedAbility(pkm.abilities[0]);
+      updateCurrentAttacker({
+        pokemon: pkm,
+        types: pkm.types || [],
+        ability: pkm.abilities?.[0] || ''
+      });
     } else {
-      setAttacker(prev => ({ ...prev, name }));
+      updateCurrentAttacker({
+        pokemon: { ...attacker, name }
+      });
     }
   };
 
@@ -332,11 +337,12 @@ export default function App() {
   const handleMoveChange = (name) => {
     const move = moves.find(m => m.name === name);
     const targetMove = move || { name, type: 'ノーマル', category: '物理', power: 50 };
-    setSelectedMove(targetMove);
-
     const maxHits = MULTI_HIT_MOVES[targetMove.name] || targetMove.maxHits || 1;
-    setHitCount(maxHits);
-    setMoveConditionActive(false);
+    updateCurrentAttacker({
+      move: targetMove,
+      hitCount: maxHits,
+      moveConditionActive: false
+    });
   };
 
   const handleToggleAttackerMega = (targetMegaName) => {
@@ -353,33 +359,32 @@ export default function App() {
 
   const handleSwap = () => {
     const tempAttacker = attacker;
-    setAttacker(defender);
-    setAttackerTypes(effectiveDefenderTypes);
+    const tempDefender = defender;
+
     setDefender(tempAttacker);
-    setDefenderProteanType('元タイプ');
+    setSelectedDefenderAbility(selectedAbility);
 
     const tempAtkEv = atkEv;
     const tempAtkNature = atkNature;
     const tempAtkRank = atkRank;
 
-    setAtkEv(defEv);
-    setAtkNature(defNature);
-    setAtkRank(defRank);
+    updateCurrentAttacker({
+      pokemon: tempDefender,
+      types: effectiveDefenderTypes,
+      ability: selectedDefenderAbility,
+      item: ITEM_OPTIONS.includes(selectedDefenderItem) ? selectedDefenderItem : 'なし',
+      atkEv: defEv,
+      atkNature: defNature,
+      atkRank: defRank,
+      isAttackerProteanActive: true
+    });
 
     setDefEv(tempAtkEv);
     setDefNature(tempAtkNature);
     setDefRank(tempAtkRank);
 
-    const tempSelectedAbility = selectedAbility;
-    setSelectedAbility(selectedDefenderAbility);
-    setSelectedDefenderAbility(tempSelectedAbility);
-
-    const tempSelectedItem = selectedItem;
-    const nextAttackerItem = ITEM_OPTIONS.includes(selectedDefenderItem) ? selectedDefenderItem : 'なし';
-    setSelectedItem(nextAttackerItem);
-    setSelectedDefenderItem(ITEM_OPTIONS.includes(tempSelectedItem) ? tempSelectedItem : 'なし');
-
-    setIsAttackerProteanActive(true);
+    setSelectedDefenderItem(ITEM_OPTIONS.includes(selectedItem) ? selectedItem : 'なし');
+    setDefenderProteanType('元タイプ');
     setIsDisguise(tempAttacker.name === 'ミミッキュ' || selectedAbility === 'ばけのかわ');
   };
 
@@ -748,25 +753,22 @@ export default function App() {
       }
     }
 
-    // --- ここから連続技・特殊ヒット処理への差し替え ---
+    // 連続技・特殊ヒット処理
     let totalHitDmg = 0;
 
     for (let h = 1; h <= activeHits; h++) {
       let singleHitDmg = currentDmg;
 
-      // トリプルアクセル / トリプルキックのヒットごとの威力上昇補正
       if (['トリプルアクセル', 'トリプルキック'].includes(selectedMove.name) && activeHits > 1) {
         singleHitDmg = floor(singleHitDmg * (h / activeHits));
       }
 
-      // ばけのかわ（1打目のみ1/8化、2打目以降は通常通り貫通）
       if (isMimikyu && isDisguise) {
         if (h === 1) {
           singleHitDmg = floor(singleHitDmg * 0.125);
         }
       }
 
-      // まもる（ふかしのこぶし等の貫通判定）
       if (isProtect) {
         const isUnseenFist = ['ふかしのこぶし', 'かんつうドリル'].includes(selectedAbility);
         const isContactMove = selectedMove.flags?.includes('contact');
@@ -778,7 +780,6 @@ export default function App() {
         }
       }
 
-      // タイプ相性がある場合の最低1ダメージ保証
       if (typeEffectiveness > 0 && singleHitDmg < 1) {
         singleHitDmg = 1;
       }
@@ -837,7 +838,7 @@ export default function App() {
       <div className="app-header">
         <button className="header-btn" onClick={handleSwap}>攻防交代</button>
         <h2 className="header-title">Champions</h2>
-        <button className="header-btn">リセット</button>
+        <button className="header-btn" onClick={() => window.location.reload()}>リセット</button>
       </div>
 
       {/* 🖥 攻撃・防御 2列グリッド */}
@@ -908,7 +909,7 @@ export default function App() {
                 <button 
                   onClick={() => {
                     const nextType = prompt('変更後のタイプを入力してください（例: ほのお）', attackerTypes?.[0] || 'ノーマル');
-                    if (nextType) setAttackerTypes([nextType]);
+                    if (nextType) updateCurrentAttacker({ types: [nextType] });
                   }}
                   style={{ backgroundColor: '#374151', color: '#f3f4f6', border: '1px solid #4b5563', fontSize: '0.75rem', padding: '3px 8px', borderRadius: '4px', cursor: 'pointer' }}
                 >
@@ -968,12 +969,12 @@ export default function App() {
                     min="0"
                     max="32"
                     value={atkEv}
-                    onChange={(e) => setAtkEv(Math.min(32, Math.max(0, Number(e.target.value))))}
+                    onChange={(e) => updateCurrentAttacker({ atkEv: Math.min(32, Math.max(0, Number(e.target.value))) })}
                     className="ev-num-input"
                   />
-                  <button type="button" onClick={() => setAtkEv(0)} className="quick-btn">0</button>
-                  <button type="button" onClick={() => setAtkEv(12)} className="quick-btn">12</button>
-                  <button type="button" onClick={() => setAtkEv(32)} className="quick-btn">32</button>
+                  <button type="button" onClick={() => updateCurrentAttacker({ atkEv: 0 })} className="quick-btn">0</button>
+                  <button type="button" onClick={() => updateCurrentAttacker({ atkEv: 12 })} className="quick-btn">12</button>
+                  <button type="button" onClick={() => updateCurrentAttacker({ atkEv: 32 })} className="quick-btn">32</button>
                 </div>
               </div>
 
@@ -983,7 +984,7 @@ export default function App() {
                   min="0"
                   max="32"
                   value={atkEv}
-                  onChange={(e) => setAtkEv(Number(e.target.value))}
+                  onChange={(e) => updateCurrentAttacker({ atkEv: Number(e.target.value) })}
                   className="ev-range-slider"
                   style={{ width: '100%' }}
                 />
@@ -997,7 +998,7 @@ export default function App() {
                       <button
                         key={val}
                         type="button"
-                        onClick={() => setAtkNature(val)}
+                        onClick={() => updateCurrentAttacker({ atkNature: val })}
                         className={`segmented-btn ${atkNature === val ? 'active' : ''}`}
                       >
                         {val}
@@ -1008,21 +1009,21 @@ export default function App() {
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <span style={{ fontSize: '0.8rem', color: '#aaa' }}>ランク</span>
-                  <button type="button" onClick={() => setAtkRank(0)} className="rank-btn" style={{ minWidth: '40px', textAlign: 'center' }}>
+                  <button type="button" onClick={() => updateCurrentAttacker({ atkRank: 0 })} className="rank-btn" style={{ minWidth: '40px', textAlign: 'center' }}>
                     {atkRank > 0 ? `+${atkRank}` : atkRank === 0 ? '±0' : atkRank}
                   </button>
-                  <button type="button" onClick={() => setAtkRank(r => Math.min(6, r + 1))} className="rank-btn">＋</button>
-                  <button type="button" onClick={() => setAtkRank(r => Math.max(-6, r - 1))} className="rank-btn">－</button>
+                  <button type="button" onClick={() => updateCurrentAttacker({ atkRank: Math.min(6, atkRank + 1) })} className="rank-btn">＋</button>
+                  <button type="button" onClick={() => updateCurrentAttacker({ atkRank: Math.max(-6, atkRank - 1) })} className="rank-btn">－</button>
                 </div>
               </div>
             </div>
 
-            {/* 特性（画像スタイル準拠の有効・無効切り替え） */}
+            {/* 特性 */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
               <span style={{ minWidth: '32px', fontSize: '0.85rem', color: '#fff' }}>特性</span>
               <select 
                 value={selectedAbility} 
-                onChange={(e) => setSelectedAbility(e.target.value)} 
+                onChange={(e) => updateCurrentAttacker({ ability: e.target.value })} 
                 className="ability-select"
               >
                 {attacker.abilities?.map(a => <option key={a} value={a}>{a}</option>)}
@@ -1037,7 +1038,7 @@ export default function App() {
 
                 const handleToggle = (activeState) => {
                   if (isAttackerProtean) {
-                    setIsAttackerProteanActive(activeState);
+                    updateCurrentAttacker({ isAttackerProteanActive: activeState });
                   } else if (atkAbilityData?.conditions?.toggleKey) {
                     setAbilityToggles(prev => ({
                       ...prev,
@@ -1074,7 +1075,7 @@ export default function App() {
               <span style={{ minWidth: '40px', fontSize: '0.9rem', color: '#fff' }}>道具</span>
               <select 
                 value={selectedItem} 
-                onChange={(e) => setSelectedItem(e.target.value)} 
+                onChange={(e) => updateCurrentAttacker({ item: e.target.value })} 
                 className="form-select" 
                 style={{ flex: 1, margin: 0, backgroundColor: '#000', color: '#fff', border: 'none', borderRadius: '8px', padding: '10px 14px' }}
               >
@@ -1101,7 +1102,7 @@ export default function App() {
                 <input
                   type="number"
                   value={basePower}
-                  onChange={(e) => setSelectedMove({...selectedMove, power: Number(e.target.value)})}
+                  onChange={(e) => updateCurrentAttacker({ move: { ...selectedMove, power: Number(e.target.value) } })}
                   className="ev-num-input power-input"
                   style={{ 
                     flex: 1,                 
@@ -1132,7 +1133,7 @@ export default function App() {
                 </div>
 
                 {currentEffect.type === 'toggle' && (
-                  <button onClick={() => setMoveConditionActive(!moveConditionActive)} className={`toggle-btn ${moveConditionActive ? 'active' : ''}`}>
+                  <button onClick={() => updateCurrentAttacker({ moveConditionActive: !moveConditionActive })} className={`toggle-btn ${moveConditionActive ? 'active' : ''}`}>
                     {moveConditionActive ? '✨ ' : '⚪ '}{currentEffect.label} ({moveConditionActive ? '適用中' : '未適用'})
                   </button>
                 )}
@@ -1140,7 +1141,7 @@ export default function App() {
                 {currentEffect.type === 'water_spout' && (
                   <div>
                     <label style={{ fontSize: '0.8rem', color: '#ffca28' }}>自分のHP割合: <b>{attackerHpPercent}%</b></label>
-                    <input type="range" min="1" max="100" value={attackerHpPercent} onChange={(e) => setAttackerHpPercent(Number(e.target.value))} style={{ width: '100%', accentColor: '#ffca28' }} />
+                    <input type="range" min="1" max="100" value={attackerHpPercent} onChange={(e) => updateCurrentAttacker({ attackerHpPercent: Number(e.target.value) })} style={{ width: '100%', accentColor: '#ffca28' }} />
                   </div>
                 )}
               </div>
@@ -1159,7 +1160,7 @@ export default function App() {
                     <button
                       key={num}
                       disabled={isSkillLink}
-                      onClick={() => setHitCount(num)}
+                      onClick={() => updateCurrentAttacker({ hitCount: num })}
                       className={`toggle-btn ${activeHits === num ? 'active' : ''}`}
                     >
                       {num}回
@@ -1170,90 +1171,90 @@ export default function App() {
             )}
 
             {/* 状態 (やけど / じゅうでん / てだすけ / みずびたし) */}
-<div style={{ marginTop: '16px' }}>
-  <div style={{ fontSize: '0.9rem', color: '#fff', marginBottom: '8px' }}>状態</div>
-  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
-    <button
-      type="button"
-      onClick={() => setIsBurned(!isBurned)}
-      style={{
-        padding: '8px 4px',
-        borderRadius: '8px',
-        border: '1px solid #444',
-        backgroundColor: isBurned ? '#ef4444' : '#000',
-        color: '#fff',
-        fontSize: '0.85rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      やけど
-    </button>
+            <div style={{ marginTop: '16px' }}>
+              <div style={{ fontSize: '0.9rem', color: '#fff', marginBottom: '8px' }}>状態</div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+                <button
+                  type="button"
+                  onClick={() => setIsBurned(!isBurned)}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: '1px solid #444',
+                    backgroundColor: isBurned ? '#ef4444' : '#000',
+                    color: '#fff',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  やけど
+                </button>
 
-    <button
-      type="button"
-      onClick={() => setIsCharge(!isCharge)}
-      style={{
-        padding: '8px 4px',
-        borderRadius: '8px',
-        border: '1px solid #444',
-        backgroundColor: isCharge ? '#ef4444' : '#000',
-        color: '#fff',
-        fontSize: '0.85rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      じゅうでん
-    </button>
+                <button
+                  type="button"
+                  onClick={() => setIsCharge(!isCharge)}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: '1px solid #444',
+                    backgroundColor: isCharge ? '#ef4444' : '#000',
+                    color: '#fff',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  じゅうでん
+                </button>
 
-    <button
-      type="button"
-      onClick={() => setIsHelpingHand(!isHelpingHand)}
-      style={{
-        padding: '8px 4px',
-        borderRadius: '8px',
-        border: '1px solid #444',
-        backgroundColor: isHelpingHand ? '#ef4444' : '#000',
-        color: '#fff',
-        fontSize: '0.85rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      てだすけ
-    </button>
+                <button
+                  type="button"
+                  onClick={() => setIsHelpingHand(!isHelpingHand)}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: '1px solid #444',
+                    backgroundColor: isHelpingHand ? '#ef4444' : '#000',
+                    color: '#fff',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  てだすけ
+                </button>
 
-    <button
-      type="button"
-      onClick={() => setIsSoak(!isSoak)}
-      style={{
-        padding: '8px 4px',
-        borderRadius: '8px',
-        border: '1px solid #444',
-        backgroundColor: isSoak ? '#ef4444' : '#000',
-        color: '#fff',
-        fontSize: '0.85rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      みずびたし
-    </button>
-  </div>
-</div>
+                <button
+                  type="button"
+                  onClick={() => setIsSoak(!isSoak)}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: '1px solid #444',
+                    backgroundColor: isSoak ? '#ef4444' : '#000',
+                    color: '#fff',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  みずびたし
+                </button>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -1386,7 +1387,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* 💡 特性（防御側トグル改良版） */}
+            {/* 特性 */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '12px', marginBottom: '12px' }}>
               <span style={{ minWidth: '40px', fontSize: '0.9rem', color: '#fff' }}>特性</span>
               <select 
@@ -1435,134 +1436,134 @@ export default function App() {
             </div>
 
             {/* 状態 */}
-<div style={{ marginTop: '16px' }}>
-  <div style={{ fontSize: '0.9rem', color: '#fff', marginBottom: '8px' }}>状態</div>
-  
-  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', marginBottom: '6px' }}>
-    <button
-      type="button"
-      onClick={() => setIsProtect(!isProtect)}
-      className={`toggle-btn ${isProtect ? 'active' : ''}`}
-      style={{
-        padding: '8px 4px',
-        borderRadius: '8px',
-        border: '1px solid #444',
-        backgroundColor: isProtect ? '#3b82f6' : '#000',
-        color: '#fff',
-        fontSize: '0.85rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      まもる
-    </button>
-    <button
-      type="button"
-      onClick={() => setIsReflectWall(!isReflectWall)}
-      className={`toggle-btn ${isReflectWall ? 'active' : ''}`}
-      style={{
-        padding: '8px 4px',
-        borderRadius: '8px',
-        border: '1px solid #444',
-        backgroundColor: isReflectWall ? '#3b82f6' : '#000',
-        color: '#fff',
-        fontSize: '0.85rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      リフレク・光の壁
-    </button>
-    <button
-      type="button"
-      onClick={() => setIsStealthRock(!isStealthRock)}
-      className={`toggle-btn ${isStealthRock ? 'active' : ''}`}
-      style={{
-        padding: '8px 4px',
-        borderRadius: '8px',
-        border: '1px solid #444',
-        backgroundColor: isStealthRock ? '#3b82f6' : '#000',
-        color: '#fff',
-        fontSize: '0.85rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      ステルスロック
-    </button>
-  </div>
+            <div style={{ marginTop: '16px' }}>
+              <div style={{ fontSize: '0.9rem', color: '#fff', marginBottom: '8px' }}>状態</div>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', marginBottom: '6px' }}>
+                <button
+                  type="button"
+                  onClick={() => setIsProtect(!isProtect)}
+                  className={`toggle-btn ${isProtect ? 'active' : ''}`}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: '1px solid #444',
+                    backgroundColor: isProtect ? '#3b82f6' : '#000',
+                    color: '#fff',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  まもる
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsReflectWall(!isReflectWall)}
+                  className={`toggle-btn ${isReflectWall ? 'active' : ''}`}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: '1px solid #444',
+                    backgroundColor: isReflectWall ? '#3b82f6' : '#000',
+                    color: '#fff',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  リフレク・光の壁
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsStealthRock(!isStealthRock)}
+                  className={`toggle-btn ${isStealthRock ? 'active' : ''}`}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: '1px solid #444',
+                    backgroundColor: isStealthRock ? '#3b82f6' : '#000',
+                    color: '#fff',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  ステルスロック
+                </button>
+              </div>
 
-  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', marginBottom: '10px' }}>
-    <button
-      type="button"
-      onClick={() => setIsRoost(!isRoost)}
-      className={`toggle-btn ${isRoost ? 'active' : ''}`}
-      style={{
-        padding: '8px 4px',
-        borderRadius: '8px',
-        border: '1px solid #444',
-        backgroundColor: isRoost ? '#3b82f6' : '#000',
-        color: '#fff',
-        fontSize: '0.85rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      はねやすめ
-    </button>
-    <button
-      type="button"
-      onClick={() => setIsSpikes(!isSpikes)}
-      className={`toggle-btn ${isSpikes ? 'active' : ''}`}
-      style={{
-        padding: '8px 4px',
-        borderRadius: '8px',
-        border: '1px solid #444',
-        backgroundColor: isSpikes ? '#3b82f6' : '#000',
-        color: '#fff',
-        fontSize: '0.85rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      まきびし
-    </button>
-    <button
-      type="button"
-      onClick={() => setIsLifeOrbRecoil(!isLifeOrbRecoil)}
-      className={`toggle-btn ${isLifeOrbRecoil ? 'active' : ''}`}
-      style={{
-        padding: '8px 4px',
-        borderRadius: '8px',
-        border: '1px solid #444',
-        backgroundColor: isLifeOrbRecoil ? '#3b82f6' : '#000',
-        color: '#fff',
-        fontSize: '0.85rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      命の珠
-    </button>
-  </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', marginBottom: '10px' }}>
+                <button
+                  type="button"
+                  onClick={() => setIsRoost(!isRoost)}
+                  className={`toggle-btn ${isRoost ? 'active' : ''}`}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: '1px solid #444',
+                    backgroundColor: isRoost ? '#3b82f6' : '#000',
+                    color: '#fff',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  はねやすめ
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsSpikes(!isSpikes)}
+                  className={`toggle-btn ${isSpikes ? 'active' : ''}`}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: '1px solid #444',
+                    backgroundColor: isSpikes ? '#3b82f6' : '#000',
+                    color: '#fff',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  まきびし
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsLifeOrbRecoil(!isLifeOrbRecoil)}
+                  className={`toggle-btn ${isLifeOrbRecoil ? 'active' : ''}`}
+                  style={{
+                    padding: '8px 4px',
+                    borderRadius: '8px',
+                    border: '1px solid #444',
+                    backgroundColor: isLifeOrbRecoil ? '#3b82f6' : '#000',
+                    color: '#fff',
+                    fontSize: '0.85rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  命の珠
+                </button>
+              </div>
 
               {/* 定数ダメージ */}
               <div style={{ marginTop: '8px' }}>
@@ -1600,7 +1601,6 @@ export default function App() {
       </div>
 
       {/* 🟩 その他エリア (天候・フィールド) */}
-      {/* 🟩 その他エリア (天候・フィールド) */}
       <div style={{ 
         display: 'flex', 
         backgroundColor: '#1b3227', 
@@ -1612,7 +1612,6 @@ export default function App() {
         marginTop: '16px',
         color: '#ffffff'
       }}>
-        {/* 左端の「状況」縦書きラベル */}
         <div style={{ 
           fontSize: '0.9rem', 
           writingMode: 'vertical-rl', 
@@ -1624,7 +1623,6 @@ export default function App() {
           状況
         </div>
 
-        {/* 右側（天候・フィールドの行） */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
           
           {/* 天候行 */}
@@ -1716,28 +1714,23 @@ export default function App() {
                 const maxDmg = calc.maxDmg;
                 const maxHp = defHpStat;
 
-                // 残りHP計算 (StickyDamageBarと同様)
                 const minRemHp = Math.max(0, maxHp - maxDmg);
                 const maxRemHp = Math.max(0, maxHp - minDmg);
 
-                // 残りHPバー描画用の幅 (%)
                 const minRemPct = Math.max(0, (minRemHp / maxHp) * 100);
                 const maxRemPct = Math.max(0, (maxRemHp / maxHp) * 100);
 
-                // 残りHP割合に応じたバーカラー（緑 > 黄 > 赤）
                 const getBarColor = (pct) => {
-                  if (pct > 50) return '#4caf50'; // 緑
-                  if (pct > 20) return '#ffeb3b'; // 黄
-                  return '#f44336';             // 赤
+                  if (pct > 50) return '#4caf50';
+                  if (pct > 20) return '#ffeb3b';
+                  return '#f44336';
                 };
 
                 const barColor = getBarColor((maxRemHp / maxHp) * 100);
 
                 return (
                   <div key={idx} style={{ padding: '8px', borderBottom: '1px solid #27272a', backgroundColor: '#121215', borderRadius: '6px' }}>
-                    {/* 上段：技情報 ＆ ダメージ数値・割合 */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-                      {/* 技名タグ */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <div style={{ 
                           backgroundColor: TYPE_COLORS[calc.fullMove.type] || '#2563eb', 
@@ -1755,23 +1748,20 @@ export default function App() {
                         </span>
                       </div>
 
-                      {/* ダメージ値 ＆ 割合 */}
                       <div style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>
                         <span style={{ color: '#ff6b6b', marginRight: '6px' }}>{minDmg} ～ {maxDmg}</span>
                         <span style={{ color: '#ffd54f' }}>({calc.minPct}% ～ {calc.maxPct}%)</span>
                       </div>
                     </div>
 
-                    {/* 中段：画面下部と同仕様のHPゲージ（残りHP表現） */}
                     <div style={{
                       position: 'relative',
                       height: '10px',
-                      backgroundColor: '#333', // 削れたHP部分（灰）
+                      backgroundColor: '#333',
                       borderRadius: '5px',
                       overflow: 'hidden',
                       margin: '4px 0'
                     }}>
-                      {/* 乱数域 (半透明) */}
                       <div style={{
                         position: 'absolute',
                         left: 0,
@@ -1783,7 +1773,6 @@ export default function App() {
                         transition: 'width 0.2s ease'
                       }} />
 
-                      {/* 確定残りHP (濃色) */}
                       <div style={{
                         position: 'absolute',
                         left: 0,
@@ -1795,7 +1784,6 @@ export default function App() {
                       }} />
                     </div>
 
-                    {/* 下段：残りHP数値 ＆ 選択ボタン */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
                       <div style={{ fontSize: '0.75rem' }}>
                         <span style={{ color: '#aaa', marginRight: '4px' }}>残りHP:</span>
