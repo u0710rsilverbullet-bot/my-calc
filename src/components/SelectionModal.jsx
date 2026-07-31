@@ -159,7 +159,7 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
         onClick={() => handleItemSelect(item)}
         style={{
           width: '100%',
-          padding: '10px 12px',
+          padding: '16px 12px',
           border: 'none',
           borderBottom: '1px solid #2a2a2a',
           backgroundColor: bg,
