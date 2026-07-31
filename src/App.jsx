@@ -113,23 +113,74 @@ export default function App() {
   const defaultDefenderPkm = pokemons[1] || { name: 'ガブリアス', types: ['ドラゴン', 'じめん'], baseStats: { hp: 108, atk: 130, def: 95, spAtk: 80, spDef: 85, spd: 102 }, abilities: ['さめはだ'] };
   const defaultMove = moves.find(m => m.name === 'トリプルアクセル') || moves[0] || { name: 'トリプルアクセル', type: 'こおり', category: '物理', power: 20, flags: [] };
 
-  const [attacker, setAttacker] = useState(defaultPkm);
-  const [attackerTypes, setAttackerTypes] = useState(defaultPkm.types || ['くさ', 'あく']);
+  // 攻撃ポケモンのリスト管理（複数ターン対応）
+  const [attackers, setAttackers] = useState([
+    {
+      id: Date.now(),
+      pokemon: defaultPkm,
+      types: defaultPkm.types || ['くさ', 'あく'],
+      move: defaultMove,
+      ability: defaultPkm.abilities?.[0] || '',
+      item: 'なし',
+      atkEv: 32,
+      atkNature: 1.0,
+      atkRank: 0,
+      hitCount: 3,
+      isAttackerProteanActive: true,
+      moveConditionActive: false,
+      attackerHpPercent: 100
+    }
+  ]);
+  const [activeAttackerIndex, setActiveAttackerIndex] = useState(0);
+
+  // 現在選択中の攻撃側データのショートカット（従来ロジックとの互換性維持）
+  const currentAttacker = attackers[activeAttackerIndex] || attackers[0];
 
   const [defender, setDefender] = useState(defaultDefenderPkm);
-  const [selectedMove, setSelectedMove] = useState(defaultMove);
-  const [selectedAbility, setSelectedAbility] = useState(defaultPkm.abilities?.[0] || '');
   const [selectedDefenderAbility, setSelectedDefenderAbility] = useState(defaultDefenderPkm.abilities?.[0] || '');
-  const [selectedItem, setSelectedItem] = useState('なし');
 
   const [modalConfig, setModalConfig] = useState({
     isOpen: false,
     type: 'move',
-    target: 'attacker'
+    target: 'attacker',
+    index: 0
   });
 
-  const openModal = (type, target) => {
-    setModalConfig({ isOpen: true, type, target });
+  const openModal = (type, target, index = activeAttackerIndex) => {
+    setModalConfig({ isOpen: true, type, target, index });
+  };
+
+  // 攻撃ポケモンの追加・削除関数
+  const addAttacker = () => {
+    const newAttacker = {
+      id: Date.now(),
+      pokemon: defaultPkm,
+      types: defaultPkm.types || ['くさ', 'あく'],
+      move: defaultMove,
+      ability: defaultPkm.abilities?.[0] || '',
+      item: 'なし',
+      atkEv: 32,
+      atkNature: 1.0,
+      atkRank: 0,
+      hitCount: 3,
+      isAttackerProteanActive: true,
+      moveConditionActive: false,
+      attackerHpPercent: 100
+    };
+    setAttackers(prev => [...prev, newAttacker]);
+    setActiveAttackerIndex(attackers.length);
+  };
+
+  const removeAttacker = (indexToRemove) => {
+    if (attackers.length <= 1) return; // 最低1匹は維持
+    setAttackers(prev => prev.filter((_, idx) => idx !== indexToRemove));
+    setActiveAttackerIndex(prev => Math.max(0, prev >= indexToRemove ? prev - 1 : prev));
+  };
+
+  const updateCurrentAttacker = (fields) => {
+    setAttackers(prev => prev.map((item, idx) => 
+      idx === activeAttackerIndex ? { ...item, ...fields } : item
+    ));
   };
 
   const closeModal = () => {
@@ -139,12 +190,23 @@ export default function App() {
   const handleModalSelect = (selectedName) => {
     if (modalConfig.type === 'pokemon') {
       if (modalConfig.target === 'attacker') {
-        handleAttackerChange(selectedName);
+        const pkm = pokemons.find(p => p.name === selectedName) || { name: selectedName };
+        updateCurrentAttacker({
+          pokemon: pkm,
+          types: pkm.types || [],
+          ability: pkm.abilities?.[0] || ''
+        });
       } else {
         handleDefenderChange(selectedName);
       }
     } else if (modalConfig.type === 'move') {
-      handleMoveChange(selectedName);
+      const move = moves.find(m => m.name === selectedName) || { name: selectedName, type: 'ノーマル', category: '物理', power: 50 };
+      const maxHits = MULTI_HIT_MOVES[move.name] || move.maxHits || 1;
+      updateCurrentAttacker({
+        move,
+        hitCount: maxHits,
+        moveConditionActive: false
+      });
     }
   };
 
@@ -686,24 +748,45 @@ export default function App() {
       }
     }
 
-    if (isMimikyu && isDisguise) {
-      currentDmg = floor(currentDmg * 0.125);
-    }
+    // --- ここから連続技・特殊ヒット処理への差し替え ---
+    let totalHitDmg = 0;
 
-    if (isProtect) {
-      const isUnseenFist = ['ふかしのこぶし', 'かんつうドリル'].includes(selectedAbility);
-      const isContactMove = selectedMove.flags?.includes('contact');
+    for (let h = 1; h <= activeHits; h++) {
+      let singleHitDmg = currentDmg;
 
-      if (isUnseenFist && isContactMove) {
-        currentDmg = roundHalfDown((currentDmg * 1024) / 4096);
-      } else {
-        currentDmg = 0;
+      // トリプルアクセル / トリプルキックのヒットごとの威力上昇補正
+      if (['トリプルアクセル', 'トリプルキック'].includes(selectedMove.name) && activeHits > 1) {
+        singleHitDmg = floor(singleHitDmg * (h / activeHits));
       }
+
+      // ばけのかわ（1打目のみ1/8化、2打目以降は通常通り貫通）
+      if (isMimikyu && isDisguise) {
+        if (h === 1) {
+          singleHitDmg = floor(singleHitDmg * 0.125);
+        }
+      }
+
+      // まもる（ふかしのこぶし等の貫通判定）
+      if (isProtect) {
+        const isUnseenFist = ['ふかしのこぶし', 'かんつうドリル'].includes(selectedAbility);
+        const isContactMove = selectedMove.flags?.includes('contact');
+
+        if (isUnseenFist && isContactMove) {
+          singleHitDmg = roundHalfDown((singleHitDmg * 1024) / 4096);
+        } else {
+          singleHitDmg = 0;
+        }
+      }
+
+      // タイプ相性がある場合の最低1ダメージ保証
+      if (typeEffectiveness > 0 && singleHitDmg < 1) {
+        singleHitDmg = 1;
+      }
+
+      totalHitDmg += singleHitDmg;
     }
 
-    if (typeEffectiveness > 0 && currentDmg < 1) currentDmg = 1;
-
-    rolls.push({ dmg: currentDmg });
+    rolls.push({ dmg: totalHitDmg });
   }
 
   const minDamage = rolls[0]?.dmg || 0;
@@ -763,8 +846,49 @@ export default function App() {
         {/* 🔴 攻撃エリア */}
         <div className="calc-card attacker">
           <div className="card-header attacker">
-            <span>攻撃</span>
+            <span>攻撃 (ターン数: {attackers.length})</span>
+            <button 
+              type="button" 
+              onClick={addAttacker}
+              style={{ backgroundColor: '#ffffff', color: '#e53e3e', border: 'none', borderRadius: '4px', padding: '2px 8px', fontWeight: 'bold', fontSize: '0.75rem', cursor: 'pointer' }}
+            >
+              ＋ ターン追加
+            </button>
           </div>
+
+          {/* 複数ターン切り替えタブ */}
+          {attackers.length > 1 && (
+            <div style={{ display: 'flex', gap: '4px', padding: '6px 10px', backgroundColor: '#1a0e0f', overflowX: 'auto' }}>
+              {attackers.map((atk, idx) => (
+                <div 
+                  key={atk.id} 
+                  onClick={() => setActiveAttackerIndex(idx)}
+                  style={{
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    fontSize: '0.75rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    backgroundColor: activeAttackerIndex === idx ? '#e53e3e' : '#2d1a1c',
+                    color: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                >
+                  <span>T{idx + 1}: {atk.pokemon.name}</span>
+                  {attackers.length > 1 && (
+                    <span 
+                      onClick={(e) => { e.stopPropagation(); removeAttacker(idx); }}
+                      style={{ color: '#ff8a8a', marginLeft: '4px', cursor: 'pointer' }}
+                    >
+                      ×
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
           
           <div className="card-body">
             
@@ -1706,14 +1830,14 @@ export default function App() {
         );
       })()}
 
-      {/* 最下部固定バー */}
+      {/* 最下部固定バー (複数ターンの合算結果を表示) */}
       <StickyDamageBar 
-        attacker={{ movePower: basePower, atkStat: atkStat }}
+        attacker={{ movePower: currentAttacker.move.power, atkStat: currentAttacker.atkEv }}
         defender={{ hpStat: defHpStat, defStat: defStat }}
         damageResult={{ 
-          rolls: rolls.map(r => r.dmg),
-          minDamage: minDamage + entryHazardDamage, 
-          maxDamage: maxDamage + entryHazardDamage 
+          rolls: totalRolls,
+          minDamage: totalMinDamage, 
+          maxDamage: totalMaxDamage 
         }}
       />
 
