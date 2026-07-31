@@ -141,11 +141,10 @@ html, body {
    入力フォーム高さ指定 (モーダル等には影響を与えない範囲に制限)
    ========================================================================== */
 
-.card-body .form-select, 
+/* select を除外 */
 .card-body .form-input, 
 .card-body input[type="text"]:not(.modal-search-input), 
 .card-body input[type="number"]:not(.modal-search-input), 
-.card-body select,
 .card-body button:not(.ability-toggle-btn),
 .card-body .status-btn,
 .card-body .toggle-btn {
@@ -157,6 +156,20 @@ html, body {
   color: #ffffff;
   border: 1px solid #444444;
   border-radius: 4px;
+}
+
+/* 特性・道具などの select 用に高さを個別に確保 */
+.card-body select,
+.card-body select.form-select {
+  height: 36px !important;
+  min-height: 36px !important;
+  line-height: 1.2 !important;
+  padding: 6px 10px !important;
+  font-size: 0.85rem !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #444444 !important;
+  border-radius: 6px !important;
 }
 
 /* 技のタイプ欄の非表示指定 */
@@ -218,11 +231,12 @@ html, body {
 
 .ev-num-input {
   width: 48px !important;
-  height: 24px !important;
-  min-height: 24px !important;
-  line-height: 24px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  line-height: 28px !important;
   text-align: center;
-  font-size: 0.75rem !important;
+  font-size: 0.8rem !important;
+  box-sizing: border-box !important;
 }
 
 /* --- Power Info Box --- */
