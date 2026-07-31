@@ -1420,13 +1420,13 @@ export default function App() {
     </button>
     <button
       type="button"
-      onClick={() => setIsDefenderLifeOrb(!isDefenderLifeOrb)}
-      className={`toggle-btn ${isDefenderLifeOrb ? 'active' : ''}`}
+      onClick={() => setIsLifeOrbRecoil(!isLifeOrbRecoil)}
+      className={`toggle-btn ${isLifeOrbRecoil ? 'active' : ''}`}
       style={{
         padding: '8px 4px',
         borderRadius: '8px',
         border: '1px solid #444',
-        backgroundColor: isDefenderLifeOrb ? '#3b82f6' : '#000',
+        backgroundColor: isLifeOrbRecoil ? '#3b82f6' : '#000',
         color: '#fff',
         fontSize: '0.85rem',
         fontWeight: 'bold',
