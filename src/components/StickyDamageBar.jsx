@@ -11,7 +11,7 @@ function calculateKOInfo(rolls, maxHp, minDmg, maxDmg) {
   // rolls 配列が未指定・不正な場合のフォールバック（16段階を簡易補間生成）
   let effectiveRolls = rolls;
   if (!effectiveRolls || effectiveRolls.length !== 16) {
-    if (minDmg > 0 && maxDmg > 0) {
+    if (typeof minDmg === 'number' && typeof maxDmg === 'number') {
       effectiveRolls = Array.from({ length: 16 }, (_, i) => {
         return Math.floor(minDmg + ((maxDmg - minDmg) * i) / 15);
       });

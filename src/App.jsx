@@ -1830,14 +1830,14 @@ export default function App() {
         );
       })()}
 
-      {/* 最下部固定バー (複数ターンの合算結果を表示) */}
+      {/* 最下部固定バー */}
       <StickyDamageBar 
-        attacker={{ movePower: currentAttacker.move.power, atkStat: currentAttacker.atkEv }}
+        attacker={{ movePower: basePower, atkStat: atkStat }}
         defender={{ hpStat: defHpStat, defStat: defStat }}
         damageResult={{ 
-          rolls: totalRolls,
-          minDamage: totalMinDamage, 
-          maxDamage: totalMaxDamage 
+          rolls: rolls.map(r => r.dmg),
+          minDamage: minDamage + entryHazardDamage, 
+          maxDamage: maxDamage + entryHazardDamage 
         }}
       />
 
