@@ -135,12 +135,12 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
 
   if (!isOpen) return null;
 
-  // 🌟 リスト形式での1行アイテム描画関数
+  // 🌟 1行アイテム描画関数（高さを最適化）
   const renderListItem = (item, highlightLevel = 'normal') => {
     const itemName = typeof item === 'string' ? item : item?.name;
     const itemType = item?.type;
-    const icon = item?.icon || item?.iconUrl; // アイコン画像のパス（データ構造に合わせて適宜調整）
-    const stats = item?.stats || item?.baseStats; // 例: { h: 80, a: 74, b: 74, c: 126, d: 116, s: 60 }
+    const icon = item?.icon || item?.iconUrl;
+    const stats = item?.stats || item?.baseStats;
 
     let bg = 'transparent';
     let textColor = '#fff';
@@ -159,7 +159,8 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
         onClick={() => handleItemSelect(item)}
         style={{
           width: '100%',
-          padding: '16px 12px',
+          padding: '12px 16px', // 上下にしっかりゆとりを持たせる
+          minHeight: '56px', // 2行構成（名前＋タイプ）が綺麗に収まる最小高さを確保
           border: 'none',
           borderBottom: '1px solid #2a2a2a',
           backgroundColor: bg,
@@ -175,7 +176,7 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
         onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2a2a2a'}
         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = bg}
       >
-        {/* 左側：アイコン + ポケモン名/技名 */}
+        {/* 左側：アイコン + （名前 ＆ タイプの2行表示） */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1, minWidth: 0 }}>
           {icon && (
             <img 
@@ -184,10 +185,17 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
               style={{ width: '36px', height: '36px', objectFit: 'contain', flexShrink: 0 }} 
             />
           )}
-          <div style={{ minWidth: 0 }}>
+          <div style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            justify: 'center', 
+            gap: '4px',
+            minWidth: 0 
+          }}>
             <div style={{ 
               fontWeight: 'bold', 
               fontSize: '1rem', 
+              lineHeight: '1.2',
               whiteSpace: 'nowrap', 
               overflow: 'hidden', 
               textOverflow: 'ellipsis' 
@@ -195,12 +203,14 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
               {itemName}
             </div>
             {itemType && (
-              <span style={{ fontSize: '0.75rem', color: '#888' }}>{itemType}</span>
+              <div style={{ fontSize: '0.8rem', color: '#aaa', lineHeight: '1' }}>
+                {itemType}
+              </div>
             )}
           </div>
         </div>
 
-        {/* 右側：種族値（ポケモンの場合でステータスデータが存在すれば表示） */}
+        {/* 右側：種族値（ポケモンの場合） */}
         {type === 'pokemon' && stats && (
           <div style={{ 
             display: 'grid', 
@@ -280,7 +290,7 @@ export default function SelectionModal({ isOpen, onClose, type, pokemonName, ite
       {/* リスト表示領域 */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '0 0 16px 0' }}>
 
-        {/* 履歴表示エリア（検索欄が空で履歴がある場合） */}
+        {/* 履歴表示エリア */}
         {searchTerm === '' && history.length > 0 && (
           <div style={{
             margin: '16px',
