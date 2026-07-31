@@ -8,6 +8,7 @@ import StickyDamageBar from './components/StickyDamageBar';
 import SelectionModal from './components/SelectionModal';
 import ModalTriggerInput from './components/ModalTriggerInput';
 import { getBasePokemonName, getMegaForms } from './utils/megaUtils';
+import InfoModal from './InfoModal'; // パスは配置に合わせて変更してください
 import './App.css';
 
 // --- 端数処理 ---
@@ -112,6 +113,7 @@ export default function App() {
   const defaultPkm = pokemons[0] || { name: 'マスカーニャ', types: ['くさ', 'あく'], baseStats: { hp: 76, atk: 110, def: 70, spAtk: 81, spDef: 70, spd: 123 }, abilities: ['変幻自在', '新緑'] };
   const defaultDefenderPkm = pokemons[1] || { name: 'ガブリアス', types: ['ドラゴン', 'じめん'], baseStats: { hp: 108, atk: 130, def: 95, spAtk: 80, spDef: 85, spd: 102 }, abilities: ['さめはだ'] };
   const defaultMove = moves.find(m => m.name === 'トリプルアクセル') || moves[0] || { name: 'トリプルアクセル', type: 'こおり', category: '物理', power: 20, flags: [] };
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
 
   // 攻撃ポケモンのリスト管理（複数ターン対応）
   const [attackers, setAttackers] = useState([
@@ -1057,7 +1059,10 @@ export default function App() {
       <div className="app-header">
         <button className="header-btn" onClick={handleSwap}>攻防交代</button>
         <h2 className="header-title">Champions</h2>
-        <button className="header-btn" onClick={() => window.location.reload()}>リセット</button>
+        {/* ★3. ヘッダーに情報ボタンを追加 */}
+        <button className="header-btn" onClick={() => setIsInfoOpen(true)}>
+          ℹ️ 情報
+        </button>
       </div>
 
       {/* 🖥 攻撃・防御 2列グリッド */}
