@@ -115,7 +115,6 @@ export default function App() {
 
   const [attacker, setAttacker] = useState(defaultPkm);
   const [attackerTypes, setAttackerTypes] = useState(defaultPkm.types || ['くさ', 'あく']);
-  const [attackerGender, setAttackerGender] = useState('♂');
 
   const [defender, setDefender] = useState(defaultDefenderPkm);
   const [selectedMove, setSelectedMove] = useState(defaultMove);
@@ -769,7 +768,7 @@ export default function App() {
           
           <div className="card-body">
             
-            {/* 種族値 ＆ タイプ変更 ＆ 性別 */}
+            {/* 種族値 ＆ タイプ変更 */}
             <div>
               <BaseStatsHeader stats={attacker.baseStats} />
 
@@ -793,42 +792,28 @@ export default function App() {
                 </button>
               </div>
 
-              {/* ポケモン選択 & メガシンカ & 性別 */}
+              {/* ポケモン選択 & メガシンカ */}
               <div className="form-field-row" style={{ marginBottom: '4px' }}>
                 <span className="form-label">名前</span>
-                <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-                  {getMegaForms(attacker.name).length > 0 && (
-                    <div style={{ display: 'flex', gap: '4px' }}>
-                      {getMegaForms(attacker.name).map((megaName) => {
-                        let label = "メガ";
-                        if (megaName.endsWith("X")) label = "メガX";
-                        if (megaName.endsWith("Y")) label = "メガY";
-                        const isActive = attacker.name === megaName;
-                        return (
-                          <button
-                            key={megaName}
-                            onClick={() => handleToggleAttackerMega(megaName)}
-                            style={{ padding: '2px 6px', borderRadius: '4px', border: '1px solid', borderColor: isActive ? '#ffd54f' : '#666', backgroundColor: isActive ? '#ffd54f' : '#1a1a1a', color: isActive ? '#000' : '#fff', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }}
-                          >
-                            {label}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  )}
-                  <div style={{ display: 'flex', border: '1px solid #555', borderRadius: '4px', overflow: 'hidden' }}>
-                    {['♂', '♀'].map(g => (
-                      <button
-                        key={g}
-                        type="button"
-                        onClick={() => setAttackerGender(g)}
-                        style={{ padding: '2px 8px', border: 'none', background: attackerGender === g ? '#4a90e2' : '#1a1a1a', color: '#fff', fontSize: '0.75rem', cursor: 'pointer' }}
-                      >
-                        {g}
-                      </button>
-                    ))}
+                {getMegaForms(attacker.name).length > 0 && (
+                  <div style={{ display: 'flex', gap: '4px' }}>
+                    {getMegaForms(attacker.name).map((megaName) => {
+                      let label = "メガ";
+                      if (megaName.endsWith("X")) label = "メガX";
+                      if (megaName.endsWith("Y")) label = "メガY";
+                      const isActive = attacker.name === megaName;
+                      return (
+                        <button
+                          key={megaName}
+                          onClick={() => handleToggleAttackerMega(megaName)}
+                          style={{ padding: '2px 6px', borderRadius: '4px', border: '1px solid', borderColor: isActive ? '#ffd54f' : '#666', backgroundColor: isActive ? '#ffd54f' : '#1a1a1a', color: isActive ? '#000' : '#fff', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }}
+                        >
+                          {label}
+                        </button>
+                      );
+                    })}
                   </div>
-                </div>
+                )}
               </div>
 
               <ModalTriggerInput 
@@ -909,56 +894,56 @@ export default function App() {
             </div>
 
             {/* 特性（画像スタイル準拠の有効・無効切り替え） */}
-<div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-  <span style={{ minWidth: '32px', fontSize: '0.85rem', color: '#fff' }}>特性</span>
-  <select 
-    value={selectedAbility} 
-    onChange={(e) => setSelectedAbility(e.target.value)} 
-    className="ability-select"
-  >
-    {attacker.abilities?.map(a => <option key={a} value={a}>{a}</option>)}
-  </select>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+              <span style={{ minWidth: '32px', fontSize: '0.85rem', color: '#fff' }}>特性</span>
+              <select 
+                value={selectedAbility} 
+                onChange={(e) => setSelectedAbility(e.target.value)} 
+                className="ability-select"
+              >
+                {attacker.abilities?.map(a => <option key={a} value={a}>{a}</option>)}
+              </select>
 
-  {(() => {
-    const isToggleable = isAttackerProtean || atkAbilityData?.conditions?.requiresToggle;
-    
-    const isActive = isAttackerProtean 
-      ? isAttackerProteanActive 
-      : !!abilityToggles[atkAbilityData?.conditions?.toggleKey];
+              {(() => {
+                const isToggleable = isAttackerProtean || atkAbilityData?.conditions?.requiresToggle;
+                
+                const isActive = isAttackerProtean 
+                  ? isAttackerProteanActive 
+                  : !!abilityToggles[atkAbilityData?.conditions?.toggleKey];
 
-    const handleToggle = (activeState) => {
-      if (isAttackerProtean) {
-        setIsAttackerProteanActive(activeState);
-      } else if (atkAbilityData?.conditions?.toggleKey) {
-        setAbilityToggles(prev => ({
-          ...prev,
-          [atkAbilityData.conditions.toggleKey]: activeState
-        }));
-      }
-    };
+                const handleToggle = (activeState) => {
+                  if (isAttackerProtean) {
+                    setIsAttackerProteanActive(activeState);
+                  } else if (atkAbilityData?.conditions?.toggleKey) {
+                    setAbilityToggles(prev => ({
+                      ...prev,
+                      [atkAbilityData.conditions.toggleKey]: activeState
+                    }));
+                  }
+                };
 
-    return (
-      <div className="ability-toggle-group">
-        <button
-          type="button"
-          disabled={!isToggleable}
-          onClick={() => handleToggle(true)}
-          className={`ability-toggle-btn ${isActive ? 'active' : ''}`}
-        >
-          有効
-        </button>
-        <button
-          type="button"
-          disabled={!isToggleable}
-          onClick={() => handleToggle(false)}
-          className={`ability-toggle-btn ${!isActive ? 'active' : ''}`}
-        >
-          無効
-        </button>
-      </div>
-    );
-  })()}
-</div>
+                return (
+                  <div className="ability-toggle-group">
+                    <button
+                      type="button"
+                      disabled={!isToggleable}
+                      onClick={() => handleToggle(true)}
+                      className={`ability-toggle-btn ${isActive ? 'active' : ''}`}
+                    >
+                      有効
+                    </button>
+                    <button
+                      type="button"
+                      disabled={!isToggleable}
+                      onClick={() => handleToggle(false)}
+                      className={`ability-toggle-btn ${!isActive ? 'active' : ''}`}
+                    >
+                      無効
+                    </button>
+                  </div>
+                );
+              })()}
+            </div>
 
             {/* 道具 */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
@@ -1284,19 +1269,19 @@ export default function App() {
               {isMimikyu && (
                 <div style={{ display: 'flex', background: '#18181b', borderRadius: '8px', padding: '2px', border: '1px solid #27272a' }}>
                   <button
-  type="button"
-  onClick={() => setIsDisguise(true)}
-  className={`btn-toggle ${isDisguise ? 'active-blue' : ''}`}
->
-  1/8込
-</button>
-<button
-  type="button"
-  onClick={() => setIsDisguise(false)}
-  className={`btn-toggle ${!isDisguise ? 'active-red' : ''}`}
->
-  1/8無
-</button>
+                    type="button"
+                    onClick={() => setIsDisguise(true)}
+                    className={`btn-toggle ${isDisguise ? 'active-blue' : ''}`}
+                  >
+                    1/8込
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsDisguise(false)}
+                    className={`btn-toggle ${!isDisguise ? 'active-red' : ''}`}
+                  >
+                    1/8無
+                  </button>
                 </div>
               )}
             </div>
