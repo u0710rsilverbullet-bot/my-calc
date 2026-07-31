@@ -2082,7 +2082,7 @@ export default function App() {
             <div className="info-modal-section">
               <h4>作成者 / SNS</h4>
               <p>
-                Created by <a href="https://twitter.com/your_twitter_id" target="_blank" rel="noopener noreferrer">@作成者アカウント</a>
+                Created by <a href="https://x.com/el_pkmn" target="_blank" rel="noopener noreferrer">える</a>
               </p>
             </div>
 
