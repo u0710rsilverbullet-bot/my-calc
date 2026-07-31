@@ -1050,74 +1050,82 @@ export default function App() {
               <div style={{ fontSize: '0.9rem', color: '#fff', marginBottom: '8px' }}>状態</div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
                 <button
-                  type="button"
-                  onClick={() => setIsBurned(!isBurned)}
-                  style={{
-                    padding: '8px 4px',
-                    borderRadius: '8px',
-                    border: '1px solid #444',
-                    backgroundColor: isBurned ? '#ef4444' : '#000',
-                    color: '#fff',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    textAlign: 'center'
-                  }}
-                >
+  type="button"
+  onClick={() => setIsBurned(!isBurned)}
+  style={{
+    padding: '8px 4px',
+    borderRadius: '8px',
+    border: '1px solid #444',
+    backgroundColor: isBurned ? '#ef4444' : '#000',
+    color: '#fff',
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
                   やけど
                 </button>
 
                 <button
-                  type="button"
-                  onClick={() => setIsCharge(!isCharge)}
-                  style={{
-                    padding: '8px 4px',
-                    borderRadius: '8px',
-                    border: '1px solid #444',
-                    backgroundColor: isCharge ? '#eab308' : '#000',
-                    color: isCharge ? '#000' : '#fff',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    textAlign: 'center'
-                  }}
-                >
+  type="button"
+  onClick={() => setIsBurned(!isBurned)}
+  style={{
+    padding: '8px 4px',
+    borderRadius: '8px',
+    border: '1px solid #444',
+    backgroundColor: isBurned ? '#ef4444' : '#000',
+    color: '#fff',
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
                   じゅうでん
                 </button>
 
                 <button
-                  type="button"
-                  onClick={() => setIsHelpingHand(!isHelpingHand)}
-                  style={{
-                    padding: '8px 4px',
-                    borderRadius: '8px',
-                    border: '1px solid #444',
-                    backgroundColor: isHelpingHand ? '#3b82f6' : '#000',
-                    color: '#fff',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    textAlign: 'center'
-                  }}
-                >
+  type="button"
+  onClick={() => setIsBurned(!isBurned)}
+  style={{
+    padding: '8px 4px',
+    borderRadius: '8px',
+    border: '1px solid #444',
+    backgroundColor: isBurned ? '#ef4444' : '#000',
+    color: '#fff',
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
                   てだすけ
                 </button>
 
                 <button
-                  type="button"
-                  onClick={() => setIsSoak(!isSoak)}
-                  style={{
-                    padding: '8px 4px',
-                    borderRadius: '8px',
-                    border: '1px solid #444',
-                    backgroundColor: isSoak ? '#06b6d4' : '#000',
-                    color: '#fff',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    textAlign: 'center'
-                  }}
-                >
+  type="button"
+  onClick={() => setIsBurned(!isBurned)}
+  style={{
+    padding: '8px 4px',
+    borderRadius: '8px',
+    border: '1px solid #444',
+    backgroundColor: isBurned ? '#ef4444' : '#000',
+    color: '#fff',
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
                   みずびたし
                 </button>
               </div>
@@ -1308,120 +1316,126 @@ export default function App() {
               
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', marginBottom: '6px' }}>
                 <button
-                  type="button"
-                  onClick={() => setIsProtect(!isProtect)}
-                  className={`toggle-btn ${isProtect ? 'active' : ''}`}
-                  style={{
-                    padding: '8px 4px',
-                    borderRadius: '8px',
-                    border: '1px solid #444',
-                    backgroundColor: isProtect ? '#3b82f6' : '#000',
-                    color: '#fff',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    textAlign: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
+  type="button"
+  onClick={() => setIsProtect(!isProtect)}
+  className={`toggle-btn ${isProtect ? 'active' : ''}`}
+  style={{
+    padding: '8px 4px',
+    borderRadius: '8px',
+    border: '1px solid #444',
+    backgroundColor: isProtect ? '#3b82f6' : '#000',
+    color: '#fff',
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
                   まもる
                 </button>
                 <button
-                  type="button"
-                  onClick={() => setIsReflectWall(!isReflectWall)}
-                  className={`toggle-btn ${isReflectWall ? 'active' : ''}`}
-                  style={{
-                    padding: '8px 4px',
-                    borderRadius: '8px',
-                    border: '1px solid #444',
-                    backgroundColor: isReflectWall ? '#3b82f6' : '#000',
-                    color: '#fff',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    textAlign: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
+  type="button"
+  onClick={() => setIsProtect(!isProtect)}
+  className={`toggle-btn ${isProtect ? 'active' : ''}`}
+  style={{
+    padding: '8px 4px',
+    borderRadius: '8px',
+    border: '1px solid #444',
+    backgroundColor: isProtect ? '#3b82f6' : '#000',
+    color: '#fff',
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
                   リフレク・光の壁
                 </button>
                 <button
-                  type="button"
-                  onClick={() => setIsStealthRock(!isStealthRock)}
-                  className={`toggle-btn ${isStealthRock ? 'active' : ''}`}
-                  style={{
-                    padding: '8px 4px',
-                    borderRadius: '8px',
-                    border: '1px solid #444',
-                    backgroundColor: isStealthRock ? '#3b82f6' : '#000',
-                    color: '#fff',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    textAlign: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
+  type="button"
+  onClick={() => setIsProtect(!isProtect)}
+  className={`toggle-btn ${isProtect ? 'active' : ''}`}
+  style={{
+    padding: '8px 4px',
+    borderRadius: '8px',
+    border: '1px solid #444',
+    backgroundColor: isProtect ? '#3b82f6' : '#000',
+    color: '#fff',
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
                   ステルスロック
                 </button>
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px', marginBottom: '10px' }}>
                 <button
-                  type="button"
-                  onClick={() => setIsRoost(!isRoost)}
-                  className={`toggle-btn ${isRoost ? 'active' : ''}`}
-                  style={{
-                    padding: '8px 4px',
-                    borderRadius: '8px',
-                    border: '1px solid #444',
-                    backgroundColor: isRoost ? '#3b82f6' : '#000',
-                    color: '#fff',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    textAlign: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
+  type="button"
+  onClick={() => setIsProtect(!isProtect)}
+  className={`toggle-btn ${isProtect ? 'active' : ''}`}
+  style={{
+    padding: '8px 4px',
+    borderRadius: '8px',
+    border: '1px solid #444',
+    backgroundColor: isProtect ? '#3b82f6' : '#000',
+    color: '#fff',
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
                   はねやすめ
                 </button>
                 <button
-                  type="button"
-                  onClick={() => setIsSpikes(!isSpikes)}
-                  className={`toggle-btn ${isSpikes ? 'active' : ''}`}
-                  style={{
-                    padding: '8px 4px',
-                    borderRadius: '8px',
-                    border: '1px solid #444',
-                    backgroundColor: isSpikes ? '#3b82f6' : '#000',
-                    color: '#fff',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    textAlign: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
+  type="button"
+  onClick={() => setIsProtect(!isProtect)}
+  className={`toggle-btn ${isProtect ? 'active' : ''}`}
+  style={{
+    padding: '8px 4px',
+    borderRadius: '8px',
+    border: '1px solid #444',
+    backgroundColor: isProtect ? '#3b82f6' : '#000',
+    color: '#fff',
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
                   まきびし
                 </button>
                 <button
-                  type="button"
-                  onClick={() => setIsDefenderLifeOrb(!isDefenderLifeOrb)}
-                  className={`toggle-btn ${isDefenderLifeOrb ? 'active' : ''}`}
-                  style={{
-                    padding: '8px 4px',
-                    borderRadius: '8px',
-                    border: '1px solid #444',
-                    backgroundColor: isDefenderLifeOrb ? '#3b82f6' : '#000',
-                    color: '#fff',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    textAlign: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
+  type="button"
+  onClick={() => setIsProtect(!isProtect)}
+  className={`toggle-btn ${isProtect ? 'active' : ''}`}
+  style={{
+    padding: '8px 4px',
+    borderRadius: '8px',
+    border: '1px solid #444',
+    backgroundColor: isProtect ? '#3b82f6' : '#000',
+    color: '#fff',
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
                   命の珠
                 </button>
               </div>
